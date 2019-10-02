@@ -11,6 +11,9 @@
 		3DAF0D45220C81FF00EDBEDE /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF0D44220C81FF00EDBEDE /* InfoViewController.swift */; };
 		3DAF0D47220C86EF00EDBEDE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF0D46220C86EF00EDBEDE /* NetworkService.swift */; };
 		3DAF0D4A220C879700EDBEDE /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF0D48220C879700EDBEDE /* DataModel.xcdatamodeld */; };
+		630D62AF2344286600BDDDB4 /* ContactWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62AE2344286500BDDDB4 /* ContactWebViewController.swift */; };
+		630D62B22344288900BDDDB4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B12344288900BDDDB4 /* Constants.swift */; };
+		630D62B6234428D300BDDDB4 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */; };
 		A0009487337291F9C2F228CC /* Pods_app_danceblue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD2FC4D9F274FB611523672 /* Pods_app_danceblue.framework */; };
 		CB0CB6E020224427000C0664 /* MoraleCupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0CB6DF20224427000C0664 /* MoraleCupTableViewCell.swift */; };
 		CB0E9A551F23F8A400A717DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E9A541F23F8A400A717DC /* AppDelegate.swift */; };
@@ -66,7 +69,6 @@
 		CB8CDCFA1F2FFD3500CF822A /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8CDCF91F2FFD3500CF822A /* Blog.swift */; };
 		CB8D3EE11F70343C006A9777 /* EventHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8D3EE01F70343C006A9777 /* EventHeaderCell.swift */; };
 		CBA81B251FAF7F38009FB4BA /* ContactDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA81B241FAF7F38009FB4BA /* ContactDetailsTableViewCell.swift */; };
-		CBA81B271FAF8044009FB4BA /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA81B261FAF8044009FB4BA /* ContactTableViewController.swift */; };
 		CBA81B2E1FAF8AC2009FB4BA /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA81B2D1FAF8AC2009FB4BA /* Strings.swift */; };
 		CBA81B301FAFA067009FB4BA /* SocialMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA81B2F1FAFA067009FB4BA /* SocialMediaTableViewCell.swift */; };
 		CBA81B321FB9EB5D009FB4BA /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA81B311FB9EB5D009FB4BA /* ImageViewController.swift */; };
@@ -99,6 +101,9 @@
 		3DAF0D44220C81FF00EDBEDE /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		3DAF0D46220C86EF00EDBEDE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3DAF0D49220C879700EDBEDE /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		630D62AE2344286500BDDDB4 /* ContactWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactWebViewController.swift; sourceTree = "<group>"; };
+		630D62B12344288900BDDDB4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		BFD2FC4D9F274FB611523672 /* Pods_app_danceblue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app_danceblue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0CB6DF20224427000C0664 /* MoraleCupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoraleCupTableViewCell.swift; sourceTree = "<group>"; };
 		CB0E9A511F23F8A400A717DC /* app-danceblue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-danceblue.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,7 +162,6 @@
 		CB8CDCF91F2FFD3500CF822A /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		CB8D3EE01F70343C006A9777 /* EventHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHeaderCell.swift; sourceTree = "<group>"; };
 		CBA81B241FAF7F38009FB4BA /* ContactDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsTableViewCell.swift; sourceTree = "<group>"; };
-		CBA81B261FAF8044009FB4BA /* ContactTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		CBA81B2D1FAF8AC2009FB4BA /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		CBA81B2F1FAFA067009FB4BA /* SocialMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaTableViewCell.swift; sourceTree = "<group>"; };
 		CBA81B311FB9EB5D009FB4BA /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +206,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		630D62B02344287C00BDDDB4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				630D62B12344288900BDDDB4 /* Constants.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		CB0CB6DB202243C0000C0664 /* Marathon */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +256,7 @@
 		CB0E9A531F23F8A400A717DC /* app-danceblue */ = {
 			isa = PBXGroup;
 			children = (
+				630D62B02344287C00BDDDB4 /* Helpers */,
 				CB23ED781F6AD3F100FADAFC /* app-danceblue.entitlements */,
 				CB0E9A681F23FB3F00A717DC /* Model */,
 				CB0E9A691F23FB4400A717DC /* View */,
@@ -376,7 +389,8 @@
 			children = (
 				CB8C4B261F9A4818004478FA /* MoreViewController.swift */,
 				CB1D523D1FA0E366003BDA0A /* FAQsTableViewController.swift */,
-				CBA81B261FAF8044009FB4BA /* ContactTableViewController.swift */,
+				630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */,
+				630D62AE2344286500BDDDB4 /* ContactWebViewController.swift */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -744,6 +758,7 @@
 				CBCC092A1FA1416C0027CAFD /* FAQsTableViewCell.swift in Sources */,
 				CBA81B251FAF7F38009FB4BA /* ContactDetailsTableViewCell.swift in Sources */,
 				3DAF0D47220C86EF00EDBEDE /* NetworkService.swift in Sources */,
+				630D62AF2344286600BDDDB4 /* ContactWebViewController.swift in Sources */,
 				CB1D523E1FA0E366003BDA0A /* FAQsTableViewController.swift in Sources */,
 				CB8C4B291F9A4A3E004478FA /* DonateTableViewCell.swift in Sources */,
 				CBA81B2E1FAF8AC2009FB4BA /* Strings.swift in Sources */,
@@ -754,6 +769,7 @@
 				CB665BB41FA6CD9200A1D567 /* Sponsor.swift in Sources */,
 				CB129C9B1F9500CC00FDD3FF /* SponsorCollectionViewCell.swift in Sources */,
 				CB19AF351F32C85600429C18 /* BCHeaderImage.swift in Sources */,
+				630D62B22344288900BDDDB4 /* Constants.swift in Sources */,
 				CBA81B321FB9EB5D009FB4BA /* ImageViewController.swift in Sources */,
 				CB19AF2E1F32AE3700429C18 /* BCData.swift in Sources */,
 				CB8CDCF21F2FF1F000CF822A /* BlogCollectionViewController.swift in Sources */,
@@ -765,13 +781,13 @@
 				CBB0A8E81FACD2F100833DDE /* EventFlyerCell.swift in Sources */,
 				CB129C961F94486200FDD3FF /* HomeViewController.swift in Sources */,
 				CB1D52391FA0E30E003BDA0A /* QuestionTableViewCell.swift in Sources */,
-				CBA81B271FAF8044009FB4BA /* ContactTableViewController.swift in Sources */,
 				CB8D3EE11F70343C006A9777 /* EventHeaderCell.swift in Sources */,
 				CB129C941F9131E000FDD3FF /* CountdownTableViewCell.swift in Sources */,
 				CBF637461F73FA0A00270724 /* NetworkHelper.swift in Sources */,
 				CB0CB6E020224427000C0664 /* MoraleCupTableViewCell.swift in Sources */,
 				CB7DE1DA1F2597FF00235145 /* EventDetailsViewController.swift in Sources */,
 				CB8CDCF61F2FFCA000CF822A /* FeaturedCollectionViewCell.swift in Sources */,
+				630D62B6234428D300BDDDB4 /* ContactTableViewController.swift in Sources */,
 				CB19AF311F32C82000429C18 /* BCQuote.swift in Sources */,
 				CB19AF3B1F32C94800429C18 /* BlogDetails.swift in Sources */,
 				CB19AF411F3499A600429C18 /* SectionTitleTableViewCell.swift in Sources */,
