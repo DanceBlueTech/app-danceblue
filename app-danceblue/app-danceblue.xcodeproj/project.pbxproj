@@ -16,6 +16,10 @@
 		630D62B6234428D300BDDDB4 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */; };
 		63AD462D234AA64D000BDA67 /* GeoFencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462C234AA64D000BDA67 /* GeoFencing.swift */; };
 		63AD462F234AA956000BDA67 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462E234AA956000BDA67 /* GeoLocation.swift */; };
+		63D73867234BB3EA00AD2D9C /* GeoLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D73866234BB3EA00AD2D9C /* GeoLocation.storyboard */; };
+		63E2FB50234B777F002021B5 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB4F234B777F002021B5 /* Events.storyboard */; };
+		63E2FB53234B77C0002021B5 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB52234B77C0002021B5 /* More.storyboard */; };
+		63E2FB56234B78A2002021B5 /* Blog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB55234B78A2002021B5 /* Blog.storyboard */; };
 		A0009487337291F9C2F228CC /* Pods_app_danceblue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD2FC4D9F274FB611523672 /* Pods_app_danceblue.framework */; };
 		CB0CB6E020224427000C0664 /* MoraleCupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0CB6DF20224427000C0664 /* MoraleCupTableViewCell.swift */; };
 		CB0E9A551F23F8A400A717DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E9A541F23F8A400A717DC /* AppDelegate.swift */; };
@@ -108,6 +112,10 @@
 		630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		63AD462C234AA64D000BDA67 /* GeoFencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoFencing.swift; sourceTree = "<group>"; };
 		63AD462E234AA956000BDA67 /* GeoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
+		63D73866234BB3EA00AD2D9C /* GeoLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GeoLocation.storyboard; sourceTree = "<group>"; };
+		63E2FB4F234B777F002021B5 /* Events.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
+		63E2FB52234B77C0002021B5 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		63E2FB55234B78A2002021B5 /* Blog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Blog.storyboard; sourceTree = "<group>"; };
 		BFD2FC4D9F274FB611523672 /* Pods_app_danceblue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app_danceblue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0CB6DF20224427000C0664 /* MoraleCupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoraleCupTableViewCell.swift; sourceTree = "<group>"; };
 		CB0E9A511F23F8A400A717DC /* app-danceblue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-danceblue.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,6 +331,10 @@
 			children = (
 				CB0E9A5F1F23F8A400A717DC /* LaunchScreen.storyboard */,
 				CB6843851F3894ED000720F2 /* Main.storyboard */,
+				63E2FB4F234B777F002021B5 /* Events.storyboard */,
+				63E2FB52234B77C0002021B5 /* More.storyboard */,
+				63E2FB55234B78A2002021B5 /* Blog.storyboard */,
+				63D73866234BB3EA00AD2D9C /* GeoLocation.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -642,9 +654,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB0E9A611F23F8A400A717DC /* LaunchScreen.storyboard in Resources */,
+				63D73867234BB3EA00AD2D9C /* GeoLocation.storyboard in Resources */,
+				63E2FB53234B77C0002021B5 /* More.storyboard in Resources */,
 				CB6843871F3894ED000720F2 /* Main.storyboard in Resources */,
 				CB0E9A5E1F23F8A400A717DC /* Assets.xcassets in Resources */,
 				CB23ED7A1F6AD60700FADAFC /* GoogleService-Info.plist in Resources */,
+				63E2FB50234B777F002021B5 /* Events.storyboard in Resources */,
+				63E2FB56234B78A2002021B5 /* Blog.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
