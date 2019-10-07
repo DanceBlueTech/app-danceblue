@@ -46,6 +46,9 @@ class HomeViewController: UITableViewController {
     private var moraleCupChangeHandle: DatabaseHandle?
     private var moraleCupDeleteHandle: DatabaseHandle?
     
+    private var GeoLocationData: [GeoLocation] = []
+    private var geoLocationHandle: DatabaseHandle?
+    
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -158,6 +161,7 @@ class HomeViewController: UITableViewController {
         setupCountdownReference()
         setupSponsorsReference()
         setupMoraleCupReference()
+        setupGeoLocationReference()
     }
     
     // MARK: - Announcements
@@ -286,6 +290,20 @@ class HomeViewController: UITableViewController {
         moraleCupData.sort(by: {$0.standing ?? 0 < $1.standing ?? 0})
     }
 
+    // MARK: - GeoLocation
+    
+    func setupGeoLocationReference(){
+        firebaseReference = Database.database().reference()
+        geoLocationHandle = firebaseReference?.child(kGeoLocationTableName).observe(.childAdded, with: { (snapshot) in
+            guard let data = snapshot.value as? [String : String] else { return }
+            guard let geolocation = GeoLocation(JSON: data) else { return }
+            self.GeoLocationData.append(geolocation)
+            
+            #warning("TODO: store these location into local storage for calling later on")
+            //self.tableView.reloadData()
+            //self.delegate?.tableDidLoad()
+        })
+    }
 }
 
 // MARK: - SponsorDelegate

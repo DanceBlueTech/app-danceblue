@@ -14,6 +14,8 @@
 		630D62AF2344286600BDDDB4 /* ContactWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62AE2344286500BDDDB4 /* ContactWebViewController.swift */; };
 		630D62B22344288900BDDDB4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B12344288900BDDDB4 /* Constants.swift */; };
 		630D62B6234428D300BDDDB4 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */; };
+		63AD462D234AA64D000BDA67 /* GeoFencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462C234AA64D000BDA67 /* GeoFencing.swift */; };
+		63AD462F234AA956000BDA67 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462E234AA956000BDA67 /* GeoLocation.swift */; };
 		A0009487337291F9C2F228CC /* Pods_app_danceblue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD2FC4D9F274FB611523672 /* Pods_app_danceblue.framework */; };
 		CB0CB6E020224427000C0664 /* MoraleCupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0CB6DF20224427000C0664 /* MoraleCupTableViewCell.swift */; };
 		CB0E9A551F23F8A400A717DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E9A541F23F8A400A717DC /* AppDelegate.swift */; };
@@ -104,6 +106,8 @@
 		630D62AE2344286500BDDDB4 /* ContactWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactWebViewController.swift; sourceTree = "<group>"; };
 		630D62B12344288900BDDDB4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
+		63AD462C234AA64D000BDA67 /* GeoFencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoFencing.swift; sourceTree = "<group>"; };
+		63AD462E234AA956000BDA67 /* GeoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
 		BFD2FC4D9F274FB611523672 /* Pods_app_danceblue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app_danceblue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0CB6DF20224427000C0664 /* MoraleCupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoraleCupTableViewCell.swift; sourceTree = "<group>"; };
 		CB0E9A511F23F8A400A717DC /* app-danceblue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-danceblue.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				630D62B12344288900BDDDB4 /* Constants.swift */,
+				63AD462C234AA64D000BDA67 /* GeoFencing.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 		CB0E9A681F23FB3F00A717DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				63AD462E234AA956000BDA67 /* GeoLocation.swift */,
 				CB7DE1D11F25267200235145 /* Announcement.swift */,
 				CB665BB31FA6CD9200A1D567 /* Sponsor.swift */,
 				CB0E9A7B1F24280200A717DC /* Event.swift */,
@@ -767,6 +773,7 @@
 				CBCC092C1FA2318A0027CAFD /* ContactTableViewCell.swift in Sources */,
 				CB74FD702023D50B000A3F2E /* ScannerViewController.swift in Sources */,
 				CB665BB41FA6CD9200A1D567 /* Sponsor.swift in Sources */,
+				63AD462F234AA956000BDA67 /* GeoLocation.swift in Sources */,
 				CB129C9B1F9500CC00FDD3FF /* SponsorCollectionViewCell.swift in Sources */,
 				CB19AF351F32C85600429C18 /* BCHeaderImage.swift in Sources */,
 				630D62B22344288900BDDDB4 /* Constants.swift in Sources */,
@@ -782,6 +789,7 @@
 				CB129C961F94486200FDD3FF /* HomeViewController.swift in Sources */,
 				CB1D52391FA0E30E003BDA0A /* QuestionTableViewCell.swift in Sources */,
 				CB8D3EE11F70343C006A9777 /* EventHeaderCell.swift in Sources */,
+				63AD462D234AA64D000BDA67 /* GeoFencing.swift in Sources */,
 				CB129C941F9131E000FDD3FF /* CountdownTableViewCell.swift in Sources */,
 				CBF637461F73FA0A00270724 /* NetworkHelper.swift in Sources */,
 				CB0CB6E020224427000C0664 /* MoraleCupTableViewCell.swift in Sources */,

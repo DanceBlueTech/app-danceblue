@@ -11,6 +11,7 @@ import UIKit
 import UserNotifications
 import XCGLogger
 import CoreData
+import CoreLocation
 
 let log = XCGLogger.default
 

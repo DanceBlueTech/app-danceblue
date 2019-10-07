@@ -8,5 +8,12 @@
 
 import Foundation
 
+// MARK: -constants for firebase names
+let kGeoLocationTableName       = "geolocation"
+let kGeoLocationName            = "name"
+let kGeoLocationLat             = "latitude"
+let kGeoLocationLong            = "longitude"
+let kGeoLocationRadius          = "radius"
+
 //MARK: Contact Information from public website
 let kContactInfoURL             = "http://www.danceblue.org/meet-the-team/"
