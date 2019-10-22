@@ -17,6 +17,7 @@
 		63AD462D234AA64D000BDA67 /* GeoFencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462C234AA64D000BDA67 /* GeoFencing.swift */; };
 		63AD462F234AA956000BDA67 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462E234AA956000BDA67 /* GeoLocation.swift */; };
 		63D73867234BB3EA00AD2D9C /* GeoLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D73866234BB3EA00AD2D9C /* GeoLocation.storyboard */; };
+		63D7386A234BBAED00AD2D9C /* GeoFencingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D73869234BBAED00AD2D9C /* GeoFencingViewController.swift */; };
 		63E2FB50234B777F002021B5 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB4F234B777F002021B5 /* Events.storyboard */; };
 		63E2FB53234B77C0002021B5 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB52234B77C0002021B5 /* More.storyboard */; };
 		63E2FB56234B78A2002021B5 /* Blog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB55234B78A2002021B5 /* Blog.storyboard */; };
@@ -113,6 +114,7 @@
 		63AD462C234AA64D000BDA67 /* GeoFencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoFencing.swift; sourceTree = "<group>"; };
 		63AD462E234AA956000BDA67 /* GeoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
 		63D73866234BB3EA00AD2D9C /* GeoLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GeoLocation.storyboard; sourceTree = "<group>"; };
+		63D73869234BBAED00AD2D9C /* GeoFencingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoFencingViewController.swift; sourceTree = "<group>"; };
 		63E2FB4F234B777F002021B5 /* Events.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
 		63E2FB52234B77C0002021B5 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		63E2FB55234B78A2002021B5 /* Blog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Blog.storyboard; sourceTree = "<group>"; };
@@ -227,6 +229,14 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		63D73868234BBABB00AD2D9C /* GeoFencing */ = {
+			isa = PBXGroup;
+			children = (
+				63D73869234BBAED00AD2D9C /* GeoFencingViewController.swift */,
+			);
+			name = GeoFencing;
+			sourceTree = "<group>";
+		};
 		CB0CB6DB202243C0000C0664 /* Marathon */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +326,7 @@
 		CB0E9A6A1F23FB5600A717DC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				63D73868234BBABB00AD2D9C /* GeoFencing */,
 				CB7DE1DD1F28418D00235145 /* Splash */,
 				CB7DE1CD1F25149900235145 /* Home */,
 				CB0CB6DB202243C0000C0664 /* Marathon */,
@@ -780,6 +791,7 @@
 				CBCC092A1FA1416C0027CAFD /* FAQsTableViewCell.swift in Sources */,
 				CBA81B251FAF7F38009FB4BA /* ContactDetailsTableViewCell.swift in Sources */,
 				3DAF0D47220C86EF00EDBEDE /* NetworkService.swift in Sources */,
+				63D7386A234BBAED00AD2D9C /* GeoFencingViewController.swift in Sources */,
 				630D62AF2344286600BDDDB4 /* ContactWebViewController.swift in Sources */,
 				CB1D523E1FA0E366003BDA0A /* FAQsTableViewController.swift in Sources */,
 				CB8C4B291F9A4A3E004478FA /* DonateTableViewCell.swift in Sources */,

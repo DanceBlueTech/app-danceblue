@@ -19,6 +19,10 @@ class EventDescriptionCell: UITableViewCell {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var underlineView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBAction func geoFenceCheckin(_ sender: Any) {
+        print("Checking IN!!")
+    }
+    
     private var event: Event?
     
     weak var delegate: EventDescriptionDelegate?
@@ -58,8 +62,6 @@ class EventDescriptionCell: UITableViewCell {
         adjustedHeight += descriptionTextView.sizeThatFits(CGSize(width: size.width - 40, height: size.height)).height + 16.0
         return CGSize(width: bounds.width, height: adjustedHeight)
     }
-    
-
 }
 
 // MARK: - UITextViewDelegate
