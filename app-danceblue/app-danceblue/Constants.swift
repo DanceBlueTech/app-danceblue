@@ -17,3 +17,7 @@ let kGeoLocationRadius          = "radius"
 
 //MARK: Contact Information from public website
 let kContactInfoURL             = "http://www.danceblue.org/meet-the-team/"
+
+// MARK: - Alerts
+let kError1                     = "ERROR"
+let kErrorMessage1              = "Geofencing is not supported on this device!"

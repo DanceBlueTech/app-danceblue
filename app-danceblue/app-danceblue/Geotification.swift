@@ -9,17 +9,22 @@
 import Foundation
 import CoreLocation
 
-class GeoFencing: NSObject {
+class Geotification: NSObject {
+    enum EventType: String {
+      case onEntry = "On Entry"
+      case onExit = "On Exit"
+    }
     
     var coordinate: CLLocationCoordinate2D
     var radius: CLLocationDistance
-    //var identifier: String = ""
+    var identifier: String = ""
     //var note: String = ""
-    //var eventType: EventType
+    var eventType: EventType
     
-    init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance) {
-      self.coordinate = coordinate
-      self.radius = radius
+    init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, eventType: EventType) {
+        self.coordinate = coordinate
+        self.radius = radius
+        self.eventType = eventType
     }
     
 }
