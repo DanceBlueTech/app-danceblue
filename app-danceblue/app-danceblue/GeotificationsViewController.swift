@@ -40,20 +40,39 @@ class GeotificationsViewController: UIViewController {
     func startMonitoring(geotification: Geotification) {
         // 1
         if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-        showAlert(withTitle: kError1, message: kErrorMessage1)
-        return
+            showAlert(withTitle: kError1, message: kErrorMessage1)
+            return
         }
         // 2
         if CLLocationManager.authorizationStatus() != .authorizedAlways {
-        let message = """
-          Your geotification is saved but will only be activated once you grant
-          Geotify permission to access the device location.
-          """
-        showAlert(withTitle:"Warning", message: message)
+            showAlert(withTitle:kError2, message: kErrorMessage2)
         }
         // 3
         let fenceRegion = region(with: geotification)
         // 4
         locationManager.startMonitoring(for: fenceRegion)
     }
+    
+    // MARK: - Stop monitoring the Geofence regions
+    func stopMonitoring(geotification: Geotification) {
+        for region in locationManager.monitoredRegions {
+            guard let circularRegion = region as? CLCircularRegion,
+                circularRegion.identifier == geotification.identifier else { continue }
+            locationManager.stopMonitoring(for: circularRegion)
+        }
+    }
 }
+/*
+// MARK: AddGeotificationViewControllerDelegate
+extension GeotificationsViewController: AddGeotificationsViewControllerDelegate {
+  
+  func addGeotificationViewController(_ controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType) {
+    controller.dismiss(animated: true, completion: nil)
+    let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
+    let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, identifier: identifier, note: note, eventType: eventType)
+    add(geotification)
+    startMonitoring(geotification: geotification)
+    saveAllGeotifications()
+  }
+  
+}*/

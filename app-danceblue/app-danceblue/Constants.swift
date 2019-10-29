@@ -20,4 +20,6 @@ let kContactInfoURL             = "http://www.danceblue.org/meet-the-team/"
 
 // MARK: - Alerts
 let kError1                     = "ERROR"
+let kError2                     = "Warning"
 let kErrorMessage1              = "Geofencing is not supported on this device!"
+let kErrorMessage2              = "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location."
