@@ -63,15 +63,6 @@ class GeotificationsViewController: UIViewController {
             locationManager.stopMonitoring(for: circularRegion)
         }
     }
-    // MARK: - checking into the geo fence
-    func CheckInGeoFence(_ controller: EventDescriptionCell, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType) {
-      //controller.dismiss(animated: true, completion: nil)
-      let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
-      let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, eventType: eventType)
-      //add(geotification)
-      startMonitoring(geotification: geotification)
-      //saveAllGeotifications()
-    }
 }
 // MARK: - Location Manager Delegate
 extension GeotificationsViewController: CLLocationManagerDelegate {
@@ -91,4 +82,14 @@ extension GeotificationsViewController: CLLocationManagerDelegate {
 }
 
 // MARK: AddGeotificationViewControllerDelegate
-//extension GeotificationsViewController: EventDescriptionCellDelegate {}
+extension GeotificationsViewController: EventDescriptionCellDelegate {
+    // MARK: - checking into the geo fence
+    func CheckInGeoFence(_ controller: EventDescriptionCell, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType) {
+      //controller.dismiss(animated: true, completion: nil)
+      let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
+      let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, eventType: eventType)
+      //add(geotification)
+      startMonitoring(geotification: geotification)
+      //saveAllGeotifications()
+    }
+}

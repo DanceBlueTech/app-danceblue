@@ -12,32 +12,72 @@ import MapKit
 protocol EventDescriptionDelegate: class {
     func textView(didPresentSafariViewController url: URL)
 }
-/*
-protocol GeotificationsViewControllerDelegate {
-  func GeotificationViewController(_ controller: EventDescriptionCellDelegate, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType)
-}*/
+
+//TODO: https://blog.usejournal.com/geofencing-in-ios-swift-for-noobs-29a1c6d15dcc
+//might need to set up regions on events tab clicked or keep it with the button click of check in??
+
+protocol EventDescriptionCellDelegate {
+  func CheckInGeoFence(_ controller: EventDescriptionCell, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType)
+}
 
 class EventDescriptionCell: UITableViewCell {
     
     static let identifier = "EventDescriptionCell"
     private var event: Event?
     weak var delegate: EventDescriptionDelegate?
-    //var delegate2: GeotificationsViewControllerDelegate?
+    var delegate2: EventDescriptionCellDelegate?
+    let geoCoder = CLGeocoder()
     
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var underlineView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    
+    // MARK: - Check in for GeoFences
     @IBAction func geoFenceCheckin(_ sender: Any) {
         print("Checking IN!!")
-        /*let coordinate = mapView.centerCoordinate
-        let radius = Double(radiusTextField.text!) ?? 0
-        let identifier = NSUUID().uuidString
-        let note = noteTextField.text
-        let eventType: Geotification.EventType = (eventTypeSegmentedControl.selectedSegmentIndex == 0) ? .onEntry : .onExit
-        delegate2?.GeotificationViewController(self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!, eventType: eventType)*/
+        let validationFlag = checkEventInfomation()
+        if(validationFlag){
+            print("Validation was True!")
+            /*let coordinate = mapView.centerCoordinate
+            let radius = Double(radiusTextField.text!) ?? 0
+            let identifier = NSUUID().uuidString
+            let note = noteTextField.text
+            let eventType: Geotification.EventType = (eventTypeSegmentedControl.selectedSegmentIndex == 0) ? .onEntry : .onExit
+            delegate2?.GeotificationViewController(self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!, eventType: eventType)*/
+        }
+        else{
+            print("Event is not active at this moment")
+        }
     }
     
-   
+    func checkEventInfomation() -> Bool {
+        let title = event?.title ?? ""
+        let addy = event!.address ?? ""
+        let time = event!.time ?? ""
+        let endtime = event!.endTime
+        let timeStamp = event!.timestamp
+        print("Event.Title: \(title)")
+        print("Event.Address: \(addy)")
+        print("Event.Time \(time)")
+        print("Event.Endtime: \(String(describing: endtime))")
+        print("Event.Timestamp \(String(describing: timeStamp))")
+        
+        //this is an async call...need a callback function
+        geoCoder.geocodeAddressString(addy) { (placemarks, error) in
+            guard
+                let placemarks = placemarks,
+                let location = placemarks.first?.location
+            else {
+                // handle no location found
+                print("not a location! Returning")
+                return
+            }
+            print("placemarkers \(placemarks)")
+            print("location \(location)")
+            // Use your location
+        }
+        return true
+    }
 
     // MARK: - Initialization
     
