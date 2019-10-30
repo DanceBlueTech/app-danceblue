@@ -7,26 +7,38 @@
 //
 
 import UIKit
+import MapKit
 
 protocol EventDescriptionDelegate: class {
     func textView(didPresentSafariViewController url: URL)
 }
+/*
+protocol GeotificationsViewControllerDelegate {
+  func GeotificationViewController(_ controller: EventDescriptionCellDelegate, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType)
+}*/
 
 class EventDescriptionCell: UITableViewCell {
     
     static let identifier = "EventDescriptionCell"
+    private var event: Event?
+    weak var delegate: EventDescriptionDelegate?
+    //var delegate2: GeotificationsViewControllerDelegate?
     
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var underlineView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBAction func geoFenceCheckin(_ sender: Any) {
         print("Checking IN!!")
+        /*let coordinate = mapView.centerCoordinate
+        let radius = Double(radiusTextField.text!) ?? 0
+        let identifier = NSUUID().uuidString
+        let note = noteTextField.text
+        let eventType: Geotification.EventType = (eventTypeSegmentedControl.selectedSegmentIndex == 0) ? .onEntry : .onExit
+        delegate2?.GeotificationViewController(self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!, eventType: eventType)*/
     }
     
-    private var event: Event?
-    
-    weak var delegate: EventDescriptionDelegate?
-    
+   
+
     // MARK: - Initialization
     
     override func awakeFromNib() {

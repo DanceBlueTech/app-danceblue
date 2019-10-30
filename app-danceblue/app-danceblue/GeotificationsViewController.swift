@@ -51,6 +51,8 @@ class GeotificationsViewController: UIViewController {
         let fenceRegion = region(with: geotification)
         // 4
         locationManager.startMonitoring(for: fenceRegion)
+        
+        //TODO: if in region after checking in, call stop monitoring
     }
     
     // MARK: - Stop monitoring the Geofence regions
@@ -61,18 +63,32 @@ class GeotificationsViewController: UIViewController {
             locationManager.stopMonitoring(for: circularRegion)
         }
     }
+    // MARK: - checking into the geo fence
+    func CheckInGeoFence(_ controller: EventDescriptionCell, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType) {
+      //controller.dismiss(animated: true, completion: nil)
+      let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
+      let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, eventType: eventType)
+      //add(geotification)
+      startMonitoring(geotification: geotification)
+      //saveAllGeotifications()
+    }
 }
-/*
-// MARK: AddGeotificationViewControllerDelegate
-extension GeotificationsViewController: AddGeotificationsViewControllerDelegate {
+// MARK: - Location Manager Delegate
+extension GeotificationsViewController: CLLocationManagerDelegate {
   
-  func addGeotificationViewController(_ controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType) {
-    controller.dismiss(animated: true, completion: nil)
-    let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
-    let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, identifier: identifier, note: note, eventType: eventType)
-    add(geotification)
-    startMonitoring(geotification: geotification)
-    saveAllGeotifications()
+  /*func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    mapView.showsUserLocation = status == .authorizedAlways
+  }*/
+  
+  func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+    print(kErrorMessage3 + region!.identifier)
   }
   
-}*/
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    print(kErrorMessage4 + "\(error)")
+  }
+  
+}
+
+// MARK: AddGeotificationViewControllerDelegate
+//extension GeotificationsViewController: EventDescriptionCellDelegate {}
