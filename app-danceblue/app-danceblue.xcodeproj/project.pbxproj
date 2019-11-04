@@ -20,7 +20,6 @@
 		63427125236A08E100366A17 /* Google.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 63427122236A08E000366A17 /* Google.gpx */; };
 		63AD462D234AA64D000BDA67 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462C234AA64D000BDA67 /* Geotification.swift */; };
 		63AD462F234AA956000BDA67 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462E234AA956000BDA67 /* GeoLocation.swift */; };
-		63D73867234BB3EA00AD2D9C /* GeoLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D73866234BB3EA00AD2D9C /* GeoLocation.storyboard */; };
 		63D7386A234BBAED00AD2D9C /* GeotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D73869234BBAED00AD2D9C /* GeotificationsViewController.swift */; };
 		63E2FB50234B777F002021B5 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB4F234B777F002021B5 /* Events.storyboard */; };
 		63E2FB53234B77C0002021B5 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB52234B77C0002021B5 /* More.storyboard */; };
@@ -121,7 +120,6 @@
 		63427122236A08E000366A17 /* Google.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Google.gpx; sourceTree = "<group>"; };
 		63AD462C234AA64D000BDA67 /* Geotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		63AD462E234AA956000BDA67 /* GeoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
-		63D73866234BB3EA00AD2D9C /* GeoLocation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GeoLocation.storyboard; sourceTree = "<group>"; };
 		63D73869234BBAED00AD2D9C /* GeotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeotificationsViewController.swift; sourceTree = "<group>"; };
 		63E2FB4F234B777F002021B5 /* Events.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
 		63E2FB52234B77C0002021B5 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
@@ -364,7 +362,6 @@
 				63E2FB4F234B777F002021B5 /* Events.storyboard */,
 				63E2FB52234B77C0002021B5 /* More.storyboard */,
 				63E2FB55234B78A2002021B5 /* Blog.storyboard */,
-				63D73866234BB3EA00AD2D9C /* GeoLocation.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -686,7 +683,6 @@
 			files = (
 				CB0E9A611F23F8A400A717DC /* LaunchScreen.storyboard in Resources */,
 				63427125236A08E100366A17 /* Google.gpx in Resources */,
-				63D73867234BB3EA00AD2D9C /* GeoLocation.storyboard in Resources */,
 				63427124236A08E100366A17 /* Apple.gpx in Resources */,
 				63E2FB53234B77C0002021B5 /* More.storyboard in Resources */,
 				CB6843871F3894ED000720F2 /* Main.storyboard in Resources */,
