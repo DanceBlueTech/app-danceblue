@@ -24,4 +24,8 @@ class MasterRoster: Mappable {
         memberName <- map[kMemberName]
         teamName <- map[kTeamName]
     }
+    
+    func printAll(){
+        print("deviceUUId: \(deviceUUId) individualPoints: \(individualPoints) linkBlue: \(linkBlue) memberName: \(memberName) teamName: \(teamName)")
+    }
  }

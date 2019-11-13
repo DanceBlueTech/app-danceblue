@@ -18,7 +18,10 @@ protocol EventDetailsViewControllerDelegate: class {
 class EventDetailsViewController: UITableViewController {
     
     var event: Event?
-    #warning("TODO: HAVE TEAM INFORMATION PASSED INTO HERE!!")
+    var masterRoster : [MasterRoster] = []
+    var masterTeams : [MasterTeams] = []
+    //var masterRoster : MasterRoster?
+    //var masterTeams : MasterTeams?
     let eventStore = EKEventStore()
     var cellHeights: [CGFloat] = [CGFloat].init(repeating: 0, count: 5)
     
@@ -29,6 +32,8 @@ class EventDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        print("MasterRoster: \(String(describing: self.masterRoster[0].printAll())) Count: \(masterRoster.count)")
+        print("MasterTeams: \(String(describing: self.masterTeams[0].printAll())) Count: \(masterTeams.count)")
     }
     
     func setupTableView() {

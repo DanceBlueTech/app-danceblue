@@ -18,4 +18,7 @@ class MasterTeams: Mappable {
         teamName <- map[kTeamName]
         teamPoints <- map[kTeamPoints]
     }
+    func printAll(){
+        print("teamName: \(teamName) teamPoints: \(teamPoints)")
+    }
 }

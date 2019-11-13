@@ -136,7 +136,9 @@ class EventsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let eventDetailsViewController = segue.destination as? EventDetailsViewController, segue.identifier == "EventSegue", let section = tableView.indexPathForSelectedRow?.section, let row = tableView.indexPathForSelectedRow?.row {
             eventDetailsViewController.event = eventData[section][row]
-            #warning("PASS IN TEAM INFROMATION FOR DATE PICKER")
+            eventDetailsViewController.masterRoster = masterRosterData
+            eventDetailsViewController.masterTeams = masterTeamsData
+
             //eventDetailsViewController.delegate = self      // Used for "liking" of events
         }
     }
@@ -146,6 +148,13 @@ class EventsTableViewController: UITableViewController {
     func sortEvents(section: Int) {
         eventData[section].sort(by: {$0.timestamp ?? Date() < $1.timestamp ?? Date()})
     }
+    /*
+    func sortMasterRoster() {
+        eventData[section].sort(by: {$0.timestamp ?? Date() < $1.timestamp ?? Date()})
+    }
+    func sortMasterTeams() {
+        eventData[section].sort(by: {$0.timestamp ?? Date() < $1.timestamp ?? Date()})
+    }*/
     
     // MARK: - Firebase
     
@@ -213,7 +222,8 @@ class EventsTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
         
-        // Master roster
+        // Master Roster Handles
+        
         masterRosterHandle = firebaseReference?.child(kMasterRoster).observe(.childAdded, with: { (snapshot) in
             print("snapshot for MasterRoster: \(snapshot)")
             guard let data = snapshot.value as? [String : AnyObject] else { return }
@@ -221,18 +231,11 @@ class EventsTableViewController: UITableViewController {
             guard let masterRoster = MasterRoster(JSON: data) else { return }
             self.masterRosterData.append(masterRoster)
             print("masterRosterData Count: \(self.masterRosterData.count)")
+            //CALL SORT FUNCION...SORT BY --> PRIMARY NAME, SECONDARY TEAMS...MAYBE SWITCH PRIME AND SECONDARY
         })
-        /*
-        masterRosterChangeHandle = firebaseReference?.child(kMasterRoster).child("thisWeek").observe(.childChanged, with: { (snapshot) in
-            guard let data = snapshot.value as? [String : AnyObject]  else { return }
-            guard let event = Event(JSON: data) else { return }
-            self.thisWeekMap.updateValue(event, forKey: event.id ?? "")
-            self.eventData[0] = Array(self.thisWeekMap.values)
-            self.sortEvents(section: 0)
-            self.tableView.reloadData()
-        })*/
         
-        // Master Teams
+        // Master Teams Handles
+        
         masterTeamsHandle = firebaseReference?.child(kMasterTeams).observe(.childAdded, with: { (snapshot) in
             print("snapshot for MasterTeams: \(snapshot)")
             guard let data = snapshot.value as? [String : AnyObject] else { return }
@@ -240,6 +243,8 @@ class EventsTableViewController: UITableViewController {
             guard let masterTeams = MasterTeams(JSON: data) else { return }
             self.masterTeamsData.append(masterTeams)
             print("masterTeamsData Count: \(self.masterTeamsData.count)")
+            //CALL SORT FUNCION...SORT BY --> PRIMARY TEAMS...MAYBE SWITCH TO POINTS?
+
         })
     }
     
