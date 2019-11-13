@@ -28,10 +28,24 @@ class app_danceblueUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testFAQ() {
+        
+        let app = XCUIApplication()
+        let tabBarsQuery = app.tabBars
+        tabBarsQuery.buttons["Events"].tap()
+        tabBarsQuery.buttons["Blog"].tap()
+        tabBarsQuery.buttons["More"].tap()
+        app.tables/*@START_MENU_TOKEN@*/.staticTexts["FAQs"]/*[[".cells.staticTexts[\"FAQs\"]",".staticTexts[\"FAQs\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
        
     }
-    
+    func testContact() {
+        let app = XCUIApplication()
+        let tabBarsQuery = app.tabBars
+        tabBarsQuery.buttons["Events"].tap()
+        tabBarsQuery.buttons["Blog"].tap()
+        tabBarsQuery.buttons["More"].tap()
+        app.tables.staticTexts["Contact"].tap()
+    }
 }

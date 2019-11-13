@@ -15,12 +15,10 @@
 		630D62B22344288900BDDDB4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B12344288900BDDDB4 /* Constants.swift */; };
 		630D62B6234428D300BDDDB4 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */; };
 		63208FAC23676E3500CB015E /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63208FAB23676E3500CB015E /* Alerts.swift */; };
-		63427123236A08E100366A17 /* SimulatedLocations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 63427120236A08E000366A17 /* SimulatedLocations.gpx */; };
-		63427124236A08E100366A17 /* Apple.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 63427121236A08E000366A17 /* Apple.gpx */; };
-		63427125236A08E100366A17 /* Google.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 63427122236A08E000366A17 /* Google.gpx */; };
 		63AD462D234AA64D000BDA67 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462C234AA64D000BDA67 /* Geotification.swift */; };
 		63AD462F234AA956000BDA67 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462E234AA956000BDA67 /* GeoLocation.swift */; };
 		63D7386A234BBAED00AD2D9C /* GeotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D73869234BBAED00AD2D9C /* GeotificationsViewController.swift */; };
+		63E227F723762494002E419C /* FAQWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E227F623762494002E419C /* FAQWebViewController.swift */; };
 		63E2FB50234B777F002021B5 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB4F234B777F002021B5 /* Events.storyboard */; };
 		63E2FB53234B77C0002021B5 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB52234B77C0002021B5 /* More.storyboard */; };
 		63E2FB56234B78A2002021B5 /* Blog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB55234B78A2002021B5 /* Blog.storyboard */; };
@@ -115,12 +113,10 @@
 		630D62B12344288900BDDDB4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		63208FAB23676E3500CB015E /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
-		63427120236A08E000366A17 /* SimulatedLocations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SimulatedLocations.gpx; sourceTree = "<group>"; };
-		63427121236A08E000366A17 /* Apple.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Apple.gpx; sourceTree = "<group>"; };
-		63427122236A08E000366A17 /* Google.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Google.gpx; sourceTree = "<group>"; };
 		63AD462C234AA64D000BDA67 /* Geotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		63AD462E234AA956000BDA67 /* GeoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
 		63D73869234BBAED00AD2D9C /* GeotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeotificationsViewController.swift; sourceTree = "<group>"; };
+		63E227F623762494002E419C /* FAQWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQWebViewController.swift; sourceTree = "<group>"; };
 		63E2FB4F234B777F002021B5 /* Events.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
 		63E2FB52234B77C0002021B5 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		63E2FB55234B78A2002021B5 /* Blog.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Blog.storyboard; sourceTree = "<group>"; };
@@ -235,16 +231,6 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		63427126236A08ED00366A17 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				63427121236A08E000366A17 /* Apple.gpx */,
-				63427122236A08E000366A17 /* Google.gpx */,
-				63427120236A08E000366A17 /* SimulatedLocations.gpx */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		63D73868234BBABB00AD2D9C /* GeoFencing */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,7 +281,6 @@
 		CB0E9A531F23F8A400A717DC /* app-danceblue */ = {
 			isa = PBXGroup;
 			children = (
-				63427126236A08ED00366A17 /* Supporting Files */,
 				630D62B02344287C00BDDDB4 /* Helpers */,
 				CB23ED781F6AD3F100FADAFC /* app-danceblue.entitlements */,
 				CB0E9A681F23FB3F00A717DC /* Model */,
@@ -436,6 +421,7 @@
 				CB1D523D1FA0E366003BDA0A /* FAQsTableViewController.swift */,
 				630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */,
 				630D62AE2344286500BDDDB4 /* ContactWebViewController.swift */,
+				63E227F623762494002E419C /* FAQWebViewController.swift */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -682,12 +668,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB0E9A611F23F8A400A717DC /* LaunchScreen.storyboard in Resources */,
-				63427125236A08E100366A17 /* Google.gpx in Resources */,
-				63427124236A08E100366A17 /* Apple.gpx in Resources */,
 				63E2FB53234B77C0002021B5 /* More.storyboard in Resources */,
 				CB6843871F3894ED000720F2 /* Main.storyboard in Resources */,
 				CB0E9A5E1F23F8A400A717DC /* Assets.xcassets in Resources */,
-				63427123236A08E100366A17 /* SimulatedLocations.gpx in Resources */,
 				CB23ED7A1F6AD60700FADAFC /* GoogleService-Info.plist in Resources */,
 				63E2FB50234B777F002021B5 /* Events.storyboard in Resources */,
 				63E2FB56234B78A2002021B5 /* Blog.storyboard in Resources */,
@@ -797,6 +780,7 @@
 				CB0E9A7A1F24206200A717DC /* EventTableViewCell.swift in Sources */,
 				CB0E9A7C1F24280200A717DC /* Event.swift in Sources */,
 				3DAF0D45220C81FF00EDBEDE /* InfoViewController.swift in Sources */,
+				63E227F723762494002E419C /* FAQWebViewController.swift in Sources */,
 				CB2AE8EC1F31638400571243 /* DetailsTableViewCell.swift in Sources */,
 				CB0E9A551F23F8A400A717DC /* AppDelegate.swift in Sources */,
 				CB6605011F630D0A00FBC1CA /* DispatchQueue+Sync.swift in Sources */,

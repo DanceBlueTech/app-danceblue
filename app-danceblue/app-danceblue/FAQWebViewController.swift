@@ -1,8 +1,8 @@
 //
-//  ContactWebViewController.swift
+//  FAQWebViewController.swift
 //  app-danceblue
 //
-//  Created by David Mercado on 10/1/19.
+//  Created by David Mercado on 11/8/19.
 //  Copyright © 2019 DanceBlue. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import WebKit
 
-class ContactWebViewController: UIViewController, WKUIDelegate {
+class FAQWebViewController: UIViewController, WKUIDelegate {
     
     var webView: WKWebView!
     
@@ -23,7 +23,8 @@ class ContactWebViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let myURL = URL(string:kContactInfoURL)
+        let myURL = URL(string:kFAQURL)
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
     }}
+

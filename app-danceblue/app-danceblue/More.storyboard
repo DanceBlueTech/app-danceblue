@@ -119,9 +119,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="faqImageView" destination="hCO-6C-z7x" id="hV7-6l-met"/>
+                                    <outlet property="faqImageView" destination="hCO-6C-z7x" id="IcH-Cg-4Rp"/>
                                     <outlet property="titleLabel" destination="tNg-xK-ACd" id="bR9-ZB-ois"/>
-                                    <segue destination="zRq-y6-9jJ" kind="show" identifier="FAQSegue" id="GPS-5U-Z9X"/>
+                                    <segue destination="nIr-yt-VYk" kind="show" id="Uhj-Ny-43Z"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" rowHeight="170" id="ecA-k2-Ldx" customClass="ContactTableViewCell" customModule="app_danceblue" customModuleProvider="target">
@@ -207,9 +207,10 @@
         <!--FAQs-->
         <scene sceneID="FaS-TL-eff">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zB0-AD-dcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="FAQs" id="zRq-y6-9jJ" customClass="FAQsTableViewController" customModule="app_danceblue" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Od5-0L-g7N">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -280,9 +281,39 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="KMe-E6-2tE"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zB0-AD-dcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1168" y="2124"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="ufO-OI-PF0">
+            <objects>
+                <viewController id="nIr-yt-VYk" customClass="FAQWebViewController" customModule="app_danceblue" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aLO-49-EsV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="N7o-A4-ene"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="afA-sj-32x"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yuv-Hr-foh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1854" y="2151"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mBT-f6-CbI">
+            <objects>
+                <viewController id="IVx-l1-Byy" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cYH-Mh-hfS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1PU-SM-5hI"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hqu-X8-oSz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2533" y="1938"/>
         </scene>
     </scenes>
     <resources>

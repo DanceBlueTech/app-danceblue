@@ -17,6 +17,7 @@ let kGeoLocationRadius          = "radius"
 
 //MARK: Contact Information from public website
 let kContactInfoURL             = "http://www.danceblue.org/meet-the-team/"
+let kFAQURL                     = "http://www.danceblue.org/frequently-asked-questions/"
 
 // MARK: - Alerts
 let kError1                     = "ERROR"
