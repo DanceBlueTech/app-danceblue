@@ -225,24 +225,24 @@ class EventsTableViewController: UITableViewController {
         // Master Roster Handles
         
         masterRosterHandle = firebaseReference?.child(kMasterRoster).observe(.childAdded, with: { (snapshot) in
-            print("snapshot for MasterRoster: \(snapshot)")
+            //print("snapshot for MasterRoster: \(snapshot)")
             guard let data = snapshot.value as? [String : AnyObject] else { return }
-            print("data: \(data)")
+            //print("data: \(data)")
             guard let masterRoster = MasterRoster(JSON: data) else { return }
             self.masterRosterData.append(masterRoster)
-            print("masterRosterData Count: \(self.masterRosterData.count)")
+            //print("masterRosterData Count: \(self.masterRosterData.count)")
             //CALL SORT FUNCION...SORT BY --> PRIMARY NAME, SECONDARY TEAMS...MAYBE SWITCH PRIME AND SECONDARY
         })
         
         // Master Teams Handles
         
         masterTeamsHandle = firebaseReference?.child(kMasterTeams).observe(.childAdded, with: { (snapshot) in
-            print("snapshot for MasterTeams: \(snapshot)")
+            //print("snapshot for MasterTeams: \(snapshot)")
             guard let data = snapshot.value as? [String : AnyObject] else { return }
-            print("data: \(data)")
+            //print("data: \(data)")
             guard let masterTeams = MasterTeams(JSON: data) else { return }
             self.masterTeamsData.append(masterTeams)
-            print("masterTeamsData Count: \(self.masterTeamsData.count)")
+            //print("masterTeamsData Count: \(self.masterTeamsData.count)")
             //CALL SORT FUNCION...SORT BY --> PRIMARY TEAMS...MAYBE SWITCH TO POINTS?
 
         })

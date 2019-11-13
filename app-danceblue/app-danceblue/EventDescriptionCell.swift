@@ -24,6 +24,9 @@ class EventDescriptionCell: UITableViewCell {
     
     static let identifier = "EventDescriptionCell"
     private var event: Event?
+    var masterRoster : [MasterRoster] = []
+    var masterTeams : [MasterTeams] = []
+    
     weak var delegate: EventDescriptionDelegate?
     var delegate2: EventDescriptionCellDelegate?
     let geoCoder = CLGeocoder()
@@ -34,9 +37,10 @@ class EventDescriptionCell: UITableViewCell {
     
     // MARK: - Check in for GeoFences
     @IBAction func geoFenceCheckin(_ sender: Any) {
+        print("Checking IN!!")
+
         checkDeviceUUID()
         
-        print("Checking IN!!")
         let validationFlag = checkEventInfomation()
         if(validationFlag){
             print("Validation was True!")
@@ -52,7 +56,8 @@ class EventDescriptionCell: UITableViewCell {
         }
     }
     func checkDeviceUUID(){
-        
+        print("MasterRoster: \(String(describing: self.masterRoster[0].printAll())) Count: \(masterRoster.count)")
+        print("MasterTeams: \(String(describing: self.masterTeams[0].printAll())) Count: \(masterTeams.count)")
     }
     
     func checkEventInfomation() -> Bool {
