@@ -215,13 +215,11 @@ class EventsTableViewController: UITableViewController {
         
         // Master roster
         masterRosterHandle = firebaseReference?.child(kMasterRoster).observe(.childAdded, with: { (snapshot) in
-            print("snapshot: \(snapshot)")
+            print("snapshot for MasterRoster: \(snapshot)")
             guard let data = snapshot.value as? [String : AnyObject] else { return }
             print("data: \(data)")
             guard let masterRoster = MasterRoster(JSON: data) else { return }
-            print("masterRoster: \(masterRoster)")
             self.masterRosterData.append(masterRoster)
-            print("masterRosterData: \(self.masterRosterData[0])")
             print("masterRosterData Count: \(self.masterRosterData.count)")
         })
         /*
@@ -235,6 +233,14 @@ class EventsTableViewController: UITableViewController {
         })*/
         
         // Master Teams
+        masterTeamsHandle = firebaseReference?.child(kMasterTeams).observe(.childAdded, with: { (snapshot) in
+            print("snapshot for MasterTeams: \(snapshot)")
+            guard let data = snapshot.value as? [String : AnyObject] else { return }
+            print("data: \(data)")
+            guard let masterTeams = MasterTeams(JSON: data) else { return }
+            self.masterTeamsData.append(masterTeams)
+            print("masterTeamsData Count: \(self.masterTeamsData.count)")
+        })
     }
     
     // MARK: - Local Storage Device UUID
