@@ -15,6 +15,8 @@
 		630D62B22344288900BDDDB4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B12344288900BDDDB4 /* Constants.swift */; };
 		630D62B6234428D300BDDDB4 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */; };
 		63208FAC23676E3500CB015E /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63208FAB23676E3500CB015E /* Alerts.swift */; };
+		637FE87E237CA0B700FBDBE6 /* MasterRoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637FE87D237CA0B700FBDBE6 /* MasterRoster.swift */; };
+		637FE880237CA1D800FBDBE6 /* MasterTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637FE87F237CA1D800FBDBE6 /* MasterTeams.swift */; };
 		63AD462D234AA64D000BDA67 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462C234AA64D000BDA67 /* Geotification.swift */; };
 		63AD462F234AA956000BDA67 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462E234AA956000BDA67 /* GeoLocation.swift */; };
 		63D7386A234BBAED00AD2D9C /* GeotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D73869234BBAED00AD2D9C /* GeotificationsViewController.swift */; };
@@ -113,6 +115,8 @@
 		630D62B12344288900BDDDB4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		63208FAB23676E3500CB015E /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		637FE87D237CA0B700FBDBE6 /* MasterRoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterRoster.swift; sourceTree = "<group>"; };
+		637FE87F237CA1D800FBDBE6 /* MasterTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTeams.swift; sourceTree = "<group>"; };
 		63AD462C234AA64D000BDA67 /* Geotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		63AD462E234AA956000BDA67 /* GeoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
 		63D73869234BBAED00AD2D9C /* GeotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeotificationsViewController.swift; sourceTree = "<group>"; };
@@ -301,6 +305,8 @@
 		CB0E9A681F23FB3F00A717DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				637FE87F237CA1D800FBDBE6 /* MasterTeams.swift */,
+				637FE87D237CA0B700FBDBE6 /* MasterRoster.swift */,
 				63AD462E234AA956000BDA67 /* GeoLocation.swift */,
 				CB7DE1D11F25267200235145 /* Announcement.swift */,
 				CB665BB31FA6CD9200A1D567 /* Sponsor.swift */,
@@ -791,6 +797,7 @@
 				CB2AE8E71F31380000571243 /* BlogDetailsTableViewController.swift in Sources */,
 				CB2AE8EE1F31639100571243 /* HeaderImageTableViewCell.swift in Sources */,
 				CB7803942027AF1A0038C026 /* MoraleTeam.swift in Sources */,
+				637FE880237CA1D800FBDBE6 /* MasterTeams.swift in Sources */,
 				CBCC092A1FA1416C0027CAFD /* FAQsTableViewCell.swift in Sources */,
 				CBA81B251FAF7F38009FB4BA /* ContactDetailsTableViewCell.swift in Sources */,
 				3DAF0D47220C86EF00EDBEDE /* NetworkService.swift in Sources */,
@@ -818,6 +825,7 @@
 				CB8C4B271F9A4818004478FA /* MoreViewController.swift in Sources */,
 				CB0E9A721F23FEF100A717DC /* Theme.swift in Sources */,
 				CBB0A8E81FACD2F100833DDE /* EventFlyerCell.swift in Sources */,
+				637FE87E237CA0B700FBDBE6 /* MasterRoster.swift in Sources */,
 				CB129C961F94486200FDD3FF /* HomeViewController.swift in Sources */,
 				CB1D52391FA0E30E003BDA0A /* QuestionTableViewCell.swift in Sources */,
 				CB8D3EE11F70343C006A9777 /* EventHeaderCell.swift in Sources */,

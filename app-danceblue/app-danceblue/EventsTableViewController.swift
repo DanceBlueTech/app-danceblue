@@ -15,7 +15,9 @@ protocol EventsTableViewDelegate: class {
 }
 
 class EventsTableViewController: UITableViewController {
-    
+    //TODO: HAVE FIREBASE HANDLES AND PULL TEAM ROSTER INFORMATION AND SAVE THEM
+    //THEN PASS THEM INTO 'MARK - STORYBOARD' THIS WILL BE USED FOR DATE PICKER
+
     fileprivate var firebaseReference: DatabaseReference?
     private var thisWeekAddHandle: DatabaseHandle?
     private var comingUpAddHandle: DatabaseHandle?
@@ -23,6 +25,11 @@ class EventsTableViewController: UITableViewController {
     private var comingUpChangeHandle: DatabaseHandle?
     private var thisWeekDeleteHandle: DatabaseHandle?
     private var comingUpDeleteHandle: DatabaseHandle?
+    
+    private var masterRosterHandle: DatabaseHandle?
+    private var masterRosterChangeHandle: DatabaseHandle?
+    private var masterTeamsHandle: DatabaseHandle?
+    private var masterTeamsChangeHandle: DatabaseHandle?
     
     weak var delegate: EventsTableViewDelegate?
     private var thisWeekMap: [String : Event] = [:]
@@ -36,12 +43,19 @@ class EventsTableViewController: UITableViewController {
     }
     private var sectionData: [String] = ["THIS WEEK", "COMING UP"]
     
+    private var masterRosterData : [MasterRoster] = []
+    private var masterTeamsData : [MasterTeams] = []
+    
+    fileprivate var DeviceUUID: String = ""
+
+
     // MARK: - Initialization
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupFirebase()
+        checkStoredUUID()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -122,6 +136,7 @@ class EventsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let eventDetailsViewController = segue.destination as? EventDetailsViewController, segue.identifier == "EventSegue", let section = tableView.indexPathForSelectedRow?.section, let row = tableView.indexPathForSelectedRow?.row {
             eventDetailsViewController.event = eventData[section][row]
+            #warning("PASS IN TEAM INFROMATION FOR DATE PICKER")
             //eventDetailsViewController.delegate = self      // Used for "liking" of events
         }
     }
@@ -197,33 +212,44 @@ class EventsTableViewController: UITableViewController {
             self.sortEvents(section: 1)
             self.tableView.reloadData()
         })
-    }
-    
-}
-
-// MARK: - EventHeaderDelegate
-/*
-extension EventsTableViewController: EventDetailsViewControllerDelegate {
-    
-    func heartButton(didChangeValueFor event: Event, value: Int) {
         
-        var currentValue = 0
-            _ = firebaseReference?.child("events").child(event.category ?? "").child(event.id ?? "").child("going").observe(.value, with:
-                { (snapshot) in
-                    guard let data = snapshot.value as? Int else { return }
-                    currentValue = data
-                    print("currentValue \(currentValue)")
-                    print("value \(value)")
-                    
-                    self.updateValue(forEvent: event, newValue: currentValue + value)
-            })
-
+        // Master roster
+        masterRosterHandle = firebaseReference?.child(kMasterRoster).observe(.childAdded, with: { (snapshot) in
+            print("snapshot: \(snapshot)")
+            guard let data = snapshot.value as? [String : AnyObject] else { return }
+            print("data: \(data)")
+            guard let masterRoster = MasterRoster(JSON: data) else { return }
+            print("masterRoster: \(masterRoster)")
+            self.masterRosterData.append(masterRoster)
+            print("masterRosterData: \(self.masterRosterData[0])")
+            print("masterRosterData Count: \(self.masterRosterData.count)")
+        })
+        /*
+        masterRosterChangeHandle = firebaseReference?.child(kMasterRoster).child("thisWeek").observe(.childChanged, with: { (snapshot) in
+            guard let data = snapshot.value as? [String : AnyObject]  else { return }
+            guard let event = Event(JSON: data) else { return }
+            self.thisWeekMap.updateValue(event, forKey: event.id ?? "")
+            self.eventData[0] = Array(self.thisWeekMap.values)
+            self.sortEvents(section: 0)
+            self.tableView.reloadData()
+        })*/
+        
+        // Master Teams
     }
     
-    func updateValue(forEvent event: Event, newValue: Int) {
-        firebaseReference?.child("events").child(event.category ?? "").child(event.id ?? "").updateChildValues(["going" : newValue])
+    // MARK: - Local Storage Device UUID
+    func checkStoredUUID(){
+        guard let storedData = UserDefaults.standard.array(forKey: kStoredUUIDKey) as? [Data] else {
+            print("No Stored UUID Data!")
+            //initUUID()
+            return
+        }
+        
+        for itemData in storedData {
+            guard let item = NSKeyedUnarchiver.unarchiveObject(with: itemData) else{ continue }
+            DeviceUUID = item as! String
+            print("Stored Device UUID: \(DeviceUUID)")
+            //setDeviceUUID(uuid: item as! String)
+        }
     }
-    
-    
 }
-*/

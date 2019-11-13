@@ -18,6 +18,7 @@ protocol EventDetailsViewControllerDelegate: class {
 class EventDetailsViewController: UITableViewController {
     
     var event: Event?
+    #warning("TODO: HAVE TEAM INFORMATION PASSED INTO HERE!!")
     let eventStore = EKEventStore()
     var cellHeights: [CGFloat] = [CGFloat].init(repeating: 0, count: 5)
     
@@ -87,6 +88,7 @@ class EventDetailsViewController: UITableViewController {
             }
         case 2:
             if let descriptionCell = tableView.dequeueReusableCell(withIdentifier: EventDescriptionCell.identifier, for: indexPath) as? EventDescriptionCell {
+                #warning("PASS IN TEAM INFROMATION FOR DATE PICKER")
                 descriptionCell.configureCell(with: event)
                 descriptionCell.delegate = self
                 if cellHeights[indexPath.row] == 0 {
@@ -241,17 +243,6 @@ extension EventDetailsViewController: EventDescriptionDelegate {
     }
     
 }
-
-// MARK: - EventHeaderDelegate
-/*
-extension EventDetailsViewController: EventHeaderDelegate {
-    
-    func heartButton(didChangeValueFor event: Event, value: Int) {
-        delegate?.heartButton(didChangeValueFor: event, value: value)
-    }
-    
-}
-*/
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {

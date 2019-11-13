@@ -207,7 +207,6 @@
         <!--FAQs-->
         <scene sceneID="FaS-TL-eff">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zB0-AD-dcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="FAQs" id="zRq-y6-9jJ" customClass="FAQsTableViewController" customModule="app_danceblue" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Od5-0L-g7N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -281,13 +280,14 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="KMe-E6-2tE"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zB0-AD-dcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168" y="2124"/>
+            <point key="canvasLocation" x="3072" y="1392"/>
         </scene>
-        <!--Web View Controller-->
+        <!--FAQ Web View Controller-->
         <scene sceneID="ufO-OI-PF0">
             <objects>
-                <viewController id="nIr-yt-VYk" customClass="FAQWebViewController" customModule="app_danceblue" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nIr-yt-VYk" userLabel="FAQ Web View Controller" customClass="FAQWebViewController" customModule="app_danceblue" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aLO-49-EsV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -298,22 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yuv-Hr-foh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1854" y="2151"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="mBT-f6-CbI">
-            <objects>
-                <viewController id="IVx-l1-Byy" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cYH-Mh-hfS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="1PU-SM-5hI"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hqu-X8-oSz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2533" y="1938"/>
+            <point key="canvasLocation" x="1167" y="2138"/>
         </scene>
     </scenes>
     <resources>

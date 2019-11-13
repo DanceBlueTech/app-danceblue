@@ -34,6 +34,8 @@ class EventDescriptionCell: UITableViewCell {
     
     // MARK: - Check in for GeoFences
     @IBAction func geoFenceCheckin(_ sender: Any) {
+        checkDeviceUUID()
+        
         print("Checking IN!!")
         let validationFlag = checkEventInfomation()
         if(validationFlag){
@@ -49,13 +51,17 @@ class EventDescriptionCell: UITableViewCell {
             print("Event is not active at this moment")
         }
     }
+    func checkDeviceUUID(){
+        
+    }
     
     func checkEventInfomation() -> Bool {
         let title = event?.title ?? ""
         let addy = event!.address ?? ""
         let time = event!.time ?? ""
-        let endtime = event!.endTime
-        let timeStamp = event!.timestamp
+        #warning("reformat dates GMT i believe need to be +2 hours")
+        let endtime = event!.endTime        //this is the end time of the event
+        let timeStamp = event!.timestamp    //this is the start time of the event
         print("Event.Title: \(title)")
         print("Event.Address: \(addy)")
         print("Event.Time \(time)")

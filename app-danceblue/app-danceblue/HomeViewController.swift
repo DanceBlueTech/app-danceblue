@@ -30,7 +30,7 @@ class HomeViewController: UITableViewController {
     private var sponsorsData: [Sponsor] = []
     
     private var moraleCupData: [MoraleTeam] = []
-    private var moraleCupMap: [String : MoraleTeam] = [:]
+    //private var moraleCupMap: [String : MoraleTeam] = [:]
     
     weak var delegate: HomeDelegate?
     
@@ -42,15 +42,14 @@ class HomeViewController: UITableViewController {
     private var countdownChangeHandle: DatabaseHandle?
     private var countdownDeleteHandle: DatabaseHandle?
     private var sponsorsAddHandle: DatabaseHandle?
-    private var moraleCupAddHandle: DatabaseHandle?
-    private var moraleCupChangeHandle: DatabaseHandle?
-    private var moraleCupDeleteHandle: DatabaseHandle?
+    //private var moraleCupAddHandle: DatabaseHandle?
+    //private var moraleCupChangeHandle: DatabaseHandle?
+    //private var moraleCupDeleteHandle: DatabaseHandle?
     
-    private var GeoLocationData: [GeoLocation] = []
-    private var geoLocationHandle: DatabaseHandle?
+    //private var GeoLocationData: [GeoLocation] = []
+    //private var geoLocationHandle: DatabaseHandle?
     
     // MARK: - Initialization
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -63,11 +62,6 @@ class HomeViewController: UITableViewController {
         setUpNavigation(controller: self.navigationController, hidesBar: false)
         Analytics.logEvent("Home_Screen_Did_Appear", parameters: nil)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Rave"), style: .plain, target: self, action: #selector(presentRave))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "qrcode"), style: .plain, target: self, action: #selector(presentScanner))
-    }
-    
-    @objc func presentScanner() {
-        performSegue(withIdentifier: "ScannerSegue", sender: self)
     }
     
     @objc func presentRave() {
@@ -160,8 +154,8 @@ class HomeViewController: UITableViewController {
         setupAnnouncementsReference()
         setupCountdownReference()
         setupSponsorsReference()
-        setupMoraleCupReference()
-        setupGeoLocationReference()
+        //setupMoraleCupReference()
+        //setupGeoLocationReference()
     }
     
     // MARK: - Announcements
@@ -251,7 +245,7 @@ class HomeViewController: UITableViewController {
     }
     
     // MARK: - Morale Cup
-    
+    /*
     func setupMoraleCupReference() {
         
         firebaseReference = Database.database().reference()
@@ -288,10 +282,10 @@ class HomeViewController: UITableViewController {
     
     func sortTeams() {
         moraleCupData.sort(by: {$0.standing ?? 0 < $1.standing ?? 0})
-    }
+    }*/
 
     // MARK: - GeoLocation
-    
+    /*
     func setupGeoLocationReference(){
         firebaseReference = Database.database().reference()
         geoLocationHandle = firebaseReference?.child(kGeoLocationTableName).observe(.childAdded, with: { (snapshot) in
@@ -303,7 +297,7 @@ class HomeViewController: UITableViewController {
             //self.tableView.reloadData()
             //self.delegate?.tableDidLoad()
         })
-    }
+    }*/
 }
 
 // MARK: - SponsorDelegate
@@ -321,9 +315,7 @@ extension HomeViewController: SponsorDelegate {
 
 // MARK: RaveDelegate
 extension HomeViewController: RaveDelegate {
-    
     func closeTapped() {
         dismiss(animated: true, completion: nil)
     }
-    
 }

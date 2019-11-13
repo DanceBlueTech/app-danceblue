@@ -9,6 +9,15 @@
 import Foundation
 
 // MARK: -constants for firebase names
+let kMasterTeams                = "Master Teams"
+let kTeamName                   = "Team Name"
+let kTeamPoints                 = "Team Points"
+let kMasterRoster               = "Master Roster"
+let kDeviceUUID                 = "Device UUID"
+let kIndividualPoints           = "Individual Points"
+let kLinkBlue                   = "LinkBlue"
+let kMemberName                 = "Member Name"
+
 let kGeoLocationTableName       = "geolocation"
 let kGeoLocationName            = "name"
 let kGeoLocationLat             = "latitude"
@@ -26,3 +35,8 @@ let kErrorMessage1              = "Geofencing is not supported on this device!"
 let kErrorMessage2              = "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location."
 let kErrorMessage3              = "Monitoring failed for region with identifier: "
 let kErrorMessage4              = "Location Manager failed with the following error: "
+
+// MARK: local storage
+let kStoredUUIDKey =           "DeviceUUID"
+
+
