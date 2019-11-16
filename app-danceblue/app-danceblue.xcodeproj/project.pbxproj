@@ -19,6 +19,7 @@
 		637FE880237CA1D800FBDBE6 /* MasterTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637FE87F237CA1D800FBDBE6 /* MasterTeams.swift */; };
 		63AD462D234AA64D000BDA67 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462C234AA64D000BDA67 /* Geotification.swift */; };
 		63AD462F234AA956000BDA67 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD462E234AA956000BDA67 /* GeoLocation.swift */; };
+		63BC48EC2380747200190EB6 /* CheckinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BC48EB2380747200190EB6 /* CheckinViewController.swift */; };
 		63D7386A234BBAED00AD2D9C /* GeotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D73869234BBAED00AD2D9C /* GeotificationsViewController.swift */; };
 		63E227F723762494002E419C /* FAQWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E227F623762494002E419C /* FAQWebViewController.swift */; };
 		63E2FB50234B777F002021B5 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E2FB4F234B777F002021B5 /* Events.storyboard */; };
@@ -119,6 +120,7 @@
 		637FE87F237CA1D800FBDBE6 /* MasterTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTeams.swift; sourceTree = "<group>"; };
 		63AD462C234AA64D000BDA67 /* Geotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		63AD462E234AA956000BDA67 /* GeoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
+		63BC48EB2380747200190EB6 /* CheckinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinViewController.swift; sourceTree = "<group>"; };
 		63D73869234BBAED00AD2D9C /* GeotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeotificationsViewController.swift; sourceTree = "<group>"; };
 		63E227F623762494002E419C /* FAQWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQWebViewController.swift; sourceTree = "<group>"; };
 		63E2FB4F234B777F002021B5 /* Events.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				CB3604481F6B101D00719FCB /* Event BC Cell Types */,
 				CB0E9A791F24206200A717DC /* EventTableViewCell.swift */,
 				CB60C3ED1F7AD58B00DDC39D /* EventsTableViewHeader.swift */,
+				63BC48EB2380747200190EB6 /* CheckinViewController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				CB2AE8EE1F31639100571243 /* HeaderImageTableViewCell.swift in Sources */,
 				CB7803942027AF1A0038C026 /* MoraleTeam.swift in Sources */,
 				637FE880237CA1D800FBDBE6 /* MasterTeams.swift in Sources */,
+				63BC48EC2380747200190EB6 /* CheckinViewController.swift in Sources */,
 				CBCC092A1FA1416C0027CAFD /* FAQsTableViewCell.swift in Sources */,
 				CBA81B251FAF7F38009FB4BA /* ContactDetailsTableViewCell.swift in Sources */,
 				3DAF0D47220C86EF00EDBEDE /* NetworkService.swift in Sources */,
