@@ -65,7 +65,6 @@
 		CB6605011F630D0A00FBC1CA /* DispatchQueue+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6605001F630D0A00FBC1CA /* DispatchQueue+Sync.swift */; };
 		CB665BB41FA6CD9200A1D567 /* Sponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB665BB31FA6CD9200A1D567 /* Sponsor.swift */; };
 		CB6843871F3894ED000720F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6843851F3894ED000720F2 /* Main.storyboard */; };
-		CB74FD702023D50B000A3F2E /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB74FD6F2023D50B000A3F2E /* ScannerViewController.swift */; };
 		CB780390202796FF0038C026 /* FloorPlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB78038F202796FF0038C026 /* FloorPlanTableViewCell.swift */; };
 		CB7803942027AF1A0038C026 /* MoraleTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7803932027AF1A0038C026 /* MoraleTeam.swift */; };
 		CB7DE1D21F25267200235145 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7DE1D11F25267200235145 /* Announcement.swift */; };
@@ -170,7 +169,6 @@
 		CB6605001F630D0A00FBC1CA /* DispatchQueue+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Sync.swift"; sourceTree = "<group>"; };
 		CB665BB31FA6CD9200A1D567 /* Sponsor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sponsor.swift; sourceTree = "<group>"; };
 		CB6843861F3894ED000720F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "app-danceblue/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
-		CB74FD6F2023D50B000A3F2E /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		CB78038F202796FF0038C026 /* FloorPlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanTableViewCell.swift; sourceTree = "<group>"; };
 		CB7803932027AF1A0038C026 /* MoraleTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoraleTeam.swift; sourceTree = "<group>"; };
 		CB7DE1D11F25267200235145 /* Announcement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
@@ -248,7 +246,6 @@
 		CB0CB6DB202243C0000C0664 /* Marathon */ = {
 			isa = PBXGroup;
 			children = (
-				CB74FD6F2023D50B000A3F2E /* ScannerViewController.swift */,
 				3DAF0D44220C81FF00EDBEDE /* InfoViewController.swift */,
 				3D170F63221F2C52001DF6B3 /* RaveHourViewController.swift */,
 			);
@@ -813,7 +810,6 @@
 				CB2AE8F01F3163AA00571243 /* BodyTextTableViewCell.swift in Sources */,
 				CBF6374C1F74573900270724 /* EventMapCell.swift in Sources */,
 				CBCC092C1FA2318A0027CAFD /* ContactTableViewCell.swift in Sources */,
-				CB74FD702023D50B000A3F2E /* ScannerViewController.swift in Sources */,
 				CB665BB41FA6CD9200A1D567 /* Sponsor.swift in Sources */,
 				63AD462F234AA956000BDA67 /* GeoLocation.swift in Sources */,
 				63208FAC23676E3500CB015E /* Alerts.swift in Sources */,

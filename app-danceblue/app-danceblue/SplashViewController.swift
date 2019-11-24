@@ -29,7 +29,6 @@ class SplashViewController: UIViewController {
         setupNetworkContoller()
         setupViews()
         Analytics.logEvent("Splash_Screen_Did_Appear", parameters: nil)
-        checkStoredUUID()
     }
 
     func setupViews() {
@@ -74,37 +73,6 @@ class SplashViewController: UIViewController {
                 self.present(self.networkController, animated: true, completion: {})
             }
         }
-    }
-    
-    // MARK: - Local Storage Device UUID
-    func checkStoredUUID(){
-        guard let storedData = UserDefaults.standard.array(forKey: kStoredUUIDKey) as? [Data] else {
-            print("No Stored UUID Data!")
-            initUUID()
-            return
-        }
-        
-        for itemData in storedData {
-            guard let item = NSKeyedUnarchiver.unarchiveObject(with: itemData) else{ continue }
-            setDeviceUUID(uuid: item as! String)
-        }
-    }
-    
-    func initUUID() {
-        self.DeviceUUID = UUID().uuidString
-        print("This is the Devices' UUID init: \(DeviceUUID)")
-        storeUUID()
-    }
-    func setDeviceUUID(uuid: String) {
-        self.DeviceUUID = uuid
-        print("This is the Devices' UUID in local storage: \(DeviceUUID)")
-    }
-    func storeUUID() {
-        var itemsData = [Data]()
-        let itemData = NSKeyedArchiver.archivedData(withRootObject: self.DeviceUUID)
-        itemsData.append(itemData)
-        UserDefaults.standard.set(itemsData, forKey: kStoredUUIDKey)
-        UserDefaults.standard.synchronize()
     }
 }
 

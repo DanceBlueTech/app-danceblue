@@ -15,8 +15,6 @@ protocol EventsTableViewDelegate: class {
 }
 
 class EventsTableViewController: UITableViewController {
-    //TODO: HAVE FIREBASE HANDLES AND PULL TEAM ROSTER INFORMATION AND SAVE THEM
-    //THEN PASS THEM INTO 'MARK - STORYBOARD' THIS WILL BE USED FOR DATE PICKER
 
     fileprivate var firebaseReference: DatabaseReference?
     private var thisWeekAddHandle: DatabaseHandle?
@@ -25,12 +23,7 @@ class EventsTableViewController: UITableViewController {
     private var comingUpChangeHandle: DatabaseHandle?
     private var thisWeekDeleteHandle: DatabaseHandle?
     private var comingUpDeleteHandle: DatabaseHandle?
-    
-    private var masterRosterHandle: DatabaseHandle?
-    private var masterRosterChangeHandle: DatabaseHandle?
-    private var masterTeamsHandle: DatabaseHandle?
-    private var masterTeamsChangeHandle: DatabaseHandle?
-    
+
     weak var delegate: EventsTableViewDelegate?
     private var thisWeekMap: [String : Event] = [:]
     private var comingUpMap: [String : Event] = [:]
@@ -42,12 +35,6 @@ class EventsTableViewController: UITableViewController {
         }
     }
     private var sectionData: [String] = ["THIS WEEK", "COMING UP"]
-    
-    private var masterRosterData : [MasterRoster] = []
-    private var masterTeamsData : [MasterTeams] = []
-    
-    fileprivate var DeviceUUID: String = ""
-
 
     // MARK: - Initialization
     
@@ -55,7 +42,6 @@ class EventsTableViewController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         setupFirebase()
-        checkStoredUUID()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -136,8 +122,9 @@ class EventsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let eventDetailsViewController = segue.destination as? EventDetailsViewController, segue.identifier == "EventSegue", let section = tableView.indexPathForSelectedRow?.section, let row = tableView.indexPathForSelectedRow?.row {
             eventDetailsViewController.event = eventData[section][row]
-            eventDetailsViewController.masterRoster = masterRosterData
-            eventDetailsViewController.masterTeams = masterTeamsData
+            
+            //eventDetailsViewController.masterRoster = masterRosterData
+            //eventDetailsViewController.masterTeams = masterTeamsData
 
             //eventDetailsViewController.delegate = self      // Used for "liking" of events
         }
@@ -148,13 +135,6 @@ class EventsTableViewController: UITableViewController {
     func sortEvents(section: Int) {
         eventData[section].sort(by: {$0.timestamp ?? Date() < $1.timestamp ?? Date()})
     }
-    /*
-    func sortMasterRoster() {
-        eventData[section].sort(by: {$0.timestamp ?? Date() < $1.timestamp ?? Date()})
-    }
-    func sortMasterTeams() {
-        eventData[section].sort(by: {$0.timestamp ?? Date() < $1.timestamp ?? Date()})
-    }*/
     
     // MARK: - Firebase
     
@@ -221,46 +201,5 @@ class EventsTableViewController: UITableViewController {
             self.sortEvents(section: 1)
             self.tableView.reloadData()
         })
-        
-        // Master Roster Handles
-        
-        masterRosterHandle = firebaseReference?.child(kMasterRoster).observe(.childAdded, with: { (snapshot) in
-            //print("snapshot for MasterRoster: \(snapshot)")
-            guard let data = snapshot.value as? [String : AnyObject] else { return }
-            //print("data: \(data)")
-            guard let masterRoster = MasterRoster(JSON: data) else { return }
-            self.masterRosterData.append(masterRoster)
-            //print("masterRosterData Count: \(self.masterRosterData.count)")
-            //CALL SORT FUNCION...SORT BY --> PRIMARY NAME, SECONDARY TEAMS...MAYBE SWITCH PRIME AND SECONDARY
-        })
-        
-        // Master Teams Handles
-        
-        masterTeamsHandle = firebaseReference?.child(kMasterTeams).observe(.childAdded, with: { (snapshot) in
-            //print("snapshot for MasterTeams: \(snapshot)")
-            guard let data = snapshot.value as? [String : AnyObject] else { return }
-            //print("data: \(data)")
-            guard let masterTeams = MasterTeams(JSON: data) else { return }
-            self.masterTeamsData.append(masterTeams)
-            //print("masterTeamsData Count: \(self.masterTeamsData.count)")
-            //CALL SORT FUNCION...SORT BY --> PRIMARY TEAMS...MAYBE SWITCH TO POINTS?
-
-        })
-    }
-    
-    // MARK: - Local Storage Device UUID
-    func checkStoredUUID(){
-        guard let storedData = UserDefaults.standard.array(forKey: kStoredUUIDKey) as? [Data] else {
-            print("No Stored UUID Data!")
-            //initUUID()
-            return
-        }
-        
-        for itemData in storedData {
-            guard let item = NSKeyedUnarchiver.unarchiveObject(with: itemData) else{ continue }
-            DeviceUUID = item as! String
-            print("Stored Device UUID: \(DeviceUUID)")
-            //setDeviceUUID(uuid: item as! String)
-        }
     }
 }

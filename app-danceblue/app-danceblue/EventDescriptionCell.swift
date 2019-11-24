@@ -83,6 +83,13 @@ class EventDescriptionCell: UITableViewCell {
         print("Today is: \(today)")
         //print("This is the Event's START Time : \(eventStartTime)")
         //print("This is the Event's END Time : \(eventEndTime)")
+        
+        for item in masterRoster {
+            print("master Roster name: \(item.memberName)")
+        }
+        //print("master team: \(masterTeams.count)")
+        
+        
         if(true){
             checkInButton.isHidden = false
         }
@@ -94,10 +101,7 @@ class EventDescriptionCell: UITableViewCell {
     // MARK: - Check in for GeoFences
     @IBAction func geoFenceCheckin(_ sender: Any) {
         print("Checking IN!!")
-        //createTeamPicker()
-        //createToolBar()
-        
-        
+
         checkDeviceUUID()
         
         let validationFlag = checkEventInfomation()
