@@ -14,9 +14,9 @@ class CheckinViewController: UIViewController{
     fileprivate var DeviceUUID: String = ""
     fileprivate var firebaseReference: DatabaseReference?
     private var masterRosterHandle: DatabaseHandle?
-    //private var masterRosterChangeHandle: DatabaseHandle?
+    private var masterRosterUpdateHandle: DatabaseHandle?
     private var masterTeamsHandle: DatabaseHandle?
-    //private var masterTeamsChangeHandle: DatabaseHandle?
+    //private var masterTeamsUpdateHandle: DatabaseHandle?
     private var masterRosterData : [MasterRoster] = []
     private var masterTeamsData : [MasterTeams] = []
     var masterTeamDICT: [String: Int] = [:]
@@ -81,6 +81,11 @@ class CheckinViewController: UIViewController{
     }
     
     func dismissKeyboard(_sender: UIBarButtonItem) {
+     
+     //check to see if the member name selected is in the team
+     //check to see if other is selcted
+     //if other is selcted display other text fields
+     
         view.endEditing(true)
     }*/
     
@@ -117,7 +122,42 @@ class CheckinViewController: UIViewController{
             //print("masterTeamsDict: \(self.masterTeamDict)")
         })
     }
-    
+    func UpdateFirebase(){
+        
+    }
+    func AddToFirebase() {
+        let ref = Database.database().reference(withPath: kMasterRoster)
+        let post = ["TEST": "11111111"]
+        //ref.child("TEST").setValue(post)
+        /*ref.observe(.value, with: {snapshot in
+            var newItems: [MasterRoster] = []
+            for child in snapshot.children{
+                if let snapshot = child as? DataSnapshot
+                    print(snapshot)
+                }
+            }
+        })*/
+        //firebaseReference = Database.database().reference()
+        /*guard let key = firebaseReference?.child(kMasterRoster).childByAutoId().key else { return }
+        let post = [kDeviceUUID: uuid,
+                    kIndividualPoints: points,
+                    kMemberName: memberName,
+                    kTeamName: teamName]
+        let childUpdates = ["/posts/\(key)": post,
+                            "/user-posts/\(userID)/\(key)/": post]
+        firebaseReference.updateChildValues(childUpdates)
+        */
+   /* firebaseReference.child(kMasterRoster).child(user.uid).setValue(["username": username]) {
+          (error:Error?, ref:DatabaseReference) in
+          if let error = error {
+            print("Data could not be saved: \(error).")
+          } else {
+            print("Data saved successfully!")
+          }
+        }*/
+        
+        //masterRosterUpdateHandle = firebaseReference?.child(<#T##pathString: String##String#>)
+    }
     // MARK: - Local Storage Device UUID----------------------------------------
     func checkStoredUUID(){
         guard let storedData = UserDefaults.standard.array(forKey: kStoredUUIDKey) as? [Data] else {
@@ -146,6 +186,33 @@ class CheckinViewController: UIViewController{
         itemsData.append(itemData)
         UserDefaults.standard.set(itemsData, forKey: kStoredUUIDKey)
         UserDefaults.standard.synchronize()
+    }
+    
+    // MARK: - Comfirm Checkin Button
+    
+    @IBAction func confirmCheckIn(_ sender: Any) {
+        let teamField = String(teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
+        let nameField = String(nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
+        let teamFlag  = teamField.isEmpty
+        let nameFlag = nameField.isEmpty
+        
+        print("team: \(teamField) isEmpty: \(teamField.isEmpty)")
+        print("name: \(nameField) isEmpty: \(nameField.isEmpty)")
+        if(!teamFlag && !nameFlag){
+            print("both are not empyt")
+            print("linkBlueTextField.isHidden: \(linkBlueTextField.isHidden)")
+            print("fullnameTextField.isHidden: \(fullnameTextField.isHidden)")
+            //send things to the data base
+            AddToFirebase()
+
+        }
+        else{
+            print("something is empty")
+            print("linkBlueTextField.isHidden: \(linkBlueTextField.isHidden)")
+            print("fullnameTextField.isHidden: \(fullnameTextField.isHidden)")
+            AddToFirebase()
+
+        }
     }
 }
 
@@ -177,14 +244,11 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         dictKeysMember.sort(by: {$0 < $1})
         if(false){
             return dictKeys[row]
-
         }
         else{
             return dictKeysMember[row]
-
         }
     }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let dictKeys = [String](masterTeamDICT.keys)
         let dictValues = [Int](masterTeamDICT.values)
