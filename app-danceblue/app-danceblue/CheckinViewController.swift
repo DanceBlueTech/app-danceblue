@@ -161,7 +161,7 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         let dictValues = [Int](masterTeamDICT.values)
         let dictKeysMember = [String](masterRosterDICT.keys)
         
-        if(false){
+        if(false){ // fix this mess
             return dictKeys.count
 
         }else{
@@ -175,7 +175,7 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         let dictValues = [Int](masterTeamDICT.values)
         var dictKeysMember = [String](masterRosterDICT.keys)
         dictKeysMember.sort(by: {$0 < $1})
-        if(false){
+        if(false){ // also this
             return dictKeys[row]
 
         }
@@ -189,7 +189,7 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         let dictKeys = [String](masterTeamDICT.keys)
         let dictValues = [Int](masterTeamDICT.values)
         let dictKeysMember = [String](masterRosterDICT.keys)
-        if(false){
+        if(false){ // this too
             selectedTeam = dictKeys[row]
             teamTextField.text = selectedTeam
         }

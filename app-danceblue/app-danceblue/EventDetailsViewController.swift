@@ -167,8 +167,9 @@ class EventDetailsViewController: UITableViewController {
                 do {
                     
                     let CALENDAR_DEFAULTS_KEY = "\(String(describing: calendarEvent.title))\(startDate.description)_ADDED_TO_CALENDAR"
+                    let eventExists = UserDefaults.standard.bool(forKey:CALENDAR_DEFAULTS_KEY)
                     
-                    if let _: Bool = UserDefaults.standard.bool(forKey: CALENDAR_DEFAULTS_KEY), !addAnyways {
+                    if eventExists {
                         self.showDuplicateAlert()
                     } else {
                         print("Here")
