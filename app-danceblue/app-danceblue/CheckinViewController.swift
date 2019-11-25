@@ -45,7 +45,7 @@ class CheckinViewController: UIViewController{
         teamPicker.isHidden = true
         namePicker.isHidden = true
         createTeamPicker()
-        //createTeamPicker2()
+        createTeamPicker2()
         //createToolBar()
         
         setupFirebase()
@@ -59,14 +59,14 @@ class CheckinViewController: UIViewController{
         
         teamTextField.inputView = teamPicker
     }
-    /*
+    
     // MARK: - custom UIPicker for master teams
     func createTeamPicker2(){
         let namePicker = UIPickerView()
         namePicker.delegate = self
         
         fullnameTextField.inputView = namePicker
-    }*/
+    }
     // MARK: - custom toolbar for UIpicker--------------------------------------
     /*func createToolBar() {
         let toolBar = UIToolbar()
@@ -160,9 +160,14 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         let dictKeys = [String](masterTeamDICT.keys)
         let dictValues = [Int](masterTeamDICT.values)
         let dictKeysMember = [String](masterRosterDICT.keys)
+        
+        if(false){
+            return dictKeys.count
 
-            //return dictKeys.count
+        }else{
             return dictKeysMember.count
+
+        }
 
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -170,21 +175,27 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         let dictValues = [Int](masterTeamDICT.values)
         var dictKeysMember = [String](masterRosterDICT.keys)
         dictKeysMember.sort(by: {$0 < $1})
+        if(false){
+            return dictKeys[row]
 
-            //return dictKeys[row]
+        }
+        else{
             return dictKeysMember[row]
+
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let dictKeys = [String](masterTeamDICT.keys)
         let dictValues = [Int](masterTeamDICT.values)
         let dictKeysMember = [String](masterRosterDICT.keys)
-
-            //selectedTeam = dictKeys[row]
-            //teamTextField.text = selectedTeam
-
+        if(false){
+            selectedTeam = dictKeys[row]
+            teamTextField.text = selectedTeam
+        }
+        else{
             selectedName = dictKeysMember[row]
             nameTextField.text = selectedName
-
+        }
     }
 }
