@@ -24,15 +24,16 @@ class EventDescriptionCell: UITableViewCell {
     
     static let identifier = "EventDescriptionCell"
     private var event: Event?
-    var masterRoster : [MasterRoster] = []
-    var masterTeams : [MasterTeams] = []
     weak var delegate: EventDescriptionDelegate?
-    var delegate2: EventDescriptionCellDelegate?
-    let geoCoder = CLGeocoder()
+    var delegate2: EventDescriptionCellDelegate?  //might not need
+    //let geoCoder = CLGeocoder()
+    
+    #warning("FIX ME")
     let today = Date.init() //--> change time zones
     //var eventStartTime = Date.init()
     //var eventEndTime = Date.init()
-
+    var latitude = ""
+    var longitude = ""
     
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var underlineView: UIView!
@@ -77,19 +78,17 @@ class EventDescriptionCell: UITableViewCell {
         return CGSize(width: bounds.width, height: adjustedHeight)
     }
     
+    #warning("FIX ME!")
+    //checks to see if event is available for GeoFence checking in
     func displayCheckInButton(){
         //var eventStartTime = event!.timestamp
         //var eventEndTime = event!.endTime
         print("Today is: \(today)")
         //print("This is the Event's START Time : \(eventStartTime)")
         //print("This is the Event's END Time : \(eventEndTime)")
+    
         
-        for item in masterRoster {
-            print("master Roster name: \(item.memberName)")
-        }
-        //print("master team: \(masterTeams.count)")
-        
-        
+        //TODO: if today is between current event start and stop time display 'checkin' button otherwise hide this feature
         if(true){
             checkInButton.isHidden = false
         }
@@ -98,59 +97,46 @@ class EventDescriptionCell: UITableViewCell {
         }
     }
     
+    #warning("FIX ME")
     // MARK: - Check in for GeoFences
     @IBAction func geoFenceCheckin(_ sender: Any) {
-        print("Checking IN!!")
-
-        checkDeviceUUID()
+        print("Checking IN!!")      //debugging
         
-        let validationFlag = checkEventInfomation()
-        if(validationFlag){
-            print("Validation was True!")
-            /*let coordinate = mapView.centerCoordinate
-             let radius = Double(radiusTextField.text!) ?? 0
-             let identifier = NSUUID().uuidString
-             let note = noteTextField.text
-             let eventType: Geotification.EventType = (eventTypeSegmentedControl.selectedSegmentIndex == 0) ? .onEntry : .onExit
-             delegate2?.GeotificationViewController(self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!, eventType: eventType)*/
+        //call function to convert address to coordinates and store in variables
+        //FIX this return variables
+        let address = event!.address ?? ""
+        LocationConverter.AddressToCoordinates.getCoords(Address: address)
+        
+        //call functio to check if coordinates are valid and not broken and set to a bool then advance to check in screen
+        if(areCoordsValid()){
+            print("Validation was True!")       //debugging
+            //TODO: send event address to Checkin View Controller
+
         }
         else{
             print("Event is not active at this moment")
+            //Display an alert saying something went wrong and dont allow to check in
         }
     }
-    func checkDeviceUUID(){
-        print("MasterRoster: \(String(describing: self.masterRoster[0].printAll())) Count: \(masterRoster.count)")
-        print("MasterTeams: \(String(describing: self.masterTeams[0].printAll())) Count: \(masterTeams.count)")
-    }
     
-    func checkEventInfomation() -> Bool {
+    #warning("FIX ME")
+    func areCoordsValid() -> Bool {
+        //TODO: validate coordinates
         let title = event?.title ?? ""
-        let addy = event!.address ?? ""
+        let address = event!.address ?? ""
         let time = event!.time ?? ""
         #warning("reformat dates GMT i believe need to be +2 hours")
         let endtime = event!.endTime        //this is the end time of the event
         let timeStamp = event!.timestamp    //this is the start time of the event
         print("Event.Title: \(title)")
-        print("Event.Address: \(addy)")
+        print("Event.Address: \(address)")
         print("Event.Time \(time)")
         print("Event.Endtime: \(String(describing: endtime))")
         print("Event.Timestamp \(String(describing: timeStamp))")
         
-        //this is an async call...need a callback function
-        geoCoder.geocodeAddressString(addy) { (placemarks, error) in
-            guard
-                let placemarks = placemarks,
-                let location = placemarks.first?.location
-                else {
-                    // handle no location found
-                    print("not a location! Returning")
-                    return
-            }
-            print("placemarkers \(placemarks)")
-            print("location \(location)")
-            // Use your location
-        }
-        return true
+        //if coords are valid
+        if(true) { return true }
+        else { return false }
     }
 }
 

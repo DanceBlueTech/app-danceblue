@@ -93,3 +93,17 @@ extension GeotificationsViewController: EventDescriptionCellDelegate {
       //saveAllGeotifications()
     }
 }
+
+extension GeotificationsViewController: GeoFenceDelegate2 {
+    // MARK: - checking into the geo fence
+    func CheckInGeoFence(_ controller: CheckinViewController, x: String) {
+      print(x)
+    }
+}
+
+// MARK: -
+extension GeotificationsViewController: GeoFenceDelegate {
+    func checkInGeoFence() {
+        print("made it to GeotificationsViewController!")
+    }
+}

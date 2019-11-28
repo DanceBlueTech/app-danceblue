@@ -9,6 +9,14 @@
 import FirebaseDatabase
 import UIKit
 
+protocol GeoFenceDelegate: class {
+    func checkInGeoFence()
+}
+protocol GeoFenceDelegate2 {
+    func CheckInGeoFence(_ controller: CheckinViewController, x: String)
+}
+
+#warning("FIX ME")
 class CheckinViewController: UIViewController{
     
     fileprivate var DeviceUUID: String = ""
@@ -21,7 +29,6 @@ class CheckinViewController: UIViewController{
     private var masterTeamsData : [MasterTeams] = []
     var masterTeamDICT: [String: Int] = [:]
     var masterRosterDICT: [String: MasterRoster] = [:]
-    
     var dictTEAMKeys = [String]()
     var dictTEAMValues = [Int]()
     var dictROSTERKeys = [String]()
@@ -29,6 +36,10 @@ class CheckinViewController: UIViewController{
     var selectedTeam: String?
     var selectedName: String?
     var textfieldFlag: Bool = false
+    weak var checkInDelegate: GeoFenceDelegate?
+    var CHECK_InDelegate: GeoFenceDelegate2!
+    var latitude = ""       //TODO: get these from previous view controller
+    var longitude = ""      //TODO: get these from previous view controller
     
     @IBOutlet weak var teamTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
@@ -52,48 +63,21 @@ class CheckinViewController: UIViewController{
         checkStoredUUID()
     }
     
+    #warning("FIX ME")
     // MARK: - custom UIPicker for master teams---------------------------------
     func createTeamPicker(){
         let teamPicker = UIPickerView()
         teamPicker.delegate = self
-        
         teamTextField.inputView = teamPicker
     }
     
+    #warning("FIX ME")
     // MARK: - custom UIPicker for master teams
     func createTeamPicker2(){
         let namePicker = UIPickerView()
         namePicker.delegate = self
         
         fullnameTextField.inputView = namePicker
-    }
-    // MARK: - custom toolbar for UIpicker--------------------------------------
-    /*func createToolBar() {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(CheckinViewController.dismissKeyboard(_:)))
-        
-        toolBar.setItems([doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        
-        teamTextField.inputAccessoryView = toolBar
-    }
-    
-    func dismissKeyboard(_sender: UIBarButtonItem) {
-     
-     //check to see if the member name selected is in the team
-     //check to see if other is selcted
-     //if other is selcted display other text fields
-     
-        view.endEditing(true)
-    }*/
-    
-    func sortMasterRoster() {
-        dictROSTERKeys.sort(by: {$0 < $1})
-    }
-    func sortMasterTeams() {
-        dictTEAMKeys.sort(by: {$0 < $1})
     }
     
     // MARK: - Firebase---------------------------------------------------------
@@ -122,9 +106,13 @@ class CheckinViewController: UIViewController{
             //print("masterTeamsDict: \(self.masterTeamDict)")
         })
     }
+    
+    #warning("FIX ME")
     func UpdateFirebase(){
         
     }
+    #warning("FIX ME")
+
     func AddToFirebase() {
         let ref = Database.database().reference(withPath: kMasterRoster)
         let post = ["TEST": "11111111"]
@@ -158,6 +146,8 @@ class CheckinViewController: UIViewController{
         
         //masterRosterUpdateHandle = firebaseReference?.child(<#T##pathString: String##String#>)
     }
+    
+    #warning("TEST ME- something errored out on very first app luanch ever, might be an async thing")
     // MARK: - Local Storage Device UUID----------------------------------------
     func checkStoredUUID(){
         guard let storedData = UserDefaults.standard.array(forKey: kStoredUUIDKey) as? [Data] else {
@@ -188,8 +178,8 @@ class CheckinViewController: UIViewController{
         UserDefaults.standard.synchronize()
     }
     
+    #warning("FIX ME")
     // MARK: - Comfirm Checkin Button
-    
     @IBAction func confirmCheckIn(_ sender: Any) {
         let teamField = String(teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
         let nameField = String(nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
@@ -198,11 +188,17 @@ class CheckinViewController: UIViewController{
         
         print("team: \(teamField) isEmpty: \(teamField.isEmpty)")
         print("name: \(nameField) isEmpty: \(nameField.isEmpty)")
+        
+        //when team and name fields are valid
         if(!teamFlag && !nameFlag){
             print("both are not empyt")
             print("linkBlueTextField.isHidden: \(linkBlueTextField.isHidden)")
             print("fullnameTextField.isHidden: \(fullnameTextField.isHidden)")
-            //send things to the data base
+            
+            //Update Firebase database
+            
+            //RegisterGeoFenceArea()
+            #warning("make sure firebase successfully stores and updates without error before moving forward ")
             AddToFirebase()
 
         }
@@ -210,9 +206,13 @@ class CheckinViewController: UIViewController{
             print("something is empty")
             print("linkBlueTextField.isHidden: \(linkBlueTextField.isHidden)")
             print("fullnameTextField.isHidden: \(fullnameTextField.isHidden)")
-            AddToFirebase()
-
+            AddToFirebase()     //debugging
+            showAlert(withTitle: kErrorTitle, message: kErrorMessage5)
         }
+        //checkInDelegate?.checkInGeoFence()   //pass in event lat, long
+        
+        //CHECK_InDelegate.CheckInGeoFence(self, x: "Hello World!")
+        //self.dismiss(animated: true, completion: nil)
     }
 }
 

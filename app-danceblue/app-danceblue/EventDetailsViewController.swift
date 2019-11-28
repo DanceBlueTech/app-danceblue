@@ -18,8 +18,6 @@ protocol EventDetailsViewControllerDelegate: class {
 class EventDetailsViewController: UITableViewController {
     
     var event: Event?
-    var masterRoster : [MasterRoster] = []
-    var masterTeams : [MasterTeams] = []
     let eventStore = EKEventStore()
     var cellHeights: [CGFloat] = [CGFloat].init(repeating: 0, count: 5)
     
@@ -30,8 +28,6 @@ class EventDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        //print("MasterRoster: \(String(describing: self.masterRoster[0].printAll())) Count: \(masterRoster.count)")
-        //print("MasterTeams: \(String(describing: self.masterTeams[0].printAll())) Count: \(masterTeams.count)")
     }
     
     func setupTableView() {
@@ -92,8 +88,6 @@ class EventDetailsViewController: UITableViewController {
         case 2:
             if let descriptionCell = tableView.dequeueReusableCell(withIdentifier: EventDescriptionCell.identifier, for: indexPath) as? EventDescriptionCell {
                 descriptionCell.configureCell(with: event)
-                descriptionCell.masterRoster = masterRoster
-                descriptionCell.masterTeams = masterTeams
                 descriptionCell.delegate = self
                 if cellHeights[indexPath.row] == 0 {
                     cellHeights[indexPath.row] = descriptionCell.sizeThatFits(CGSize(width: view.bounds.width, height: .greatestFiniteMagnitude)).height

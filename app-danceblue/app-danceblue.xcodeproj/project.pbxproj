@@ -14,6 +14,7 @@
 		630D62AF2344286600BDDDB4 /* ContactWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62AE2344286500BDDDB4 /* ContactWebViewController.swift */; };
 		630D62B22344288900BDDDB4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B12344288900BDDDB4 /* Constants.swift */; };
 		630D62B6234428D300BDDDB4 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */; };
+		631C3ED92390528000DA24E4 /* LocationConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631C3ED82390528000DA24E4 /* LocationConverter.swift */; };
 		63208FAC23676E3500CB015E /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63208FAB23676E3500CB015E /* Alerts.swift */; };
 		637FE87E237CA0B700FBDBE6 /* MasterRoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637FE87D237CA0B700FBDBE6 /* MasterRoster.swift */; };
 		637FE880237CA1D800FBDBE6 /* MasterTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637FE87F237CA1D800FBDBE6 /* MasterTeams.swift */; };
@@ -114,6 +115,7 @@
 		630D62AE2344286500BDDDB4 /* ContactWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactWebViewController.swift; sourceTree = "<group>"; };
 		630D62B12344288900BDDDB4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		630D62B5234428D300BDDDB4 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
+		631C3ED82390528000DA24E4 /* LocationConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationConverter.swift; sourceTree = "<group>"; };
 		63208FAB23676E3500CB015E /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		637FE87D237CA0B700FBDBE6 /* MasterRoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterRoster.swift; sourceTree = "<group>"; };
 		637FE87F237CA1D800FBDBE6 /* MasterTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTeams.swift; sourceTree = "<group>"; };
@@ -229,8 +231,10 @@
 		630D62B02344287C00BDDDB4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				63208FAB23676E3500CB015E /* Alerts.swift */,
 				630D62B12344288900BDDDB4 /* Constants.swift */,
 				63AD462C234AA64D000BDA67 /* Geotification.swift */,
+				631C3ED82390528000DA24E4 /* LocationConverter.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -500,7 +504,6 @@
 				CB6605001F630D0A00FBC1CA /* DispatchQueue+Sync.swift */,
 				CBC6A9411F6984140045B9B9 /* Router.swift */,
 				CBF637451F73FA0A00270724 /* NetworkHelper.swift */,
-				63208FAB23676E3500CB015E /* Alerts.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -779,6 +782,7 @@
 				CB2C70EE1F571285004EF068 /* BlogVerticalCollectionViewCell.swift in Sources */,
 				CB8798771F363E4A0091CA38 /* SplashViewController.swift in Sources */,
 				CBC6A9421F6984140045B9B9 /* Router.swift in Sources */,
+				631C3ED92390528000DA24E4 /* LocationConverter.swift in Sources */,
 				CB8798761F3637940091CA38 /* EventsTableViewController.swift in Sources */,
 				CB7DE1D21F25267200235145 /* Announcement.swift in Sources */,
 				CB19AF371F32C86100429C18 /* BCBodyImage.swift in Sources */,

@@ -35,8 +35,7 @@ let kErrorMessage1              = "Geofencing is not supported on this device!"
 let kErrorMessage2              = "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location."
 let kErrorMessage3              = "Monitoring failed for region with identifier: "
 let kErrorMessage4              = "Location Manager failed with the following error: "
-
+let kErrorTitle                 = "REQUIRED FIELDS!"
+let kErrorMessage5              = "All fields are required in order to check in to this Event! Make sure you have selected the correct team and member name combination"
 // MARK: local storage
-let kStoredUUIDKey =           "DeviceUUID"
-
-
+let kStoredUUIDKey              = "DeviceUUID"
