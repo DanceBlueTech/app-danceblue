@@ -34,38 +34,40 @@ class CheckinViewController: UIViewController{
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var linkBlueTextField: UITextField!
     @IBOutlet weak var fullnameTextField: UITextField!
-    @IBOutlet weak var teamPicker: UIPickerView!
-    @IBOutlet weak var namePicker: UIPickerView!
+    //var teamPicker = UIPickerView()
+    //var namePicker = UIPickerView()
+    
+   
+    //@IBOutlet weak var teamPicker: UIPickerView!
+    //@IBOutlet weak var namePicker: UIPickerView!
     
     // MARK: - Initialization---------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         linkBlueTextField.isHidden = true
         fullnameTextField.isHidden = true
-        teamPicker.isHidden = true
-        namePicker.isHidden = true
         createTeamPicker()
-        createTeamPicker2()
+        createNamePicker()
         //createToolBar()
-        
         setupFirebase()
         checkStoredUUID()
     }
     
     // MARK: - custom UIPicker for master teams---------------------------------
-    func createTeamPicker(){
+    func createTeamPicker(){ // check here
         let teamPicker = UIPickerView()
         teamPicker.delegate = self
+        teamPicker.tag = 0
         
         teamTextField.inputView = teamPicker
     }
     
     // MARK: - custom UIPicker for master teams
-    func createTeamPicker2(){
+    func createNamePicker(){ // check here
         let namePicker = UIPickerView()
         namePicker.delegate = self
-        
-        fullnameTextField.inputView = namePicker
+        namePicker.tag = 1
+        nameTextField.inputView = namePicker
     }
     // MARK: - custom toolbar for UIpicker--------------------------------------
     /*func createToolBar() {
@@ -152,22 +154,27 @@ class CheckinViewController: UIViewController{
 // MARK: -Date picker for master roster and master teams
 extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
+    // how many picker views
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let dictKeys = [String](masterTeamDICT.keys)
-        let dictValues = [Int](masterTeamDICT.values)
+        let dictKeys = [String](masterTeamDICT.keys) // arrays
+        let dictValues = [Int](masterTeamDICT.values) // arrays
         let dictKeysMember = [String](masterRosterDICT.keys)
         
-        if(false){ // fix this mess
+        if pickerView.tag == 0{ // fix this mess
+           // let dictKeys = [String](masterTeamDICT.keys) // arrays
             return dictKeys.count
 
-        }else{
+        }
+        if pickerView.tag == 1 {
+           // let dictValues = [Int](masterTeamDICT.values)
             return dictKeysMember.count
 
         }
+        return 0
 
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -175,25 +182,29 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         let dictValues = [Int](masterTeamDICT.values)
         var dictKeysMember = [String](masterRosterDICT.keys)
         dictKeysMember.sort(by: {$0 < $1})
-        if(false){ // also this
+        if pickerView.tag == 0{ // also this
             return dictKeys[row]
 
         }
-        else{
+        else if pickerView.tag == 1{
+
             return dictKeysMember[row]
 
         }
+        return ""
     }
     
+    
+    // this is for text field
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let dictKeys = [String](masterTeamDICT.keys)
         let dictValues = [Int](masterTeamDICT.values)
         let dictKeysMember = [String](masterRosterDICT.keys)
-        if(false){ // this too
+        if pickerView.tag == 0{ // this too
             selectedTeam = dictKeys[row]
             teamTextField.text = selectedTeam
         }
-        else{
+        else if pickerView.tag == 1{
             selectedName = dictKeysMember[row]
             nameTextField.text = selectedName
         }
