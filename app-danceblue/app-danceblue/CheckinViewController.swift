@@ -18,7 +18,7 @@ protocol GeoFenceDelegate2 {
 }
 
 #warning("FIX ME")
-class CheckinViewController: UIViewController{
+class CheckinViewController: UIViewController {
     
     fileprivate var DeviceUUID: String = ""
     fileprivate var firebaseReference: DatabaseReference?
@@ -39,11 +39,10 @@ class CheckinViewController: UIViewController{
     var textfieldFlag: Bool = false
     weak var checkInDelegate: GeoFenceDelegate?
     var CHECK_InDelegate: GeoFenceDelegate2!
-    var latitude = ""       //TODO: get these from previous view controller
-    var longitude = ""      //TODO: get these from previous view controller
     
     // GeoFencing variables
     let locationManager = CLLocationManager()
+    var coordinates = CLLocationCoordinate2D()
 
     
     @IBOutlet weak var teamTextField: UITextField!
@@ -241,8 +240,9 @@ class CheckinViewController: UIViewController{
     func startMonitoring(){
         let clampedRadius = min(kGeoFenceRadius, locationManager.maximumRegionMonitoringDistance)
         //TODO: make this the coordinates of the current event
-        let coordinate = CLLocationCoordinate2D.init()
-        let geoLocation = Geotification(coordinate: coordinate, radius: clampedRadius)
+        //let coordinate = CLLocationCoordinate2D.init()
+        print("starting to Monitor; coords are: \(coordinates)")
+        let geoLocation = Geotification(coordinate: coordinates, radius: clampedRadius)
         
         // geofencing is not supported on this device
         //TODO: if this failes makes sure it returns back to the pervious view controller
@@ -295,11 +295,10 @@ class CheckinViewController: UIViewController{
 
 // MARK: - passing current event information
 extension CheckinViewController: CurrentEventDelegate {
-    func updateCoords(lat: String, long: String){
+    func updateCoords(coordinates: CLLocationCoordinate2D){
         print("I passed my data!!!")
-        latitude = lat
-        longitude = long
-        print("lat: \(latitude) long: \(longitude)")
+        self.coordinates = coordinates
+        print("coords: \(coordinates)")
     }
 }
 
