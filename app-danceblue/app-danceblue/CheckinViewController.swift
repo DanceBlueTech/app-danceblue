@@ -8,6 +8,7 @@
 
 import FirebaseDatabase
 import UIKit
+import CoreLocation
 
 protocol GeoFenceDelegate: class {
     func checkInGeoFence()
@@ -41,6 +42,10 @@ class CheckinViewController: UIViewController{
     var latitude = ""       //TODO: get these from previous view controller
     var longitude = ""      //TODO: get these from previous view controller
     
+    // GeoFencing variables
+    let locationManager = CLLocationManager()
+
+    
     @IBOutlet weak var teamTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var linkBlueTextField: UITextField!
@@ -51,6 +56,9 @@ class CheckinViewController: UIViewController{
     // MARK: - Initialization---------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self as? CLLocationManagerDelegate
+        locationManager.requestAlwaysAuthorization()
+        
         linkBlueTextField.isHidden = true
         fullnameTextField.isHidden = true
         teamPicker.isHidden = true
@@ -148,6 +156,7 @@ class CheckinViewController: UIViewController{
     }
     
     #warning("TEST ME- something errored out on very first app luanch ever, might be an async thing")
+    
     // MARK: - Local Storage Device UUID----------------------------------------
     func checkStoredUUID(){
         guard let storedData = UserDefaults.standard.array(forKey: kStoredUUIDKey) as? [Data] else {
@@ -179,34 +188,45 @@ class CheckinViewController: UIViewController{
     }
     
     #warning("FIX ME")
-    // MARK: - Comfirm Checkin Button
+    // MARK: - Comfirm Checkin Button-------------------------------------------
     @IBAction func confirmCheckIn(_ sender: Any) {
         let teamField = String(teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
         let nameField = String(nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
-        let teamFlag  = teamField.isEmpty
-        let nameFlag = nameField.isEmpty
+        let isTeamFieldEmpty  = teamField.isEmpty
+        let isNameFieldEmpty = nameField.isEmpty
         
         print("team: \(teamField) isEmpty: \(teamField.isEmpty)")
         print("name: \(nameField) isEmpty: \(nameField.isEmpty)")
         
+        //TODO: make sure member is in team roster other wise display alert
+        //the only exception is if member name == 'other'
+        
         //when team and name fields are valid
-        if(!teamFlag && !nameFlag){
+        if(!isTeamFieldEmpty && !isNameFieldEmpty){
             print("both are not empyt")
             print("linkBlueTextField.isHidden: \(linkBlueTextField.isHidden)")
             print("fullnameTextField.isHidden: \(fullnameTextField.isHidden)")
             
-            //Update Firebase database
-            
-            //RegisterGeoFenceArea()
-            #warning("make sure firebase successfully stores and updates without error before moving forward ")
-            AddToFirebase()
+            /*TODO: if 'other' is selected for member then check that linkblue and fullname text fields are filled out
+             if() {
+                //send device uuid, member name, link blue, team name, points
+                //Update Firebase database()
 
+             }else {
+                showAlert(withTitle: kErrorTitle, message: kErrorMessage5)
+                return
+             }
+            */
+            
+            startMonitoring()
+            #warning("make sure firebase successfully stores and updates without error before moving forward ")
+            //AddToFirebase()
         }
         else{
             print("something is empty")
             print("linkBlueTextField.isHidden: \(linkBlueTextField.isHidden)")
             print("fullnameTextField.isHidden: \(fullnameTextField.isHidden)")
-            AddToFirebase()     //debugging
+            //AddToFirebase()     //debugging
             showAlert(withTitle: kErrorTitle, message: kErrorMessage5)
         }
         //checkInDelegate?.checkInGeoFence()   //pass in event lat, long
@@ -214,9 +234,76 @@ class CheckinViewController: UIViewController{
         //CHECK_InDelegate.CheckInGeoFence(self, x: "Hello World!")
         //self.dismiss(animated: true, completion: nil)
     }
+    
+    // MARK: - GeoFence---------------------------------------------------------
+    
+    // MARK: - Start monitoring the geofence region-------------------
+    func startMonitoring(){
+        let clampedRadius = min(kGeoFenceRadius, locationManager.maximumRegionMonitoringDistance)
+        //TODO: make this the coordinates of the current event
+        let coordinate = CLLocationCoordinate2D.init()
+        let geoLocation = Geotification(coordinate: coordinate, radius: clampedRadius)
+        
+        // geofencing is not supported on this device
+        //TODO: if this failes makes sure it returns back to the pervious view controller
+        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            showAlert(withTitle: kErrorTitle1, message: kErrorMessage1)
+            return
+        }
+        // geofencing does not have permissions
+        //TODO:-->make sure to not allow submission to firebase until permission is granted
+        if CLLocationManager.authorizationStatus() != .authorizedAlways {
+            showAlert(withTitle:kErrorTitle2, message: kErrorMessage2)
+        }
+
+        //storing the GeoFence region
+        let fenceRegion = region(with: geoLocation)
+        
+        //Starts monitoring the specified region
+        //might replace with startMonitoringVisits()
+        locationManager.startMonitoring(for: fenceRegion)
+        
+        //TODO:: keep checking to see if user is in region and then call stop monitoring
+        //look at CLLocationManager member functions for this maybe...func requestState(for region: CLRegion)
+        
+        //might replace with stopMonitoringVisits()
+        stopMonitoring(geotification: geoLocation)
+    }
+    
+    // MARK: - Set up geofence region---------------------------------
+    func region(with geotification: Geotification) -> CLCircularRegion {
+        // init a region from the current event's coordinates
+        let region = CLCircularRegion(center: geotification.coordinate,
+        radius: geotification.radius,
+        identifier: geotification.identifier)
+        
+        // not sure if we need this
+        //region.notifyOnEntry = (geotification.eventType == .onEntry)
+        //region.notifyOnExit = !region.notifyOnEntry
+        return region
+    }
+    
+    // MARK: - Stop monitoring the Geofence regions-------------------
+    func stopMonitoring(geotification: Geotification) {
+        for region in locationManager.monitoredRegions {
+            guard let circularRegion = region as? CLCircularRegion,
+                circularRegion.identifier == geotification.identifier else { continue }
+            locationManager.stopMonitoring(for: circularRegion)
+        }
+    }
 }
 
-// MARK: -Date picker for master roster and master teams
+// MARK: - passing current event information
+extension CheckinViewController: CurrentEventDelegate {
+    func updateCoords(lat: String, long: String){
+        print("I passed my data!!!")
+        latitude = lat
+        longitude = long
+        print("lat: \(latitude) long: \(longitude)")
+    }
+}
+
+// MARK: - Date picker for master roster and master teams-----------------------
 extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -262,4 +349,20 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
             nameTextField.text = selectedName
         }
     }
+}
+
+// MARK: - Location Manager Delegate--------------------------------------------
+extension CheckinViewController: CLLocationManagerDelegate {
+  
+  func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+    let errorMessage = "\(kErrorMessage3) + \(region!.identifier)"
+    print(errorMessage) //debugging
+    showAlert(withTitle: kErrorTitle1, message: errorMessage)
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    let errorMessage = "\(kErrorMessage4) + \(error)"
+    print(errorMessage) //debugging
+    showAlert(withTitle: kErrorTitle1, message: errorMessage)
+  }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 import ObjectMapper
-
+#warning("Might not need this file at all")
 class GeoLocation: Mappable {
     
 // These might need to be changed to Int?

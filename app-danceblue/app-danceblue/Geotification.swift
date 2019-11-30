@@ -1,5 +1,5 @@
 //
-//  GeoFencing.swift
+//  Geotification.swift
 //  app-danceblue
 //
 //  Created by David Mercado on 10/6/19.
@@ -9,22 +9,26 @@
 import Foundation
 import CoreLocation
 
-class Geotification: NSObject, Codable {
-    enum EventType: String {
+class Geotification /*: NSObject, Codable*/ {
+    /*enum EventType: String {
         case onEntry = "On Entry"
         case onExit = "On Exit"
     }
     enum CodingKeys: String, CodingKey {
         case latitude, longitude, radius, identifier, note, eventType
-    }
+    }*/
     
     var coordinate: CLLocationCoordinate2D
     var radius: CLLocationDistance
-    var identifier: String = ""
-    var note: String = ""
-    var eventType: EventType
+    var identifier: String = kGeoFenceID
+    /*var note: String = ""
+    var eventType: EventType*/
     
-    init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, eventType: EventType) {
+    init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance) {
+        self.coordinate = coordinate
+        self.radius = radius
+    }
+    /*init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, eventType: EventType) {
         self.coordinate = coordinate
         self.radius = radius
         self.eventType = eventType
@@ -38,8 +42,8 @@ class Geotification: NSObject, Codable {
       radius = try values.decode(Double.self, forKey: .radius)
       identifier = try values.decode(String.self, forKey: .identifier)
       note = try values.decode(String.self, forKey: .note)
-      let event = try values.decode(String.self, forKey: .eventType)
-      eventType = EventType(rawValue: event) ?? .onEntry
+      //let event = try values.decode(String.self, forKey: .eventType)
+      //eventType = EventType(rawValue: event) ?? .onEntry
     }
 
     func encode(to encoder: Encoder) throws {
@@ -49,12 +53,10 @@ class Geotification: NSObject, Codable {
       try container.encode(radius, forKey: .radius)
       try container.encode(identifier, forKey: .identifier)
       try container.encode(note, forKey: .note)
-      try container.encode(eventType.rawValue, forKey: .eventType)
-    }
+      //try container.encode(eventType.rawValue, forKey: .eventType)
+    }*/
 }
-
-//TODO: save pulled geolocations from firebase to local storage in users device
-
+/*
  extension Geotification {
    public class func allGeotifications() -> [Geotification] {
      guard let savedData = UserDefaults.standard.data(forKey: "Test") else { return [] }
@@ -64,5 +66,5 @@ class Geotification: NSObject, Codable {
      }
      return []
    }
- }
+ }*/
  

@@ -18,24 +18,30 @@ let kIndividualPoints           = "Individual Points"
 let kLinkBlue                   = "LinkBlue"
 let kMemberName                 = "Member Name"
 
+// MARK: -GeoFence
 let kGeoLocationTableName       = "geolocation"
 let kGeoLocationName            = "name"
 let kGeoLocationLat             = "latitude"
 let kGeoLocationLong            = "longitude"
 let kGeoLocationRadius          = "radius"
+let kGeoFenceRadius             = 15.0
+let kGeoFenceID                 = "DanceBlue_GeoFence"
 
 //MARK: Contact Information from public website
 let kContactInfoURL             = "http://www.danceblue.org/meet-the-team/"
 let kFAQURL                     = "http://www.danceblue.org/frequently-asked-questions/"
 
 // MARK: - Alerts
-let kError1                     = "ERROR"
-let kError2                     = "Warning"
+let kErrorTitle                 = "REQUIRED FIELDS!"
+let kErrorTitle1                = "ERROR"
+let kErrorTitle2                = "Warning"
 let kErrorMessage1              = "Geofencing is not supported on this device!"
-let kErrorMessage2              = "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location."
+let kErrorMessage2              = "You need to grant DanceBlue permission to access the device location, so you can check in to this event."
+//let kErrorMessage2              = "Your geoLocation is saved but will only be activated once you grant DanceBlue permission to access the device location."
 let kErrorMessage3              = "Monitoring failed for region with identifier: "
 let kErrorMessage4              = "Location Manager failed with the following error: "
-let kErrorTitle                 = "REQUIRED FIELDS!"
 let kErrorMessage5              = "All fields are required in order to check in to this Event! Make sure you have selected the correct team and member name combination"
+let kErrorMessage6              = "Something went wrong on our end. Please sign in manually for your Spirt Points. Thank you!"
+
 // MARK: local storage
 let kStoredUUIDKey              = "DeviceUUID"

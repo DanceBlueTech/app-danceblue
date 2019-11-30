@@ -17,7 +17,6 @@ struct LocationConverter {
         //return lat and long coords as well as a bool of conversion successfull
         static func getCoords(Address: String) {
             let geoCoder = CLGeocoder()
-
             geoCoder.geocodeAddressString(Address) { (placemarks, error) in
                 guard
                     let placemarks = placemarks,

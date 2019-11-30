@@ -14,18 +14,18 @@ import CoreLocation
 class GeotificationsViewController: UIViewController {
 
     // MARK: - Initialization
-    var geotifications: [Geotification] = []
+    //var geotifications: [Geotification] = []
 
-    let locationManager = CLLocationManager()
+    //let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self as? CLLocationManagerDelegate
-        locationManager.requestAlwaysAuthorization()
+        //locationManager.delegate = self as? CLLocationManagerDelegate
+        //locationManager.requestAlwaysAuthorization()
     }
     
     // MARK: - Set up geofence region
-    func region(with geotification: Geotification) -> CLCircularRegion {
+    /*func region(with geotification: Geotification) -> CLCircularRegion {
         // 1
         let region = CLCircularRegion(center: geotification.coordinate,
         radius: geotification.radius,
@@ -34,18 +34,18 @@ class GeotificationsViewController: UIViewController {
         region.notifyOnEntry = (geotification.eventType == .onEntry)
         region.notifyOnExit = !region.notifyOnEntry
         return region
-    }
+    }*/
     
     // MARK: - Start monitoring the Geofence regions
-    func startMonitoring(geotification: Geotification) {
+    /*func startMonitoring(geotification: Geotification) {
         // 1
         if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            showAlert(withTitle: kError1, message: kErrorMessage1)
+            showAlert(withTitle: kErrorTitle1, message: kErrorMessage1)
             return
         }
         // 2
         if CLLocationManager.authorizationStatus() != .authorizedAlways {
-            showAlert(withTitle:kError2, message: kErrorMessage2)
+            showAlert(withTitle:kErrorTitle2, message: kErrorMessage2)
         }
         // 3
         let fenceRegion = region(with: geotification)
@@ -62,7 +62,7 @@ class GeotificationsViewController: UIViewController {
                 circularRegion.identifier == geotification.identifier else { continue }
             locationManager.stopMonitoring(for: circularRegion)
         }
-    }
+    }*/
 }
 // MARK: - Location Manager Delegate
 extension GeotificationsViewController: CLLocationManagerDelegate {
@@ -70,17 +70,17 @@ extension GeotificationsViewController: CLLocationManagerDelegate {
   /*func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     mapView.showsUserLocation = status == .authorizedAlways
   }*/
-  
+  /*
   func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
     print(kErrorMessage3 + region!.identifier)
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print(kErrorMessage4 + "\(error)")
-  }
+  }*/
   
 }
-
+/*
 // MARK: AddGeotificationViewControllerDelegate
 extension GeotificationsViewController: EventDescriptionCellDelegate {
     // MARK: - checking into the geo fence
@@ -92,7 +92,7 @@ extension GeotificationsViewController: EventDescriptionCellDelegate {
       startMonitoring(geotification: geotification)
       //saveAllGeotifications()
     }
-}
+}*/
 
 extension GeotificationsViewController: GeoFenceDelegate2 {
     // MARK: - checking into the geo fence

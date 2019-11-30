@@ -55,7 +55,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>&quot;&quot;</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>“Allow us to access your current location for directions!”</string>
+	<string>“Allow us to access your current location for directions and GeoFencing capabilities”</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

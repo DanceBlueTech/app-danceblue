@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Override point for customization after application launch.
         registerForRemoteNotifications(for: application)
         log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: "path/to/file", fileLevel: .debug)
-        locationManager.delegate = self as? CLLocationManagerDelegate
+        locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         
         return true
@@ -36,13 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
          // Show an alert if application is active
          if UIApplication.shared.applicationState == .active {
-           guard let message = note(from: region.identifier) else { return }
+           //guard let message = note(from: region.identifier) else { return }
+            let message = "TEST...GEOFENCE TRIGGERED...TEST"
            window?.rootViewController?.showAlert(withTitle: nil, message: message)
          } else {
            // Otherwise present a local notification
-           guard let body = note(from: region.identifier) else { return }
+           //guard let body = note(from: region.identifier) else { return }
            let notificationContent = UNMutableNotificationContent()
-           notificationContent.body = body
+           //notificationContent.body = body
+           notificationContent.body = "GEOFENCE TEST"
            notificationContent.sound = UNNotificationSound.default
            notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
@@ -133,13 +135,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FirebaseApp.configure()
     }
     
-    func note(from identifier: String) -> String? {
+    //might not need
+    /*func note(from identifier: String) -> String? {
       let geotifications = Geotification.allGeotifications()
       guard let matched = geotifications.filter({
         $0.identifier == identifier
       }).first else { return nil }
       return matched.note
-    }
+    }*/
 }
 
 // MARK: - Core Location entering and exiting geoFences
