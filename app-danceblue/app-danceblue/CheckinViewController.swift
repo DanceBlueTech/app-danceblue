@@ -44,13 +44,10 @@ class CheckinViewController: UIViewController {
     let locationManager = CLLocationManager()
     var coordinates = CLLocationCoordinate2D()
 
-    
     @IBOutlet weak var teamTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var linkBlueTextField: UITextField!
     @IBOutlet weak var fullnameTextField: UITextField!
-    @IBOutlet weak var teamPicker: UIPickerView!
-    @IBOutlet weak var namePicker: UIPickerView!
     
     // MARK: - Initialization---------------------------------------------------
     override func viewDidLoad() {
@@ -60,31 +57,29 @@ class CheckinViewController: UIViewController {
         
         linkBlueTextField.isHidden = true
         fullnameTextField.isHidden = true
-        teamPicker.isHidden = true
-        namePicker.isHidden = true
+
         createTeamPicker()
-        createTeamPicker2()
+        createNamePicker()
         //createToolBar()
         
         setupFirebase()
         checkStoredUUID()
     }
     
-    #warning("FIX ME")
     // MARK: - custom UIPicker for master teams---------------------------------
     func createTeamPicker(){
         let teamPicker = UIPickerView()
         teamPicker.delegate = self
+        teamPicker.tag = 0
         teamTextField.inputView = teamPicker
     }
     
-    #warning("FIX ME")
-    // MARK: - custom UIPicker for master teams
-    func createTeamPicker2(){
+    // MARK: - custom UIPicker for master roster--------------------------------
+    func createNamePicker(){
         let namePicker = UIPickerView()
         namePicker.delegate = self
-        
-        fullnameTextField.inputView = namePicker
+        namePicker.tag = 1
+        nameTextField.inputView = namePicker
     }
     
     // MARK: - Firebase---------------------------------------------------------
@@ -119,7 +114,6 @@ class CheckinViewController: UIViewController {
         
     }
     #warning("FIX ME")
-
     func AddToFirebase() {
         let ref = Database.database().reference(withPath: kMasterRoster)
         let post = ["TEST": "11111111"]
@@ -155,7 +149,6 @@ class CheckinViewController: UIViewController {
     }
     
     #warning("TEST ME- something errored out on very first app luanch ever, might be an async thing")
-    
     // MARK: - Local Storage Device UUID----------------------------------------
     func checkStoredUUID(){
         guard let storedData = UserDefaults.standard.array(forKey: kStoredUUIDKey) as? [Data] else {
@@ -293,7 +286,7 @@ class CheckinViewController: UIViewController {
     }
 }
 
-// MARK: - passing current event information
+// MARK: - passing current event information------------------------------------
 extension CheckinViewController: CurrentEventDelegate {
     func updateCoords(coordinates: CLLocationCoordinate2D){
         print("I passed my data!!!")
@@ -310,41 +303,46 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let dictKeys = [String](masterTeamDICT.keys)
-        let dictValues = [Int](masterTeamDICT.values)
-        let dictKeysMember = [String](masterRosterDICT.keys)
+        let teamArray = [String](masterTeamDICT.keys)
+        //let dictValues = [Int](masterTeamDICT.values)
+        let memberArray = [String](masterRosterDICT.keys)
         
-        if(false){
-            return dictKeys.count
-
-        }else{
-            return dictKeysMember.count
+        if(pickerView.tag == 0){
+            return teamArray.count
 
         }
-
+        else if(pickerView.tag == 1){
+            return memberArray.count
+        }
+        else{return 0}
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let dictKeys = [String](masterTeamDICT.keys)
-        let dictValues = [Int](masterTeamDICT.values)
-        var dictKeysMember = [String](masterRosterDICT.keys)
-        dictKeysMember.sort(by: {$0 < $1})
-        if(false){
-            return dictKeys[row]
+        let teamArray = [String](masterTeamDICT.keys)
+        //let dictValues = [Int](masterTeamDICT.values)
+        var memberArray = [String](masterRosterDICT.keys)
+        memberArray.sort(by: {$0 < $1})
+        
+        if(pickerView.tag == 0){
+            return teamArray[row]
         }
-        else{
-            return dictKeysMember[row]
+        else if(pickerView.tag == 1){
+            return memberArray[row]
         }
+        else{return kErrorMessage7}
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let dictKeys = [String](masterTeamDICT.keys)
-        let dictValues = [Int](masterTeamDICT.values)
-        let dictKeysMember = [String](masterRosterDICT.keys)
-        if(false){
-            selectedTeam = dictKeys[row]
+        let teamArray = [String](masterTeamDICT.keys)
+        //let dictValues = [Int](masterTeamDICT.values)
+        let memberArray = [String](masterRosterDICT.keys)
+        
+        if(pickerView.tag == 0){
+            selectedTeam = teamArray[row]
             teamTextField.text = selectedTeam
         }
-        else{
-            selectedName = dictKeysMember[row]
+        else if(pickerView.tag == 1){
+            selectedName = memberArray[row]
             nameTextField.text = selectedName
         }
     }

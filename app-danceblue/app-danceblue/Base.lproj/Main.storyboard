@@ -1787,38 +1787,18 @@
                                     <action selector="confirmCheckIn:" destination="4MR-2a-cY1" eventType="touchUpInside" id="TTa-qs-n8y"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffK-SR-gdt">
-                                <rect key="frame" x="0.0" y="417" width="414" height="216"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="4MR-2a-cY1" id="jf5-bl-sXc"/>
-                                    <outlet property="delegate" destination="4MR-2a-cY1" id="TFg-kI-qAm"/>
-                                </connections>
-                            </pickerView>
-                            <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eeb-ks-LM8">
-                                <rect key="frame" x="0.0" y="417" width="414" height="216"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="4MR-2a-cY1" id="UbN-pF-dHz"/>
-                                    <outlet property="delegate" destination="4MR-2a-cY1" id="kaA-mY-FXf"/>
-                                </connections>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="tlT-cS-ON2" secondAttribute="trailing" constant="20" id="0pj-OZ-BGx"/>
-                            <constraint firstItem="ffK-SR-gdt" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" id="5a2-Kk-xib"/>
                             <constraint firstItem="tlT-cS-ON2" firstAttribute="top" secondItem="uz7-Zz-xAZ" secondAttribute="bottom" constant="50" id="7OG-s4-gQ8"/>
-                            <constraint firstAttribute="trailing" secondItem="ffK-SR-gdt" secondAttribute="trailing" id="8fE-52-FDN"/>
-                            <constraint firstItem="36h-hQ-3W4" firstAttribute="top" secondItem="Eeb-ks-LM8" secondAttribute="bottom" constant="10" id="CdD-BD-smC"/>
                             <constraint firstAttribute="trailing" secondItem="7fT-92-wot" secondAttribute="trailing" constant="20" id="DHH-ga-wqO"/>
                             <constraint firstItem="Hqd-4X-ieg" firstAttribute="top" secondItem="tlT-cS-ON2" secondAttribute="bottom" constant="50" id="JzM-gN-91Q"/>
-                            <constraint firstItem="Eeb-ks-LM8" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" id="LWR-Gv-oBm"/>
                             <constraint firstAttribute="trailing" secondItem="Hqd-4X-ieg" secondAttribute="trailing" constant="20" id="OUy-2Q-rwl"/>
                             <constraint firstAttribute="trailing" secondItem="aOK-RA-Hv4" secondAttribute="trailing" constant="20" id="QH1-EC-VWc"/>
                             <constraint firstItem="iSO-S4-45x" firstAttribute="top" secondItem="Hqd-4X-ieg" secondAttribute="bottom" constant="50" id="R3v-vM-v02"/>
                             <constraint firstItem="aOK-RA-Hv4" firstAttribute="top" secondItem="iSO-S4-45x" secondAttribute="bottom" constant="50" id="cer-2k-h4P"/>
-                            <constraint firstAttribute="trailing" secondItem="Eeb-ks-LM8" secondAttribute="trailing" id="eDK-lA-Bv3"/>
                             <constraint firstItem="7fT-92-wot" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" constant="20" id="eoL-gu-QoG"/>
-                            <constraint firstItem="36h-hQ-3W4" firstAttribute="top" secondItem="ffK-SR-gdt" secondAttribute="bottom" constant="10" id="h1B-AT-oGU"/>
                             <constraint firstItem="Hqd-4X-ieg" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" constant="20" id="jeW-uB-Hrg"/>
                             <constraint firstItem="36h-hQ-3W4" firstAttribute="top" secondItem="7fT-92-wot" secondAttribute="bottom" constant="50" id="lnY-hv-ICR"/>
                             <constraint firstItem="aOK-RA-Hv4" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" constant="20" id="pip-pT-zs6"/>
@@ -1831,9 +1811,7 @@
                     <connections>
                         <outlet property="fullnameTextField" destination="aOK-RA-Hv4" id="JjW-tO-32F"/>
                         <outlet property="linkBlueTextField" destination="iSO-S4-45x" id="YAo-1g-mWb"/>
-                        <outlet property="namePicker" destination="Eeb-ks-LM8" id="evC-xX-7xK"/>
                         <outlet property="nameTextField" destination="Hqd-4X-ieg" id="t7A-Ap-KQW"/>
-                        <outlet property="teamPicker" destination="ffK-SR-gdt" id="Arr-M2-GjA"/>
                         <outlet property="teamTextField" destination="tlT-cS-ON2" id="iCO-5G-N4C"/>
                     </connections>
                 </viewController>

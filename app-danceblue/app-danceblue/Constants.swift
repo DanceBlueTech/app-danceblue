@@ -42,6 +42,7 @@ let kErrorMessage3              = "Monitoring failed for region with identifier:
 let kErrorMessage4              = "Location Manager failed with the following error: "
 let kErrorMessage5              = "All fields are required in order to check in to this Event! Make sure you have selected the correct team and member name combination"
 let kErrorMessage6              = "Something went wrong on our end. Please sign in manually for your Spirt Points. Thank you!"
+let kErrorMessage7              = "Error Loading"
 
 // MARK: local storage
 let kStoredUUIDKey              = "DeviceUUID"
