@@ -174,6 +174,7 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
             return dictKeysMember.count
 
         }
+        self.view.endEditing(true)
         return 0
 
     }
@@ -191,6 +192,7 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
             return dictKeysMember[row]
 
         }
+        self.view.endEditing(true)
         return ""
     }
     
@@ -208,5 +210,6 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
             selectedName = dictKeysMember[row]
             nameTextField.text = selectedName
         }
+        self.view.endEditing(true)
     }
 }
