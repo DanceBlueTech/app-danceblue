@@ -17,6 +17,7 @@ let kDeviceUUID                 = "Device UUID"
 let kIndividualPoints           = "Individual Points"
 let kLinkBlue                   = "LinkBlue"
 let kMemberName                 = "Member Name"
+let kOtherName                  = "OTHER"
 
 // MARK: -GeoFence
 let kGeoLocationTableName       = "geolocation"

@@ -19,7 +19,7 @@ protocol EventDescriptionDelegate: class {
 protocol EventDescriptionCellDelegate {
   func CheckInGeoFence(_ controller: EventDescriptionCell, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType)
 }*/
-protocol CurrentEventDelegate: class {
+protocol EventCoordinatesDelegate {
     func updateCoords(coordinates: CLLocationCoordinate2D)
 }
 class EventDescriptionCell: UITableViewCell {
@@ -27,7 +27,7 @@ class EventDescriptionCell: UITableViewCell {
     static let identifier = "EventDescriptionCell"
     private var event: Event?
     weak var delegate: EventDescriptionDelegate?
-    var currentEventDelegate: CurrentEventDelegate?
+    var eventCoordinatesDelegate: EventCoordinatesDelegate?
     //var delegate2: EventDescriptionCellDelegate?  //might not need
     //let geoCoder = CLGeocoder()
     
@@ -153,8 +153,9 @@ class EventDescriptionCell: UITableViewCell {
                 //TODO: KYE!!!!!
                 //TODO: send event address to Checkin View Controller
                 //TODO: i havent figured out how to pass data to the checkinViewController
-                print("currentEventDelegate: \(self.currentEventDelegate)")
-                self.currentEventDelegate?.updateCoords(coordinates: coords)
+                print("eventCoordinatesDelegate: \(self.eventCoordinatesDelegate)")
+                //might need to make the button be an action of showDetailViewController(_:sender:) instead of show
+                self.eventCoordinatesDelegate?.updateCoords(coordinates: coords)
             }
             else{
                 print("Coordinates are NOT valid")

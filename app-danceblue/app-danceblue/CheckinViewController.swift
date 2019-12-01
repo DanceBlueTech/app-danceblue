@@ -28,12 +28,19 @@ class CheckinViewController: UIViewController {
     //private var masterTeamsUpdateHandle: DatabaseHandle?
     private var masterRosterData : [MasterRoster] = []
     private var masterTeamsData : [MasterTeams] = []
+    
+    //Dictonary and arrays from master teams and master roster in firebase
     var masterTeamDICT: [String: Int] = [:]
     var masterRosterDICT: [String: MasterRoster] = [:]
-    var dictTEAMKeys = [String]()
-    var dictTEAMValues = [Int]()
-    var dictROSTERKeys = [String]()
-    var dictROSTERValues = [MasterRoster]()
+    var teamNamesARRAY = [String]()  //array of team names from dictonary of masterTeams
+    var teamPointsARRAY = [Int]()   //array of team points from dictonary of masterTeams
+    var memberNamesARRAY = [String]()   //array of member names from dictonary of masterRoster
+    var memberProfileARRAY = [MasterRoster]() //array of member profiles from dictonary of masterRoster
+    //var dictTEAMKeys = [String]()
+    //var dictTEAMValues = [Int]()
+    //var dictROSTERKeys = [String]()
+    //var dictROSTERValues = [MasterRoster]()
+
     var selectedTeam: String?
     var selectedName: String?
     var textfieldFlag: Bool = false
@@ -55,8 +62,8 @@ class CheckinViewController: UIViewController {
         locationManager.delegate = self as? CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
         
-        linkBlueTextField.isHidden = true
-        fullnameTextField.isHidden = true
+        //linkBlueTextField.isHidden = true
+        //fullnameTextField.isHidden = true
 
         createTeamPicker()
         createNamePicker()
@@ -287,7 +294,7 @@ class CheckinViewController: UIViewController {
 }
 
 // MARK: - passing current event information------------------------------------
-extension CheckinViewController: CurrentEventDelegate {
+extension CheckinViewController: EventCoordinatesDelegate {
     func updateCoords(coordinates: CLLocationCoordinate2D){
         print("I passed my data!!!")
         self.coordinates = coordinates
@@ -303,47 +310,61 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let teamArray = [String](masterTeamDICT.keys)
+        //let teamArray = [String](masterTeamDICT.keys)
         //let dictValues = [Int](masterTeamDICT.values)
-        let memberArray = [String](masterRosterDICT.keys)
+        //let memberArray = [String](masterRosterDICT.keys)
+        
+        teamNamesARRAY = [String](masterTeamDICT.keys)
+        teamPointsARRAY = [Int](masterTeamDICT.values)
+        memberNamesARRAY = [String](masterRosterDICT.keys)
+        memberProfileARRAY = [MasterRoster](masterRosterDICT.values)
         
         if(pickerView.tag == 0){
-            return teamArray.count
+            return teamNamesARRAY.count
 
         }
         else if(pickerView.tag == 1){
-            return memberArray.count
+            return memberNamesARRAY.count
         }
         else{return 0}
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let teamArray = [String](masterTeamDICT.keys)
+        //let teamArray = [String](masterTeamDICT.keys)
         //let dictValues = [Int](masterTeamDICT.values)
-        var memberArray = [String](masterRosterDICT.keys)
-        memberArray.sort(by: {$0 < $1})
+        //var memberArray = [String](masterRosterDICT.keys)
+        memberNamesARRAY.sort(by: {$0 < $1})
         
         if(pickerView.tag == 0){
-            return teamArray[row]
+            return teamNamesARRAY[row]
         }
         else if(pickerView.tag == 1){
-            return memberArray[row]
+            return memberNamesARRAY[row]
         }
         else{return kErrorMessage7}
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let teamArray = [String](masterTeamDICT.keys)
+        //let teamArray = [String](masterTeamDICT.keys)
         //let dictValues = [Int](masterTeamDICT.values)
-        let memberArray = [String](masterRosterDICT.keys)
+        //let memberArray = [String](masterRosterDICT.keys)
         
         if(pickerView.tag == 0){
-            selectedTeam = teamArray[row]
+            selectedTeam = teamNamesARRAY[row]
             teamTextField.text = selectedTeam
         }
         else if(pickerView.tag == 1){
-            selectedName = memberArray[row]
+            selectedName = memberNamesARRAY[row]
             nameTextField.text = selectedName
+            
+            if(selectedName == kOtherName){
+                linkBlueTextField.isHidden = false
+                fullnameTextField.isHidden = false
+            }
+            else{
+                linkBlueTextField.isHidden = true
+                fullnameTextField.isHidden = true
+            }
         }
     }
 }
