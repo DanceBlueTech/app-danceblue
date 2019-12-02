@@ -10,9 +10,11 @@ import FirebaseDatabase
 import UIKit
 import CoreLocation
 
+//might not need
 protocol GeoFenceDelegate: class {
     func checkInGeoFence()
 }
+//might not need
 protocol GeoFenceDelegate2 {
     func CheckInGeoFence(_ controller: CheckinViewController, x: String)
 }
@@ -40,7 +42,7 @@ class CheckinViewController: UIViewController {
     //var dictTEAMValues = [Int]()
     //var dictROSTERKeys = [String]()
     //var dictROSTERValues = [MasterRoster]()
-
+    var currentEventTitle: String?
     var selectedTeam: String?
     var selectedName: String?
     var textfieldFlag: Bool = false
@@ -199,6 +201,7 @@ class CheckinViewController: UIViewController {
         
         //TODO: make sure member is in team roster other wise display alert
         //the only exception is if member name == 'other'
+        //TODO: make sure to check if the current member has already checked into this event if so display and alert saying thye have already checked in
         
         //when team and name fields are valid
         if(!isTeamFieldEmpty && !isNameFieldEmpty){
@@ -295,8 +298,10 @@ class CheckinViewController: UIViewController {
 
 // MARK: - passing current event information------------------------------------
 extension CheckinViewController: EventCoordinatesDelegate {
-    func updateCoords(coordinates: CLLocationCoordinate2D){
+    //TODO: add param for event title
+    func updateCoords(currentEventTitle: String, coordinates: CLLocationCoordinate2D){
         print("I passed my data!!!")
+        self.currentEventTitle = currentEventTitle
         self.coordinates = coordinates
         print("coords: \(coordinates)")
     }
@@ -320,10 +325,12 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         memberProfileARRAY = [MasterRoster](masterRosterDICT.values)
         
         if(pickerView.tag == 0){
+            self.view.endEditing(true)
             return teamNamesARRAY.count
 
         }
         else if(pickerView.tag == 1){
+            self.view.endEditing(true)
             return memberNamesARRAY.count
         }
         else{return 0}
@@ -336,12 +343,17 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         memberNamesARRAY.sort(by: {$0 < $1})
         
         if(pickerView.tag == 0){
+            self.view.endEditing(true)
             return teamNamesARRAY[row]
         }
         else if(pickerView.tag == 1){
+            self.view.endEditing(true)
             return memberNamesARRAY[row]
         }
-        else{return kErrorMessage7}
+        else{
+            self.view.endEditing(true)
+            return kErrorMessage7
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -366,6 +378,7 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
                 fullnameTextField.isHidden = true
             }
         }
+        self.view.endEditing(true)
     }
 }
 
