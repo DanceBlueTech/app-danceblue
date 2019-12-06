@@ -40,12 +40,20 @@ class app_danceblueUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
        
     }
+    
+   
     func testContact() {
         let app = XCUIApplication()
         let tabBarsQuery = app.tabBars
         tabBarsQuery.buttons["Events"].tap()
         tabBarsQuery.buttons["Blog"].tap()
         tabBarsQuery.buttons["More"].tap()
-        app.tables.staticTexts["Contact"].tap()
+        app.tables.staticTexts["CONTACT"].tap()
     }
+    
+  //  func testCalendar() {
+
+        
+        
+    //}
 }

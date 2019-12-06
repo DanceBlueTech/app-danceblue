@@ -13,8 +13,14 @@ protocol EventDescriptionDelegate: class {
     func textView(didPresentSafariViewController url: URL)
 }
 
+protocol EventDescriptionDelegateCheckIn {
+  //  func checkInTapped(_ event:Event)
+    func checkInTapped(eventName: String)
+}
+
 //TODO: https://blog.usejournal.com/geofencing-in-ios-swift-for-noobs-29a1c6d15dcc
 //might need to set up regions on events tab clicked or keep it with the button click of check in??
+
 
 protocol EventDescriptionCellDelegate {
   func CheckInGeoFence(_ controller: EventDescriptionCell, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType)
@@ -28,12 +34,13 @@ class EventDescriptionCell: UITableViewCell {
     var masterTeams : [MasterTeams] = []
     weak var delegate: EventDescriptionDelegate?
     var delegate2: EventDescriptionCellDelegate?
+    
     let geoCoder = CLGeocoder()
     let today = Date.init() //--> change time zones
     //var eventStartTime = Date.init()
     //var eventEndTime = Date.init()
 
-    
+    var checkInDelegate:EventDescriptionDelegateCheckIn?
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var underlineView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -50,7 +57,17 @@ class EventDescriptionCell: UITableViewCell {
         titleLabel.text = "DESCRIPTION"
         setupTextView()
         displayCheckInButton()
+        
+        
+        
     }
+    
+    @IBAction func checkInButtonTapped(_ sender: Any) {
+        let title = event?.title ?? ""
+        checkInDelegate?.checkInTapped(eventName: title)
+        //checkInDelegate?.checkInTapped(event!)
+    }
+    
 
     func setupTextView() {
         descriptionTextView.delegate = self
@@ -140,7 +157,7 @@ class EventDescriptionCell: UITableViewCell {
         geoCoder.geocodeAddressString(addy) { (placemarks, error) in
             guard
                 let placemarks = placemarks,
-                let location = placemarks.first?.location
+                let location = placemarks.first?.location //??? are these the coordinates
                 else {
                     // handle no location found
                     print("not a location! Returning")

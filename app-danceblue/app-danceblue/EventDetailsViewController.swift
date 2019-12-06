@@ -18,10 +18,12 @@ protocol EventDetailsViewControllerDelegate: class {
 class EventDetailsViewController: UITableViewController {
     
     var event: Event?
+    var eventName: String?
     var masterRoster : [MasterRoster] = []
     var masterTeams : [MasterTeams] = []
     let eventStore = EKEventStore()
     var cellHeights: [CGFloat] = [CGFloat].init(repeating: 0, count: 5)
+    let eventToShow:Event? = nil
     
     weak var delegate: EventDetailsViewControllerDelegate?
     
@@ -95,6 +97,7 @@ class EventDetailsViewController: UITableViewController {
                 descriptionCell.masterRoster = masterRoster
                 descriptionCell.masterTeams = masterTeams
                 descriptionCell.delegate = self
+                descriptionCell.checkInDelegate = self
                 if cellHeights[indexPath.row] == 0 {
                     cellHeights[indexPath.row] = descriptionCell.sizeThatFits(CGSize(width: view.bounds.width, height: .greatestFiniteMagnitude)).height
                 }
@@ -134,9 +137,33 @@ class EventDetailsViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FlyerSegue", let ivc = segue.destination as? ImageViewController {
+        
+        switch segue.identifier {
+        case "goToCheckIn":
+            guard let vc = segue.destination as? CheckinViewController else {
+                
+                    return
+                }
+            vc.eventName = self.eventName!
+           // vc.myevent = self.eventToShow
+        case "FlyerSegue":
+            guard let ivc = segue.destination as? ImageViewController else {
+                
+                return
+            }
+            ivc.setupViews(with: event?.flyer)
+        default:
+            guard let ivc = segue.destination as? ImageViewController else {
+                
+                return
+            }
             ivc.setupViews(with: event?.flyer)
         }
+        
+        /*
+        if segue.identifier == "FlyerSegue", let ivc = segue.destination as? ImageViewController {
+            ivc.setupViews(with: event?.flyer)
+        }*/
     }
     
     // MARK: - Calendar
@@ -167,14 +194,19 @@ class EventDetailsViewController: UITableViewController {
                 do {
                     
                     let CALENDAR_DEFAULTS_KEY = "\(String(describing: calendarEvent.title))\(startDate.description)_ADDED_TO_CALENDAR"
+                    
                     let eventExists = UserDefaults.standard.bool(forKey:CALENDAR_DEFAULTS_KEY)
+                    //UserDefaults.standard.synchronize()
                     
                     if eventExists {
+                        print("exists")
                         self.showDuplicateAlert()
                     } else {
                         print("Here")
                         UserDefaults.standard.set(true, forKey: CALENDAR_DEFAULTS_KEY)
+                        UserDefaults.standard.synchronize()
                         try self.eventStore.save(calendarEvent, span: .thisEvent)
+                        print("success")
                         self.showSuccessAlert()
                     }
                     
@@ -207,22 +239,23 @@ class EventDetailsViewController: UITableViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func showFailedAlert() {
+    func showFailedAlert() { DispatchQueue.main.async {
         let alertController = UIAlertController(title: "Something went wrong.", message: "We were unable to add this event to your calendar.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
+    }
     }
     
-    func showDuplicateAlert() {
+    func showDuplicateAlert() { DispatchQueue.main.async {
         let alertController = UIAlertController(title: "Duplicate Event", message: "This event has already been added to your calendar.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Add Anyways", style: .default, handler: { (alert) in
             self.addEventToCalendar(addAnyways: true)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
+        self.present(alertController, animated: true, completion: nil)
+        }}
     
-    func showSuccessAlert() {
+    func showSuccessAlert() { DispatchQueue.main.async {
         let alertController = UIAlertController(title: "Event Added", message: nil, preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "Go To Calendar", style: .default, handler: { alert in
@@ -232,7 +265,8 @@ class EventDetailsViewController: UITableViewController {
                 
             }))
         alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
+    }
     }
     
 }
@@ -246,6 +280,23 @@ extension EventDetailsViewController: EventDescriptionDelegate {
         svc.preferredControlTintColor = Theme.Color.main
         self.present(svc, animated: true, completion: nil)
     }
+    
+}
+
+extension EventDetailsViewController: EventDescriptionDelegateCheckIn {
+    //func checkInTapped(_ event: Event)
+    func checkInTapped(eventName: String) //{
+    {
+        //let selectionVC =
+        //SEGUE HERE
+        self.eventName = eventName
+        performSegue(withIdentifier: "goToCheckIn", sender: self)
+        //eventToShow = event
+    }
+    
+    
+    
+    
     
 }
 

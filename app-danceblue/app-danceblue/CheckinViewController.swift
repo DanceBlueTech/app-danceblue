@@ -21,6 +21,8 @@ class CheckinViewController: UIViewController{
     private var masterTeamsData : [MasterTeams] = []
     var masterTeamDICT: [String: Int] = [:]
     var masterRosterDICT: [String: MasterRoster] = [:]
+    //var myevent: Event?
+    var eventName: String = ""
     
     var dictTEAMKeys = [String]()
     var dictTEAMValues = [Int]()
@@ -51,6 +53,8 @@ class CheckinViewController: UIViewController{
         //createToolBar()
         setupFirebase()
         checkStoredUUID()
+        print(eventName)
+        //print(myevent!.title)
     }
     
     // MARK: - custom UIPicker for master teams---------------------------------
