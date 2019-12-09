@@ -46,5 +46,9 @@ let kErrorMessage5              = "All fields are required in order to check in 
 let kErrorMessage6              = "Something went wrong on our end. Please sign in manually for your Spirt Points. Thank you!"
 let kErrorMessage7              = "Error Loading"
 
-// MARK: local storage
+// MARK: Local Storage
 let kStoredUUIDKey              = "DeviceUUID"
+
+// MARK: Segue
+let kSegueCheckIn               = "goToCheckIn"
+let kSegueFlyer                 = "FlyerSegue"

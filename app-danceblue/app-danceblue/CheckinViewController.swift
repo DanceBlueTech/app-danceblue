@@ -22,6 +22,8 @@ protocol GeoFenceDelegate2 {
 #warning("FIX ME")
 class CheckinViewController: UIViewController {
     
+    var eventTitle: String = ""
+    var eventCoords: CLLocationCoordinate2D = CLLocationCoordinate2D()
     fileprivate var DeviceUUID: String = ""
     fileprivate var firebaseReference: DatabaseReference?
     private var masterRosterHandle: DatabaseHandle?
@@ -63,7 +65,8 @@ class CheckinViewController: UIViewController {
         super.viewDidLoad()
         locationManager.delegate = self as? CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
-        
+        print("Current Event title: \(eventTitle)")
+        print("Current Event Coordinates: \(eventCoords)")
         //linkBlueTextField.isHidden = true
         //fullnameTextField.isHidden = true
 

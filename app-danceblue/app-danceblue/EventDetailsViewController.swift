@@ -18,6 +18,8 @@ protocol EventDetailsViewControllerDelegate: class {
 class EventDetailsViewController: UITableViewController {
     
     var event: Event?
+    var eventTitle: String?
+    var eventCoords: CLLocationCoordinate2D?
     let eventStore = EKEventStore()
     var cellHeights: [CGFloat] = [CGFloat].init(repeating: 0, count: 5)
     
@@ -47,7 +49,6 @@ class EventDetailsViewController: UITableViewController {
     }
     
     // MARK: - TableView Data Source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -89,6 +90,7 @@ class EventDetailsViewController: UITableViewController {
             if let descriptionCell = tableView.dequeueReusableCell(withIdentifier: EventDescriptionCell.identifier, for: indexPath) as? EventDescriptionCell {
                 descriptionCell.configureCell(with: event)
                 descriptionCell.delegate = self
+                descriptionCell.checkInDelegate = self
                 if cellHeights[indexPath.row] == 0 {
                     cellHeights[indexPath.row] = descriptionCell.sizeThatFits(CGSize(width: view.bounds.width, height: .greatestFiniteMagnitude)).height
                 }
@@ -127,14 +129,29 @@ class EventDetailsViewController: UITableViewController {
         return UITableViewCell()
     }
     
+    // MARK: - Segues-----------------------------------------------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FlyerSegue", let ivc = segue.destination as? ImageViewController {
-            ivc.setupViews(with: event?.flyer)
+        switch segue.identifier {
+            case kSegueCheckIn:
+                guard let vc = segue.destination as? CheckinViewController else {return}
+                vc.eventTitle = self.eventTitle!    //might need to check if its not null
+                vc.eventCoords = self.eventCoords!  //might need to check if its not null
+               /*case kSegueFlyer:
+                   guard let ivc = segue.destination as? ImageViewController else {
+                       
+                       return
+                   }
+                   ivc.setupViews(with: event?.flyer)*/
+            default:
+                guard let ivc = segue.destination as? ImageViewController else {return}
+                ivc.setupViews(with: event?.flyer)
         }
+        /*if segue.identifier == "FlyerSegue", let ivc = segue.destination as? ImageViewController {
+            ivc.setupViews(with: event?.flyer)
+        }*/
     }
     
-    // MARK: - Calendar
-    
+    // MARK: - Calendar---------------------------------------------------------
     @objc func addEventToCalendar(addAnyways: Bool = false) {
         guard let event = event else { return }
         eventStore.requestAccess(to: .event) { (granted, error) in
@@ -186,7 +203,7 @@ class EventDetailsViewController: UITableViewController {
     }
     
     // MARK: - Alerts
-    
+    //These Alerts need to be fixed
     func showSettingsAlert() {
         let alertController = UIAlertController(title: "DanceBlue needs access to your Calendar", message: nil, preferredStyle: .alert)
         
@@ -231,8 +248,7 @@ class EventDetailsViewController: UITableViewController {
     
 }
 
-// MARK: - EventDescriptionDelegate
-
+// MARK: - EventDescriptionDelegate---------------------------------------------
 extension EventDetailsViewController: EventDescriptionDelegate {
     
     func textView(didPresentSafariViewController url: URL) {
@@ -241,6 +257,16 @@ extension EventDetailsViewController: EventDescriptionDelegate {
         self.present(svc, animated: true, completion: nil)
     }
     
+}
+
+// MARK: - EventDescriptionDelegateCheckIn--------------------------------------
+extension EventDetailsViewController: EventDescriptionDelegateCheckIn {
+    func checkInTapped(eventTitle: String, eventCoords: CLLocationCoordinate2D)
+    {
+        self.eventTitle = eventTitle
+        self.eventCoords = eventCoords
+        performSegue(withIdentifier: kSegueCheckIn, sender: self)
+    }
 }
 
 // Helper function inserted by Swift 4.2 migrator.

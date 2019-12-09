@@ -13,8 +13,11 @@ protocol EventDescriptionDelegate: class {
     func textView(didPresentSafariViewController url: URL)
 }
 
+protocol EventDescriptionDelegateCheckIn {
+    func checkInTapped(eventTitle: String, eventCoords: CLLocationCoordinate2D)
+}
 //TODO: https://blog.usejournal.com/geofencing-in-ios-swift-for-noobs-29a1c6d15dcc
-//might need to set up regions on events tab clicked or keep it with the button click of check in??
+
 /*
 protocol EventDescriptionCellDelegate {
   func CheckInGeoFence(_ controller: EventDescriptionCell, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType)
@@ -29,6 +32,8 @@ class EventDescriptionCell: UITableViewCell {
     private var event: Event?
     weak var delegate: EventDescriptionDelegate?
     var eventCoordinatesDelegate: EventCoordinatesDelegate?
+    var checkInDelegate: EventDescriptionDelegateCheckIn?
+
     //var delegate2: EventDescriptionCellDelegate?  //might not need
     //let geoCoder = CLGeocoder()
     
@@ -114,6 +119,9 @@ class EventDescriptionCell: UITableViewCell {
     
     #warning("FIX ME")
     // MARK: - Check in for GeoFences-------------------------------------------
+    @IBAction func checkInButtonTapped(_ sender: Any){
+    }
+    
     @IBAction func geoFenceCheckin(_ sender: Any) {
         
         let eventAddress = event?.address ?? ""
@@ -155,7 +163,8 @@ class EventDescriptionCell: UITableViewCell {
                 //TODO: send coordinates and current event title to Checkin View Controller
                 //print("eventCoordinatesDelegate: \(self.eventCoordinatesDelegate)")
                 //might need to make the button be an action of showDetailViewController(_:sender:) instead of show
-                self.eventCoordinatesDelegate?.updateCoords(currentEventTitle: eventTitle, coordinates: coords)
+                self.checkInDelegate?.checkInTapped(eventTitle: eventTitle, eventCoords: coords)
+                //self.eventCoordinatesDelegate?.updateCoords(currentEventTitle: eventTitle, coordinates: coords)
             }
             else{
                 print("Coordinates are NOT valid")
