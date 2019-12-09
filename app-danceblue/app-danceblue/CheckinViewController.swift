@@ -124,9 +124,19 @@ class CheckinViewController: UIViewController {
     }
     #warning("FIX ME")
     func AddToFirebase() {
-        let ref = Database.database().reference(withPath: kMasterRoster)
-        let post = ["TEST": "11111111"]
-        //ref.child("TEST").setValue(post)
+        firebaseReference = Database.database().reference()
+        let id:String? = firebaseReference?.child("app-danceblue").child(kMasterRoster).childByAutoId().key
+        //let post = [kDeviceUUID: DeviceUUID,
+          //          kIndividualPoints: 1,
+            //        kMemberName: memberName,
+              //      kTeamName: teamName]
+        
+        firebaseReference?.child(id!).child("Device UUID").setValue(DeviceUUID)
+        firebaseReference?.child(id!).child("Individual Points").setValue(1)
+        firebaseReference?.child(id!).child("Last Checkin").setValue("TEST EVENT")
+        firebaseReference?.child(id!).child("LinkBlue").setValue("TEST LINKBLUE")
+        firebaseReference?.child(id!).child("Member Name").setValue("TEST NAME")
+        firebaseReference?.child(id!).child("Team Name").setValue("TEST TEAM")
         /*ref.observe(.value, with: {snapshot in
             var newItems: [MasterRoster] = []
             for child in snapshot.children{
@@ -222,7 +232,7 @@ class CheckinViewController: UIViewController {
             
             startMonitoring()
             #warning("make sure firebase successfully stores and updates without error before moving forward ")
-            //AddToFirebase()
+            AddToFirebase()
         }
         else{
             print("something is empty")
@@ -243,9 +253,9 @@ class CheckinViewController: UIViewController {
     func startMonitoring(){
         let clampedRadius = min(kGeoFenceRadius, locationManager.maximumRegionMonitoringDistance)
         //TODO: make this the coordinates of the current event
-        //let coordinate = CLLocationCoordinate2D.init()
-        print("starting to Monitor; coords are: \(coordinates)")
-        let geoLocation = Geotification(coordinate: coordinates, radius: clampedRadius)
+        let coord = CLLocationCoordinate2D.init()
+        print("starting to Monitor; coords are: \(coord)")
+        let geoLocation = Geotification(coordinate: coord, radius: clampedRadius)
         
         // geofencing is not supported on this device
         //TODO: if this failes makes sure it returns back to the pervious view controller
@@ -325,12 +335,10 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         memberProfileARRAY = [MasterRoster](masterRosterDICT.values)
         
         if(pickerView.tag == 0){
-            self.view.endEditing(true)
             return teamNamesARRAY.count
 
         }
         else if(pickerView.tag == 1){
-            self.view.endEditing(true)
             return memberNamesARRAY.count
         }
         else{return 0}
@@ -343,15 +351,12 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         memberNamesARRAY.sort(by: {$0 < $1})
         
         if(pickerView.tag == 0){
-            self.view.endEditing(true)
             return teamNamesARRAY[row]
         }
         else if(pickerView.tag == 1){
-            self.view.endEditing(true)
             return memberNamesARRAY[row]
         }
         else{
-            self.view.endEditing(true)
             return kErrorMessage7
         }
     }

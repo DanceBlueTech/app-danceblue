@@ -628,7 +628,7 @@
 				TargetAttributes = {
 					CB0E9A501F23F8A400A717DC = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 97788Y47A3;
+						DevelopmentTeam = XVZV3D2UHJ;
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -645,6 +645,7 @@
 					};
 					CBCC09301FA238FC0027CAFD = {
 						CreatedOnToolsVersion = 9.0.1;
+						DevelopmentTeam = XVZV3D2UHJ;
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 						TestTargetID = CB0E9A501F23F8A400A717DC;
@@ -1016,7 +1017,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "app-danceblue/app-danceblue.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 97788Y47A3;
+				DEVELOPMENT_TEAM = XVZV3D2UHJ;
 				INFOPLIST_FILE = "app-danceblue/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1035,7 +1036,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "app-danceblue/app-danceblue.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 97788Y47A3;
+				DEVELOPMENT_TEAM = XVZV3D2UHJ;
 				INFOPLIST_FILE = "app-danceblue/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1060,6 +1061,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XVZV3D2UHJ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "app-danceblueUITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1085,6 +1087,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XVZV3D2UHJ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "app-danceblueUITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

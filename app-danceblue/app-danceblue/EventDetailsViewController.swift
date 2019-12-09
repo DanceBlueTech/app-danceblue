@@ -161,8 +161,8 @@ class EventDetailsViewController: UITableViewController {
                 do {
                     
                     let CALENDAR_DEFAULTS_KEY = "\(String(describing: calendarEvent.title))\(startDate.description)_ADDED_TO_CALENDAR"
-                    
-                    if let _: Bool = UserDefaults.standard.bool(forKey: CALENDAR_DEFAULTS_KEY), !addAnyways {
+                    let eventExists = UserDefaults.standard.bool(forKey:CALENDAR_DEFAULTS_KEY)
+                    if eventExists {
                         self.showDuplicateAlert()
                     } else {
                         print("Here")
@@ -200,22 +200,23 @@ class EventDetailsViewController: UITableViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func showFailedAlert() {
+    func showFailedAlert() { DispatchQueue.main.async {
+        
         let alertController = UIAlertController(title: "Something went wrong.", message: "We were unable to add this event to your calendar.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
+        self.present(alertController, animated: true, completion: nil)
+        }}
     
-    func showDuplicateAlert() {
+    func showDuplicateAlert() { DispatchQueue.main.async{
         let alertController = UIAlertController(title: "Duplicate Event", message: "This event has already been added to your calendar.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Add Anyways", style: .default, handler: { (alert) in
             self.addEventToCalendar(addAnyways: true)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
+        self.present(alertController, animated: true, completion: nil)
+        }}
     
-    func showSuccessAlert() {
+    func showSuccessAlert() { DispatchQueue.main.async{
         let alertController = UIAlertController(title: "Event Added", message: nil, preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "Go To Calendar", style: .default, handler: { alert in
@@ -225,8 +226,8 @@ class EventDetailsViewController: UITableViewController {
                 
             }))
         alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
+        self.present(alertController, animated: true, completion: nil)
+        }}
     
 }
 

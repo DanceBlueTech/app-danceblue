@@ -153,7 +153,7 @@ class EventDescriptionCell: UITableViewCell {
                 print("Coordinates are valid")       //debugging
                 //TODO: KYE!!!!!
                 //TODO: send coordinates and current event title to Checkin View Controller
-                print("eventCoordinatesDelegate: \(self.eventCoordinatesDelegate)")
+                //print("eventCoordinatesDelegate: \(self.eventCoordinatesDelegate)")
                 //might need to make the button be an action of showDetailViewController(_:sender:) instead of show
                 self.eventCoordinatesDelegate?.updateCoords(currentEventTitle: eventTitle, coordinates: coords)
             }
