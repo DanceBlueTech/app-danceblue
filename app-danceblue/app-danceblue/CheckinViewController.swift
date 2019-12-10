@@ -10,6 +10,7 @@ import FirebaseDatabase
 import UIKit
 import CoreLocation
 
+/*
 //might not need
 protocol GeoFenceDelegate: class {
     func checkInGeoFence()
@@ -17,7 +18,7 @@ protocol GeoFenceDelegate: class {
 //might not need
 protocol GeoFenceDelegate2 {
     func CheckInGeoFence(_ controller: CheckinViewController, x: String)
-}
+}*/
 
 #warning("FIX ME")
 class CheckinViewController: UIViewController {
@@ -36,6 +37,7 @@ class CheckinViewController: UIViewController {
     //Dictonary and arrays from master teams and master roster in firebase
     var masterTeamDICT: [String: Int] = [:]
     var masterRosterDICT: [String: MasterRoster] = [:]
+    var masterDeviceUUID_DICT: [String: MasterRoster] = [:]
     var teamNamesARRAY = [String]()  //array of team names from dictonary of masterTeams
     var teamPointsARRAY = [Int]()   //array of team points from dictonary of masterTeams
     var memberNamesARRAY = [String]()   //array of member names from dictonary of masterRoster
@@ -44,13 +46,12 @@ class CheckinViewController: UIViewController {
     //var dictTEAMValues = [Int]()
     //var dictROSTERKeys = [String]()
     //var dictROSTERValues = [MasterRoster]()
-    var currentEventTitle: String?
+    
     var selectedTeam: String?
     var selectedName: String?
-    var textfieldFlag: Bool = false
-    weak var checkInDelegate: GeoFenceDelegate?
-    var CHECK_InDelegate: GeoFenceDelegate2!
-    
+    var linkBlueField: String = ""
+    var fullNameField: String = ""
+
     // GeoFencing variables
     let locationManager = CLLocationManager()
     var coordinates = CLLocationCoordinate2D()
@@ -65,10 +66,9 @@ class CheckinViewController: UIViewController {
         super.viewDidLoad()
         locationManager.delegate = self as? CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
-        print("Current Event title: \(eventTitle)")
-        print("Current Event Coordinates: \(eventCoords)")
-        //linkBlueTextField.isHidden = true
-        //fullnameTextField.isHidden = true
+        print("inside CheckinViewController!!")             //debugging
+        print("Current Event title: \(eventTitle)")         //debugging
+        print("Current Event Coordinates: \(eventCoords)")  //debugging
 
         createTeamPicker()
         createNamePicker()
@@ -106,7 +106,9 @@ class CheckinViewController: UIViewController {
             self.masterRosterData.append(masterRoster)
             //print("masterRosterName: \(self.masterRosterData.last!.memberName) masterRoster \(self.masterRosterData.last!.teamName)")
             self.masterRosterDICT[self.masterRosterData.last!.memberName ?? ""] = self.masterRosterData.last!
+            //self.masterDeviceUUID_DICT[self.masterRosterData.last!.deviceUUId ?? ""] = self.masterRosterData.last!
             //print("masterRosterDICT: \(self.masterRosterDICT)")
+            //print("masterDeviceUUID_DICT: \(self.masterDeviceUUID_DICT) length: \(self.masterDeviceUUID_DICT.count)")
         })
         
         // Master Teams Handles
@@ -204,49 +206,115 @@ class CheckinViewController: UIViewController {
     #warning("FIX ME")
     // MARK: - Comfirm Checkin Button-------------------------------------------
     @IBAction func confirmCheckIn(_ sender: Any) {
+        
+        //checking team and member names
         let teamField = String(teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
         let nameField = String(nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
-        let isTeamFieldEmpty  = teamField.isEmpty
+        let isTeamFieldEmpty = teamField.isEmpty
         let isNameFieldEmpty = nameField.isEmpty
         
-        print("team: \(teamField) isEmpty: \(teamField.isEmpty)")
-        print("name: \(nameField) isEmpty: \(nameField.isEmpty)")
-        
-        //TODO: make sure member is in team roster other wise display alert
-        //the only exception is if member name == 'other'
-        //TODO: make sure to check if the current member has already checked into this event if so display and alert saying thye have already checked in
-        
-        //when team and name fields are valid
+        // Team and name fields are Not empty
         if(!isTeamFieldEmpty && !isNameFieldEmpty){
-            print("both are not empyt")
-            print("linkBlueTextField.isHidden: \(linkBlueTextField.isHidden)")
-            print("fullnameTextField.isHidden: \(fullnameTextField.isHidden)")
             
-            /*TODO: if 'other' is selected for member then check that linkblue and fullname text fields are filled out
-             if() {
-                //send device uuid, member name, link blue, team name, points
-                //Update Firebase database()
-
-             }else {
-                showAlert(withTitle: kErrorTitle, message: kErrorMessage5)
-                return
+            //debugging purposes
+            print("teamField: \(teamField)")
+            print("nameField: \(nameField)")
+            
+            //checking to see if member is part of team
+            let membersTeam = masterRosterDICT[nameField]?.teamName ?? ""
+            var isMember = false
+            if(membersTeam == teamField){isMember = true}
+            print("members Team: \(membersTeam) ismember: \(isMember) ")    //debugging purposes
+            
+            //member is in team roster
+            if(isMember){
+             
+                //checking to see if the Devices UUID is registered
+                let deviceRegistered = masterRosterDICT[nameField]?.deviceUUId ?? ""
+                var isRegistered = false
+                if(deviceRegistered == DeviceUUID){isRegistered = true}
+                print("members deviceRegistered: \(deviceRegistered) isRegistered: \(isRegistered) ")    //debugging purposes
+                
+                // checking to see if members name last check in was this event
+                let lastCheckin = masterRosterDICT[nameField]?.lastCheckin ?? ""
+                var isCheckedin = false
+                if(lastCheckin == eventTitle){isCheckedin = true}
+                print("members lastCheckin: \(lastCheckin) isCheckedin: \(isCheckedin) ")    //debugging purposes
+                
+                //The Device UUID is Not registered under the selected member name
+                if(!isRegistered){
+                    //if the current member has Not checked into this event
+                    if(!isCheckedin){
+                        print("This member is valid to start the geoFence process")
+                        //startMonitoring()
+                        
+                        //make sure they check into the geo fence before adding information to firebase!
+                        #warning("make sure firebase successfully stores and updates without error before moving forward ")
+                        
+                        //master Roster: update individual points for current device UUID (points + spirit points for current event), update last checkin to eventTitle
+                        //master Teams: update team points (points + spirit points for current event)
+                 
+                        #warning("There might be an issue if multiple users try to update team points at the same time...might be better idea if on the back end the teams add up their points from the memebrs individual points themselves!!")
+                        //UpdateToFirebase()
+                        
+                        //dismiss CheckinView Controller after information is added to firebase
+                    }
+                    else{
+                        showAlert(withTitle: kErrorTitle3, message: kErrorMessage10)
+                    }
+                }
+                else{
+                    showAlert(withTitle: kErrorTitle3, message: kErrorMessage11)
+                }
              }
-            */
-            
-            startMonitoring()
-            #warning("make sure firebase successfully stores and updates without error before moving forward ")
-            AddToFirebase()
+             //if the selected member is 'OTHER'
+            if(selectedName == kOtherName){
+                
+                // checking linkBlue and full name
+                linkBlueField = String(linkBlueTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
+                fullNameField = String(fullnameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
+                let isLinkFieldEmpty = linkBlueField.isEmpty
+                let isFullNameFieldEmpty = fullNameField.isEmpty
+                
+                print("linkBlueField: \(linkBlueField) isEmpty: \(isLinkFieldEmpty)")
+                print("fullNameField: \(fullNameField) isEmpty: \(isFullNameFieldEmpty)")
+                
+                // linkBlue and Fullname are Not empty
+                if(!isLinkFieldEmpty && !isFullNameFieldEmpty){
+                    print("linkBlueField: \(linkBlueField)")
+                    print("fullNameField: \(fullNameField)")
+                    //if the Current Device's UUID already exisits in firebase. Dont allow them to register with another name!!
+                    
+                    //if current Device UUID hasnt been registered to firebase
+                     /*if(Current DeviceUUID != exist in firebase DeviceUUID){
+                     
+                         //startMonitoring()
+                     
+                        //make sure they check into the geo fence before adding information to firebase!
+                         #warning("make sure firebase successfully stores and updates without error before moving forward ")
+                     
+                        //send device uuid, individual points, last checked, link blue  member name, and team name
+                        //AddToFirebase()
+                     
+                        //dismiss CheckinView Controller after information is added to firebase
+                     }
+                     else{
+                        showAlert(withTitle: kErrorTitle2, message: kErrorMessage9)
+                     }
+                     */
+                }
+                else{
+                    showAlert(withTitle: kErrorTitle, message: kErrorMessage5)
+                }
+             }
+            else{
+                showAlert(withTitle: kErrorTitle2, message: kErrorMessage8)
+            }
         }
         else{
-            print("something is empty")
-            print("linkBlueTextField.isHidden: \(linkBlueTextField.isHidden)")
-            print("fullnameTextField.isHidden: \(fullnameTextField.isHidden)")
-            //AddToFirebase()     //debugging
+            print("Team Field or Member Field is empty")    //debugging purposes
             showAlert(withTitle: kErrorTitle, message: kErrorMessage5)
         }
-        //checkInDelegate?.checkInGeoFence()   //pass in event lat, long
-        
-        //CHECK_InDelegate.CheckInGeoFence(self, x: "Hello World!")
         //self.dismiss(animated: true, completion: nil)
     }
     
@@ -256,9 +324,11 @@ class CheckinViewController: UIViewController {
     func startMonitoring(){
         let clampedRadius = min(kGeoFenceRadius, locationManager.maximumRegionMonitoringDistance)
         //TODO: make this the coordinates of the current event
-        let coord = CLLocationCoordinate2D.init()
-        print("starting to Monitor; coords are: \(coord)")
-        let geoLocation = Geotification(coordinate: coord, radius: clampedRadius)
+        //let coord = CLLocationCoordinate2D.init()
+        //print("starting to Monitor; coords are: \(coord)")
+        //let geoLocation = Geotification(coordinate: coord, radius: clampedRadius)
+        print("starting to Monitor coords are: \(eventCoords)")
+        let geoLocation = Geotification(coordinate: eventCoords, radius: clampedRadius)
         
         // geofencing is not supported on this device
         //TODO: if this failes makes sure it returns back to the pervious view controller
@@ -309,18 +379,9 @@ class CheckinViewController: UIViewController {
     }
 }
 
-// MARK: - passing current event information------------------------------------
-extension CheckinViewController: EventCoordinatesDelegate {
-    //TODO: add param for event title
-    func updateCoords(currentEventTitle: String, coordinates: CLLocationCoordinate2D){
-        print("I passed my data!!!")
-        self.currentEventTitle = currentEventTitle
-        self.coordinates = coordinates
-        print("coords: \(coordinates)")
-    }
-}
-
-// MARK: - Date picker for master roster and master teams-----------------------
+//TODO: append member name and link blue for better selection then display them
+//in the master roster UI picker
+// MARK: - UI picker for master roster and master teams-----------------------
 extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

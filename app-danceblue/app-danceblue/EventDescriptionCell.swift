@@ -21,17 +21,17 @@ protocol EventDescriptionDelegateCheckIn {
 /*
 protocol EventDescriptionCellDelegate {
   func CheckInGeoFence(_ controller: EventDescriptionCell, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType)
-}*/
+}
 protocol EventCoordinatesDelegate {
     //TODO: add param for current event title
     func updateCoords(currentEventTitle: String, coordinates: CLLocationCoordinate2D)
-}
+}*/
 class EventDescriptionCell: UITableViewCell {
     
     static let identifier = "EventDescriptionCell"
     private var event: Event?
     weak var delegate: EventDescriptionDelegate?
-    var eventCoordinatesDelegate: EventCoordinatesDelegate?
+    //var eventCoordinatesDelegate: EventCoordinatesDelegate?
     var checkInDelegate: EventDescriptionDelegateCheckIn?
 
     //var delegate2: EventDescriptionCellDelegate?  //might not need
@@ -88,7 +88,7 @@ class EventDescriptionCell: UITableViewCell {
         // 4) Set the current date, altered by timezone.
         let format = DateFormatter()
         format.timeZone = .current
-        format.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        format.dateFormat = kDateFormat
 
         let currentDate = Date()
         let eventStartTime = event?.timestamp ?? Date.distantPast
@@ -99,17 +99,17 @@ class EventDescriptionCell: UITableViewCell {
         let eventEndString = format.string(from: eventEndTime)
         
         //  debugging!
-        print("Today is: \(currentDate)")
+        //print("Today is: \(currentDate)")
         print("Today is String: \(currentDateString)")
-        print("Event's START Time : \(eventStartTime)")
+        //print("Event's START Time : \(eventStartTime)")
         print("Event's START Time String: \(eventStartString)")
-        print("Event's END Time : \(eventEndTime)")
+        //print("Event's END Time : \(eventEndTime)")
         print("Event's END Time String: \(eventEndString)")
         
         #warning("UNCOMMENT THIS IF STATEMENT BELOW, TEST AND PUSH FOR LIVE PRODUCTION!!")
         //if today is between current start and stop time display 'checkin' button
-        //if((eventStartString <= currentDateString) && (currentDateString <= eventEndString)){
-        if(true){
+        if((eventStartString <= currentDateString) && (currentDateString <= eventEndString)){
+        //if(true){
             checkInButton.isHidden = false
         }
         else{
@@ -119,29 +119,29 @@ class EventDescriptionCell: UITableViewCell {
     
     #warning("FIX ME")
     // MARK: - Check in for GeoFences-------------------------------------------
-    @IBAction func checkInButtonTapped(_ sender: Any){
-    }
     
     @IBAction func geoFenceCheckin(_ sender: Any) {
         
-        let eventAddress = event?.address ?? ""
         let geoCoder = CLGeocoder()
+        let eventTitle = event?.title ?? ""
+        let eventAddress = event?.address ?? ""
+        let address = event!.address ?? ""
+        //let time = event!.time ?? ""
         
         //debugging
         print("Checking IN!!")
-        let eventTitle = event?.title ?? ""
-        let address = event!.address ?? ""
-        let time = event!.time ?? ""
         print("Event.Title: \(eventTitle)")
-        print("Event.Address: \(address)")
-        print("Event.Time \(time)")
+        print("Event.Address: \(eventAddress)")
+        print("Event.address \(address)")
         
         //call function to convert address to coordinates and store in variables
-        //This is an ssync call needs to be fixed!!!
+        //This is an async call needs to be fixed!!!
         //FIX this return variables in the LocationCoverter file
         //LocationConverter.AddressToCoordinates.getCoords(Address: eventAddress)
         
-        geoCoder.geocodeAddressString(eventAddress) { (placemarks, error) in guard
+        //TODO: make sure this is an address!!
+        if(eventAddress != ""){
+            geoCoder.geocodeAddressString(eventAddress) { (placemarks, error) in guard
             let placemarks = placemarks,
             let location = placemarks.first?.location
             else {
@@ -149,8 +149,8 @@ class EventDescriptionCell: UITableViewCell {
                 print("not a location! Returning")
                 return
             }
-            print("placemarkers: \(placemarks) istype: \(type(of: placemarks))")    //debugging
-            print("location \(location) istype: \(type(of: location))")             //debugging
+            //print("placemarkers: \(placemarks) istype: \(type(of: placemarks))")    //debugging
+            //print("location \(location) istype: \(type(of: location))")             //debugging
             let coords = location.coordinate
             let isvalid = CLLocationCoordinate2DIsValid(coords)
             print("coords: \(coords) istype: \(type(of: coords)) isvalid: \(isvalid)")  //debugging
@@ -159,10 +159,7 @@ class EventDescriptionCell: UITableViewCell {
             #warning("move everything below out of this function since it is async...need to implement a completion handler")
             if(isvalid){
                 print("Coordinates are valid")       //debugging
-                //TODO: KYE!!!!!
-                //TODO: send coordinates and current event title to Checkin View Controller
-                //print("eventCoordinatesDelegate: \(self.eventCoordinatesDelegate)")
-                //might need to make the button be an action of showDetailViewController(_:sender:) instead of show
+                // send coordinates and current event title to Checkin View Controller
                 self.checkInDelegate?.checkInTapped(eventTitle: eventTitle, eventCoords: coords)
                 //self.eventCoordinatesDelegate?.updateCoords(currentEventTitle: eventTitle, coordinates: coords)
             }
@@ -170,6 +167,11 @@ class EventDescriptionCell: UITableViewCell {
                 print("Coordinates are NOT valid")
                 //Display an alert saying something went wrong and dont allow to check in
             }
+        }
+        }
+        else{
+            print("ERROR")
+            //TODO: display an alert and dont allow to move to Checkin View Controller!!!!
         }
     }
 }

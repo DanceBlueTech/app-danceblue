@@ -122,11 +122,6 @@ class EventsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let eventDetailsViewController = segue.destination as? EventDetailsViewController, segue.identifier == "EventSegue", let section = tableView.indexPathForSelectedRow?.section, let row = tableView.indexPathForSelectedRow?.row {
             eventDetailsViewController.event = eventData[section][row]
-            
-            //eventDetailsViewController.masterRoster = masterRosterData
-            //eventDetailsViewController.masterTeams = masterTeamsData
-
-            //eventDetailsViewController.delegate = self      // Used for "liking" of events
         }
     }
     

@@ -37,6 +37,7 @@ let kFAQURL                     = "http://www.danceblue.org/frequently-asked-que
 let kErrorTitle                 = "REQUIRED FIELDS!"
 let kErrorTitle1                = "ERROR"
 let kErrorTitle2                = "Warning"
+let kErrorTitle3                = "CHECKIN FORBIDDEN!"
 let kErrorMessage1              = "Geofencing is not supported on this device!"
 let kErrorMessage2              = "You need to grant DanceBlue permission to access the device location, so you can check in to this event."
 //let kErrorMessage2              = "Your geoLocation is saved but will only be activated once you grant DanceBlue permission to access the device location."
@@ -45,9 +46,14 @@ let kErrorMessage4              = "Location Manager failed with the following er
 let kErrorMessage5              = "All fields are required in order to check in to this Event! Make sure you have selected the correct team and member name combination"
 let kErrorMessage6              = "Something went wrong on our end. Please sign in manually for your Spirt Points. Thank you!"
 let kErrorMessage7              = "Error Loading"
+let kErrorMessage8              = "Member does NOT belong to this team! Please select another team"
+let kErrorMessage9              = "Your Device has already been registered. Please select a valid member"
+let kErrorMessage10             = "This Device has already checked into this Event!"
+let kErrorMessage11             = "This Device ID does NOT match the Device ID for this member! Please select 'OTHER' and register yourself"
 
-// MARK: Local Storage
+// MARK: Local Storage and date format
 let kStoredUUIDKey              = "DeviceUUID"
+let kDateFormat                 = "yyyy-MM-dd'T'HH:mm:ssZ"
 
 // MARK: Segue
 let kSegueCheckIn               = "goToCheckIn"

@@ -5,7 +5,7 @@
 //  Created by David Mercado on 10/7/19.
 //  Copyright © 2019 DanceBlue. All rights reserved.
 //
-
+/*
 import Foundation
 import UIKit
 import MapKit
@@ -62,7 +62,7 @@ class GeotificationsViewController: UIViewController {
                 circularRegion.identifier == geotification.identifier else { continue }
             locationManager.stopMonitoring(for: circularRegion)
         }
-    }*/
+    }
 }
 // MARK: - Location Manager Delegate
 extension GeotificationsViewController: CLLocationManagerDelegate {
@@ -92,8 +92,8 @@ extension GeotificationsViewController: EventDescriptionCellDelegate {
       startMonitoring(geotification: geotification)
       //saveAllGeotifications()
     }
-}*/
-
+}
+ 
 extension GeotificationsViewController: GeoFenceDelegate2 {
     // MARK: - checking into the geo fence
     func CheckInGeoFence(_ controller: CheckinViewController, x: String) {
@@ -106,4 +106,4 @@ extension GeotificationsViewController: GeoFenceDelegate {
     func checkInGeoFence() {
         print("made it to GeotificationsViewController!")
     }
-}
+ }*/*/*/

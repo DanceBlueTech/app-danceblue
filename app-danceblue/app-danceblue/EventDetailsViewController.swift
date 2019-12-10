@@ -136,19 +136,10 @@ class EventDetailsViewController: UITableViewController {
                 guard let vc = segue.destination as? CheckinViewController else {return}
                 vc.eventTitle = self.eventTitle!    //might need to check if its not null
                 vc.eventCoords = self.eventCoords!  //might need to check if its not null
-               /*case kSegueFlyer:
-                   guard let ivc = segue.destination as? ImageViewController else {
-                       
-                       return
-                   }
-                   ivc.setupViews(with: event?.flyer)*/
             default:
                 guard let ivc = segue.destination as? ImageViewController else {return}
                 ivc.setupViews(with: event?.flyer)
         }
-        /*if segue.identifier == "FlyerSegue", let ivc = segue.destination as? ImageViewController {
-            ivc.setupViews(with: event?.flyer)
-        }*/
     }
     
     // MARK: - Calendar---------------------------------------------------------
@@ -245,7 +236,6 @@ class EventDetailsViewController: UITableViewController {
         alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
         }}
-    
 }
 
 // MARK: - EventDescriptionDelegate---------------------------------------------

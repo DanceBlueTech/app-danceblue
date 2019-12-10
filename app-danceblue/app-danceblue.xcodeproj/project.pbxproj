@@ -481,6 +481,7 @@
 		CB7DE1CE1F2514A600235145 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				63BC48EB2380747200190EB6 /* CheckinViewController.swift */,
 				CB0E9A731F241C6D00A717DC /* EventsTableViewController.swift */,
 				CB7DE1D91F2597FF00235145 /* EventDetailsViewController.swift */,
 				CBA81B311FB9EB5D009FB4BA /* ImageViewController.swift */,
@@ -523,7 +524,6 @@
 				CB3604481F6B101D00719FCB /* Event BC Cell Types */,
 				CB0E9A791F24206200A717DC /* EventTableViewCell.swift */,
 				CB60C3ED1F7AD58B00DDC39D /* EventsTableViewHeader.swift */,
-				63BC48EB2380747200190EB6 /* CheckinViewController.swift */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -628,7 +628,6 @@
 				TargetAttributes = {
 					CB0E9A501F23F8A400A717DC = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = XVZV3D2UHJ;
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1017,7 +1016,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "app-danceblue/app-danceblue.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = XVZV3D2UHJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "app-danceblue/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1036,7 +1035,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "app-danceblue/app-danceblue.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = XVZV3D2UHJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "app-danceblue/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
