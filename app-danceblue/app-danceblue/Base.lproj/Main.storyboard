@@ -622,13 +622,13 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="r4Y-Rj-es0">
                                             <rect key="frame" x="58" y="102" width="128.33333333333334" height="38.333333333333343"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Team 14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdA-7A-h6l">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team 14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdA-7A-h6l">
                                                     <rect key="frame" x="0.0" y="0.0" width="128.33333333333334" height="20.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Twerkin' for a Cure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVe-Oc-Rs2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twerkin' for a Cure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVe-Oc-Rs2">
                                                     <rect key="frame" x="0.0" y="20.333333333333329" width="128.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -655,13 +655,13 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QOb-5F-kW0">
                                             <rect key="frame" x="58" y="152" width="128.33333333333334" height="38.333333333333343"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Team 14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZY-f2-hnN">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team 14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZY-f2-hnN">
                                                     <rect key="frame" x="0.0" y="0.0" width="128.33333333333334" height="20.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Twerkin' for a Cure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPg-VV-1v3">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twerkin' for a Cure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPg-VV-1v3">
                                                     <rect key="frame" x="0.0" y="20.333333333333343" width="128.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -688,13 +688,13 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eN7-zg-NE4">
                                             <rect key="frame" x="58" y="202" width="128.33333333333334" height="38.333333333333343"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Team 14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVG-AF-gvj">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team 14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVG-AF-gvj">
                                                     <rect key="frame" x="0.0" y="0.0" width="128.33333333333334" height="20.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Twerkin' for a Cure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NQ-Ad-3Bb">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twerkin' for a Cure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NQ-Ad-3Bb">
                                                     <rect key="frame" x="0.0" y="20.333333333333343" width="128.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -721,13 +721,13 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Lgg-tr-tFz">
                                             <rect key="frame" x="58" y="252.00000000000003" width="128.33333333333334" height="38.333333333333343"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team 14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKa-4k-QAw">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Team 14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKa-4k-QAw">
                                                     <rect key="frame" x="0.0" y="0.0" width="128.33333333333334" height="20.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twerkin' for a Cure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZa-cQ-gwK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Twerkin' for a Cure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZa-cQ-gwK">
                                                     <rect key="frame" x="0.0" y="20.333333333333314" width="128.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -1790,28 +1790,40 @@
                                     <action selector="confirmCheckIn:" destination="4MR-2a-cY1" eventType="touchUpInside" id="TTa-qs-n8y"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcQ-P8-HSU" userLabel="Directions Label">
+                                <rect key="frame" x="20" y="386" width="374" height="122"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <string key="text">Your Device WILL be registered under this member's information. You will NOT be able to change your current device to a different member! Make sure all of your information is correct!! All spirt points will go to this user!!</string>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="tlT-cS-ON2" secondAttribute="trailing" constant="20" id="0pj-OZ-BGx"/>
                             <constraint firstItem="tlT-cS-ON2" firstAttribute="top" secondItem="uz7-Zz-xAZ" secondAttribute="bottom" constant="50" id="7OG-s4-gQ8"/>
                             <constraint firstAttribute="trailing" secondItem="7fT-92-wot" secondAttribute="trailing" constant="20" id="DHH-ga-wqO"/>
+                            <constraint firstItem="qcQ-P8-HSU" firstAttribute="top" secondItem="aOK-RA-Hv4" secondAttribute="bottom" constant="50" id="FeF-SQ-Bsz"/>
                             <constraint firstItem="Hqd-4X-ieg" firstAttribute="top" secondItem="tlT-cS-ON2" secondAttribute="bottom" constant="50" id="JzM-gN-91Q"/>
                             <constraint firstAttribute="trailing" secondItem="Hqd-4X-ieg" secondAttribute="trailing" constant="20" id="OUy-2Q-rwl"/>
                             <constraint firstAttribute="trailing" secondItem="aOK-RA-Hv4" secondAttribute="trailing" constant="20" id="QH1-EC-VWc"/>
                             <constraint firstItem="iSO-S4-45x" firstAttribute="top" secondItem="Hqd-4X-ieg" secondAttribute="bottom" constant="50" id="R3v-vM-v02"/>
                             <constraint firstItem="aOK-RA-Hv4" firstAttribute="top" secondItem="iSO-S4-45x" secondAttribute="bottom" constant="50" id="cer-2k-h4P"/>
+                            <constraint firstAttribute="trailing" secondItem="qcQ-P8-HSU" secondAttribute="trailing" constant="20" id="dLj-is-IN7"/>
                             <constraint firstItem="7fT-92-wot" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" constant="20" id="eoL-gu-QoG"/>
                             <constraint firstItem="Hqd-4X-ieg" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" constant="20" id="jeW-uB-Hrg"/>
                             <constraint firstItem="36h-hQ-3W4" firstAttribute="top" secondItem="7fT-92-wot" secondAttribute="bottom" constant="50" id="lnY-hv-ICR"/>
                             <constraint firstItem="aOK-RA-Hv4" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" constant="20" id="pip-pT-zs6"/>
                             <constraint firstItem="iSO-S4-45x" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" constant="20" id="poA-3r-4bH"/>
+                            <constraint firstItem="qcQ-P8-HSU" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" constant="20" id="uzA-hv-epz"/>
                             <constraint firstItem="tlT-cS-ON2" firstAttribute="leading" secondItem="qTv-jg-D6k" secondAttribute="leading" constant="20" id="yA4-u6-Kra"/>
                             <constraint firstAttribute="trailing" secondItem="iSO-S4-45x" secondAttribute="trailing" constant="20" id="yic-XF-oQT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BlF-Gt-Ufi"/>
                     <connections>
+                        <outlet property="directionsLabel" destination="qcQ-P8-HSU" id="trY-b4-TyY"/>
                         <outlet property="fullnameTextField" destination="aOK-RA-Hv4" id="JjW-tO-32F"/>
                         <outlet property="linkBlueTextField" destination="iSO-S4-45x" id="YAo-1g-mWb"/>
                         <outlet property="nameTextField" destination="Hqd-4X-ieg" id="t7A-Ap-KQW"/>

@@ -10,16 +10,8 @@ import FirebaseDatabase
 import UIKit
 import CoreLocation
 
-/*
-//might not need
-protocol GeoFenceDelegate: class {
-    func checkInGeoFence()
-}
-//might not need
-protocol GeoFenceDelegate2 {
-    func CheckInGeoFence(_ controller: CheckinViewController, x: String)
-}*/
-
+//TODO: PASS IN CURRENT EVENT'S POINTS TO THIS VIEW CONTROLLER AND APPEND THE POINT(S)
+//  TO THE FIREBASE PUSH/UPDATE
 #warning("FIX ME")
 class CheckinViewController: UIViewController {
     
@@ -60,6 +52,7 @@ class CheckinViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var linkBlueTextField: UITextField!
     @IBOutlet weak var fullnameTextField: UITextField!
+    @IBOutlet weak var directionsLabel: UILabel!
     
     // MARK: - Initialization---------------------------------------------------
     override func viewDidLoad() {
@@ -94,6 +87,7 @@ class CheckinViewController: UIViewController {
         nameTextField.inputView = namePicker
     }
     
+    #warning("Make all firebase calls its own gloabal class with completion handlers")
     // MARK: - Firebase---------------------------------------------------------
     func setupFirebase() {
         firebaseReference = Database.database().reference()
@@ -124,10 +118,13 @@ class CheckinViewController: UIViewController {
     }
     
     #warning("FIX ME")
+    //used to update current values of existing member
     func UpdateFirebase(){
         
     }
+    
     #warning("FIX ME")
+    //used to add new members to firebase...need to nest correctly into firebase
     func AddToFirebase() {
         firebaseReference = Database.database().reference()
         let id:String? = firebaseReference?.child("app-danceblue").child(kMasterRoster).childByAutoId().key
@@ -206,7 +203,7 @@ class CheckinViewController: UIViewController {
     #warning("FIX ME")
     // MARK: - Comfirm Checkin Button-------------------------------------------
     @IBAction func confirmCheckIn(_ sender: Any) {
-        
+
         //checking team and member names
         let teamField = String(teamTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
         let nameField = String(nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
@@ -241,11 +238,17 @@ class CheckinViewController: UIViewController {
                 if(lastCheckin == eventTitle){isCheckedin = true}
                 print("members lastCheckin: \(lastCheckin) isCheckedin: \(isCheckedin) ")    //debugging purposes
                 
+                #warning("FIX THIS logic-> Test Case:")
+                /*
+                 what happens when master roster is initally populated with only the team captin and no Device UUID (it will force the member to register their device under the member name 'OTHER' thus never being able to use the original team captin name)?? My suggestion is to not populate the master roster at the beginning just leave the default member 'OTHER' and have each user populate their own information. The app will push everything needed to firebase!
+                */
+                
                 //The Device UUID is Not registered under the selected member name
                 if(!isRegistered){
                     //if the current member has Not checked into this event
                     if(!isCheckedin){
-                        print("This member is valid to start the geoFence process")
+                        print("This member is valid to start the geoFence process") //debugging purposes
+                        
                         //startMonitoring()
                         
                         //make sure they check into the geo fence before adding information to firebase!
@@ -283,11 +286,25 @@ class CheckinViewController: UIViewController {
                 if(!isLinkFieldEmpty && !isFullNameFieldEmpty){
                     print("linkBlueField: \(linkBlueField)")
                     print("fullNameField: \(fullNameField)")
-                    //if the Current Device's UUID already exisits in firebase. Dont allow them to register with another name!!
+
+                    var isDeviceRegistered = false
+                    var fbDeviceUUId = ""
+                    //checking to see if the Device's UUID is already registered in firebase. Dont allow them to register with another name!!
+                    for (_, value) in masterRosterDICT {
+                        //print("(Key: \(key), DeviceUUID: \(value.deviceUUId ?? ""))")
+                        fbDeviceUUId = value.deviceUUId ?? ""
+                        if(fbDeviceUUId == DeviceUUID){
+                            isDeviceRegistered = true
+                            break;
+                        }
+                    }
+                    print("members fbDeviceUUId: \(fbDeviceUUId) isDeviceRegistered: \(isDeviceRegistered) ")    //debugging purposes
                     
-                    //if current Device UUID hasnt been registered to firebase
-                     /*if(Current DeviceUUID != exist in firebase DeviceUUID){
-                     
+                    //if current Device UUID has Not been registered to firebase
+                    if(!isDeviceRegistered){
+    
+                        print("This member is valid to start the geoFence process") //debugging purposes
+
                          //startMonitoring()
                      
                         //make sure they check into the geo fence before adding information to firebase!
@@ -301,7 +318,6 @@ class CheckinViewController: UIViewController {
                      else{
                         showAlert(withTitle: kErrorTitle2, message: kErrorMessage9)
                      }
-                     */
                 }
                 else{
                     showAlert(withTitle: kErrorTitle, message: kErrorMessage5)
@@ -318,8 +334,8 @@ class CheckinViewController: UIViewController {
         //self.dismiss(animated: true, completion: nil)
     }
     
+    #warning("Make all GeoFence related items into its own gloabal class, with completetion handelers")
     // MARK: - GeoFence---------------------------------------------------------
-    
     // MARK: - Start monitoring the geofence region-------------------
     func startMonitoring(){
         let clampedRadius = min(kGeoFenceRadius, locationManager.maximumRegionMonitoringDistance)
@@ -441,10 +457,12 @@ extension CheckinViewController: UIPickerViewDelegate, UIPickerViewDataSource{
             if(selectedName == kOtherName){
                 linkBlueTextField.isHidden = false
                 fullnameTextField.isHidden = false
+                directionsLabel.isHidden = false
             }
             else{
                 linkBlueTextField.isHidden = true
                 fullnameTextField.isHidden = true
+                directionsLabel.isHidden = true
             }
         }
         self.view.endEditing(true)
