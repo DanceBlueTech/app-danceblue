@@ -7,7 +7,7 @@
 //
 
 import ObjectMapper
-
+//Might not need this!!
 class MasterTeams: Mappable {
     public var teamName : String?
     public var teamPoints : Int?
@@ -17,8 +17,5 @@ class MasterTeams: Mappable {
     func mapping(map: Map) {
         teamName <- map[kTeamName]
         teamPoints <- map[kTeamPoints]
-    }
-    func printAll(){
-        print("teamName: \(teamName) teamPoints: \(teamPoints)")
     }
 }

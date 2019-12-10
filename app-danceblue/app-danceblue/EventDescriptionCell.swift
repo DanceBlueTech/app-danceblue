@@ -14,7 +14,7 @@ protocol EventDescriptionDelegate: class {
 }
 
 protocol EventDescriptionDelegateCheckIn {
-    func checkInTapped(eventTitle: String, eventCoords: CLLocationCoordinate2D)
+    func checkInTapped(eventTitle: String, eventCoords: CLLocationCoordinate2D, eventPoints: Int)
 }
 //TODO: https://blog.usejournal.com/geofencing-in-ios-swift-for-noobs-29a1c6d15dcc
 
@@ -108,8 +108,8 @@ class EventDescriptionCell: UITableViewCell {
         
         #warning("UNCOMMENT THIS IF STATEMENT BELOW, TEST AND PUSH FOR LIVE PRODUCTION!!")
         //if today is between current start and stop time display 'checkin' button
-        if((eventStartString <= currentDateString) && (currentDateString <= eventEndString)){
-        //if(true){
+        //if((eventStartString <= currentDateString) && (currentDateString <= eventEndString)){
+        if(true){
             checkInButton.isHidden = false
         }
         else{
@@ -125,18 +125,16 @@ class EventDescriptionCell: UITableViewCell {
         let geoCoder = CLGeocoder()
         let eventTitle = event?.title ?? ""
         let eventAddress = event?.address ?? ""
-        let address = event!.address ?? ""
-        //let time = event!.time ?? ""
+        let points = Int(event?.points ?? "0") ?? 0
         
         //debugging
         print("Checking IN!!")
         print("Event.Title: \(eventTitle)")
         print("Event.Address: \(eventAddress)")
-        print("Event.address \(address)")
         
         //call function to convert address to coordinates and store in variables
         //This is an async call needs to be fixed!!!
-        //FIX this return variables in the LocationCoverter file
+        //FIX this return variables in the LocationCoverter.swift file: make this a gloabal class
         //LocationConverter.AddressToCoordinates.getCoords(Address: eventAddress)
         
         //TODO: make sure this is an address!!
@@ -159,9 +157,8 @@ class EventDescriptionCell: UITableViewCell {
             #warning("move everything below out of this function since it is async...need to implement a completion handler")
             if(isvalid){
                 print("Coordinates are valid")       //debugging
-                // send coordinates and current event title to Checkin View Controller
-                self.checkInDelegate?.checkInTapped(eventTitle: eventTitle, eventCoords: coords)
-                //self.eventCoordinatesDelegate?.updateCoords(currentEventTitle: eventTitle, coordinates: coords)
+                // send current event coordinates, current event title, current event points to Checkin View Controller
+                self.checkInDelegate?.checkInTapped(eventTitle: eventTitle, eventCoords: coords, eventPoints: points)
             }
             else{
                 print("Coordinates are NOT valid")
@@ -187,7 +184,6 @@ extension EventDescriptionCell: UITextViewDelegate {
         delegate?.textView(didPresentSafariViewController: URL)
         return false
     }
-    
 }
 
 // Helper function inserted by Swift 4.2 migrator.

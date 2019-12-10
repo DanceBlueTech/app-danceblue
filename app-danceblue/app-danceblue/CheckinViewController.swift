@@ -17,6 +17,7 @@ class CheckinViewController: UIViewController {
     
     var eventTitle: String = ""
     var eventCoords: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    var eventPoints: Int = 0
     fileprivate var DeviceUUID: String = ""
     fileprivate var firebaseReference: DatabaseReference?
     private var masterRosterHandle: DatabaseHandle?
@@ -118,55 +119,38 @@ class CheckinViewController: UIViewController {
     }
     
     #warning("FIX ME")
+    // TODO: make this more compact and dynamic!
     //used to update current values of existing member
-    func UpdateFirebase(){
+    func UpdateFirebase(uuid: String, points: Int, lastCheck: String){
+        firebaseReference = Database.database().reference()
+        //var path = firebaseReference?.child(kFirebaseApp).child(kMasterRoster).queryOrdered(byChild: uuid).
         
+        //var query = firebaseReference?.child(kFirebaseApp).child(kMasterRoster).orderByChild("uid").equalTo(uuid);
+        /*query.once("child_added", function(snapshot) {
+            snapshot.ref.update({ kLastCheckin: lastCheck, kIndividualPoints: points})
+        });
+        
+        let ref = FIRDatabase.database().reference().child("users/90384m590v834dfgok34")
+
+        ref.updateChildValues([
+            "values": [
+                "test3",
+                "test4"
+            ]
+        ])*/
     }
     
-    #warning("FIX ME")
-    //used to add new members to firebase...need to nest correctly into firebase
-    func AddToFirebase() {
+    // TODO: make this more compact and dynamic!
+    // used to Add new Membersmake this more compact and dynamic!
+    func AddToFirebase(uuid: String, points: Int, lastCheck: String, link: String, fullName: String, TeamName: String) {
         firebaseReference = Database.database().reference()
-        let id:String? = firebaseReference?.child("app-danceblue").child(kMasterRoster).childByAutoId().key
-        //let post = [kDeviceUUID: DeviceUUID,
-          //          kIndividualPoints: 1,
-            //        kMemberName: memberName,
-              //      kTeamName: teamName]
-        
-        firebaseReference?.child(id!).child("Device UUID").setValue(DeviceUUID)
-        firebaseReference?.child(id!).child("Individual Points").setValue(1)
-        firebaseReference?.child(id!).child("Last Checkin").setValue("TEST EVENT")
-        firebaseReference?.child(id!).child("LinkBlue").setValue("TEST LINKBLUE")
-        firebaseReference?.child(id!).child("Member Name").setValue("TEST NAME")
-        firebaseReference?.child(id!).child("Team Name").setValue("TEST TEAM")
-        /*ref.observe(.value, with: {snapshot in
-            var newItems: [MasterRoster] = []
-            for child in snapshot.children{
-                if let snapshot = child as? DataSnapshot
-                    print(snapshot)
-                }
-            }
-        })*/
-        //firebaseReference = Database.database().reference()
-        /*guard let key = firebaseReference?.child(kMasterRoster).childByAutoId().key else { return }
-        let post = [kDeviceUUID: uuid,
-                    kIndividualPoints: points,
-                    kMemberName: memberName,
-                    kTeamName: teamName]
-        let childUpdates = ["/posts/\(key)": post,
-                            "/user-posts/\(userID)/\(key)/": post]
-        firebaseReference.updateChildValues(childUpdates)
-        */
-   /* firebaseReference.child(kMasterRoster).child(user.uid).setValue(["username": username]) {
-          (error:Error?, ref:DatabaseReference) in
-          if let error = error {
-            print("Data could not be saved: \(error).")
-          } else {
-            print("Data saved successfully!")
-          }
-        }*/
-        
-        //masterRosterUpdateHandle = firebaseReference?.child(<#T##pathString: String##String#>)
+        let id:String? = firebaseReference?.child(kFirebaseApp).child(kMasterRoster).childByAutoId().key
+        firebaseReference?.child(kMasterRoster).child(id!).child(kDeviceUUID).setValue(uuid)
+        firebaseReference?.child(kMasterRoster).child(id!).child(kIndividualPoints).setValue(points)
+        firebaseReference?.child(kMasterRoster).child(id!).child(kLastCheckin).setValue(lastCheck)
+        firebaseReference?.child(kMasterRoster).child(id!).child(kLinkBlue).setValue(link)
+        firebaseReference?.child(kMasterRoster).child(id!).child(kMemberName).setValue(fullName)
+        firebaseReference?.child(kMasterRoster).child(id!).child(kTeamName).setValue(TeamName)
     }
     
     #warning("TEST ME- something errored out on very first app luanch ever, might be an async thing")
@@ -254,13 +238,20 @@ class CheckinViewController: UIViewController {
                         //make sure they check into the geo fence before adding information to firebase!
                         #warning("make sure firebase successfully stores and updates without error before moving forward ")
                         
+                        //new total for individual points
+                        let memberTotal = eventPoints + (masterRosterDICT[nameField]?.individualPoints ?? 0)
                         //master Roster: update individual points for current device UUID (points + spirit points for current event), update last checkin to eventTitle
                         //master Teams: update team points (points + spirit points for current event)
-                 
-                        #warning("There might be an issue if multiple users try to update team points at the same time...might be better idea if on the back end the teams add up their points from the memebrs individual points themselves!!")
-                        //UpdateToFirebase()
                         
-                        //dismiss CheckinView Controller after information is added to firebase
+                        #warning("There might be an issue if multiple users try to update team points at the same time...might be better idea if on the back end the teams add up their points from the memebrs individual points themselves!!")
+                        
+                        //TODO: wait for geoFence to check in before sending data to firebase--> needs a completeion handler
+                        //send device uuid, individual points, last checked, link blue  member name, and team name
+                        //UpdateToFirebase(uuid: DeviceUUID, points: memberTotal, lastCheck: eventTitle)
+                        
+                        //TODO: dismiss CheckinView Controller after information is added to firebase--> needs a completion handler
+                        //need to wait for geoFence to complete and firebase to finish before dismissing
+                        self.dismiss(animated: true, completion: nil)
                     }
                     else{
                         showAlert(withTitle: kErrorTitle3, message: kErrorMessage10)
@@ -291,7 +282,6 @@ class CheckinViewController: UIViewController {
                     var fbDeviceUUId = ""
                     //checking to see if the Device's UUID is already registered in firebase. Dont allow them to register with another name!!
                     for (_, value) in masterRosterDICT {
-                        //print("(Key: \(key), DeviceUUID: \(value.deviceUUId ?? ""))")
                         fbDeviceUUId = value.deviceUUId ?? ""
                         if(fbDeviceUUId == DeviceUUID){
                             isDeviceRegistered = true
@@ -309,11 +299,20 @@ class CheckinViewController: UIViewController {
                      
                         //make sure they check into the geo fence before adding information to firebase!
                          #warning("make sure firebase successfully stores and updates without error before moving forward ")
-                     
+                        
+                        /* TODO: make new function in master Roster in order to init a new object and just pass the object to AddToFirebase() and redo the code in that function in order to reduce lines of code and make it more dynamic
+                         
+                         var newMember : MasterRoster
+                        newMember.setMember(uuid: DeviceUUID, points: eventPoints, lastCheck: eventTitle, link: linkBlueField, fullName: fullNameField, TeamName: teamField)
+                        AddToFirebase(newMember)*/
+                        
+                        //TODO: wait for geoFence to check in before sending data to firebase--> needs a completeion handler
                         //send device uuid, individual points, last checked, link blue  member name, and team name
-                        //AddToFirebase()
-                     
-                        //dismiss CheckinView Controller after information is added to firebase
+                        AddToFirebase(uuid: DeviceUUID, points: eventPoints, lastCheck: eventTitle, link: linkBlueField, fullName: fullNameField, TeamName: teamField)
+                        
+                        //TODO: dismiss CheckinView Controller after information is added to firebase--> needs a completion handler
+                        //need to wait for geoFence to complete and firebase to finish before dismissing
+                        self.dismiss(animated: true, completion: nil)
                      }
                      else{
                         showAlert(withTitle: kErrorTitle2, message: kErrorMessage9)
@@ -328,10 +327,8 @@ class CheckinViewController: UIViewController {
             }
         }
         else{
-            print("Team Field or Member Field is empty")    //debugging purposes
             showAlert(withTitle: kErrorTitle, message: kErrorMessage5)
         }
-        //self.dismiss(animated: true, completion: nil)
     }
     
     #warning("Make all GeoFence related items into its own gloabal class, with completetion handelers")

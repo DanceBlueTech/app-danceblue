@@ -20,6 +20,7 @@ class EventDetailsViewController: UITableViewController {
     var event: Event?
     var eventTitle: String?
     var eventCoords: CLLocationCoordinate2D?
+    var eventPoints: Int?
     let eventStore = EKEventStore()
     var cellHeights: [CGFloat] = [CGFloat].init(repeating: 0, count: 5)
     
@@ -136,6 +137,7 @@ class EventDetailsViewController: UITableViewController {
                 guard let vc = segue.destination as? CheckinViewController else {return}
                 vc.eventTitle = self.eventTitle!    //might need to check if its not null
                 vc.eventCoords = self.eventCoords!  //might need to check if its not null
+                vc.eventPoints = self.eventPoints!  //might need to check if its not null
             default:
                 guard let ivc = segue.destination as? ImageViewController else {return}
                 ivc.setupViews(with: event?.flyer)
@@ -251,10 +253,11 @@ extension EventDetailsViewController: EventDescriptionDelegate {
 
 // MARK: - EventDescriptionDelegateCheckIn--------------------------------------
 extension EventDetailsViewController: EventDescriptionDelegateCheckIn {
-    func checkInTapped(eventTitle: String, eventCoords: CLLocationCoordinate2D)
+    func checkInTapped(eventTitle: String, eventCoords: CLLocationCoordinate2D, eventPoints: Int)
     {
         self.eventTitle = eventTitle
         self.eventCoords = eventCoords
+        self.eventPoints = eventPoints
         performSegue(withIdentifier: kSegueCheckIn, sender: self)
     }
 }

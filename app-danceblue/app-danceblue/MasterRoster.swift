@@ -17,7 +17,7 @@ class MasterRoster: Mappable {
     public var teamName: String?
      
     required init?(map: Map) {}
-     
+    
     func mapping(map: Map) {
         deviceUUId <- map[kDeviceUUID]
         individualPoints <- map[kIndividualPoints]
@@ -26,8 +26,13 @@ class MasterRoster: Mappable {
         memberName <- map[kMemberName]
         teamName <- map[kTeamName]
     }
-    
-    func printAll(){
-        print("deviceUUId: \(deviceUUId) individualPoints: \(individualPoints) lastCheckin: \(lastCheckin) linkBlue: \(linkBlue) memberName: \(memberName) teamName: \(teamName)")
+    //might not need this
+    func setMember(uuid: String, points: Int, lastCheck: String, link: String, fullName: String, TeamName: String){
+        deviceUUId = uuid
+        individualPoints = points
+        lastCheckin = lastCheck
+        linkBlue = link
+        memberName = fullName
+        teamName = TeamName
     }
  }

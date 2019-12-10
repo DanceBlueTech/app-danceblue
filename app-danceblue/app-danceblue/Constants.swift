@@ -9,6 +9,7 @@
 import Foundation
 
 // MARK: -constants for firebase names
+let kFirebaseApp                = "app-danceblue"
 let kMasterTeams                = "Master Teams"
 let kTeamName                   = "Team Name"
 let kTeamPoints                 = "Team Points"
@@ -21,12 +22,11 @@ let kMemberName                 = "Member Name"
 let kOtherName                  = "OTHER"
 
 // MARK: -GeoFence
-let kGeoLocationTableName       = "geolocation"
 let kGeoLocationName            = "name"
 let kGeoLocationLat             = "latitude"
 let kGeoLocationLong            = "longitude"
 let kGeoLocationRadius          = "radius"
-let kGeoFenceRadius             = 15.0
+let kGeoFenceRadius             = 50.0
 let kGeoFenceID                 = "DanceBlue_GeoFence"
 
 //MARK: Contact Information from public website
@@ -40,7 +40,6 @@ let kErrorTitle2                = "Warning"
 let kErrorTitle3                = "CHECKIN FORBIDDEN!"
 let kErrorMessage1              = "Geofencing is not supported on this device!"
 let kErrorMessage2              = "You need to grant DanceBlue permission to access the device location, so you can check in to this event."
-//let kErrorMessage2              = "Your geoLocation is saved but will only be activated once you grant DanceBlue permission to access the device location."
 let kErrorMessage3              = "Monitoring failed for region with identifier: "
 let kErrorMessage4              = "Location Manager failed with the following error: "
 let kErrorMessage5              = "All fields are required in order to check in to this Event! Make sure you have selected the correct team and member name combination"
