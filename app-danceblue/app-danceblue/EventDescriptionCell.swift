@@ -16,16 +16,7 @@ protocol EventDescriptionDelegate: class {
 protocol EventDescriptionDelegateCheckIn {
     func checkInTapped(eventTitle: String, eventCoords: CLLocationCoordinate2D, eventPoints: Int)
 }
-//TODO: https://blog.usejournal.com/geofencing-in-ios-swift-for-noobs-29a1c6d15dcc
 
-/*
-protocol EventDescriptionCellDelegate {
-  func CheckInGeoFence(_ controller: EventDescriptionCell, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: Geotification.EventType)
-}
-protocol EventCoordinatesDelegate {
-    //TODO: add param for current event title
-    func updateCoords(currentEventTitle: String, coordinates: CLLocationCoordinate2D)
-}*/
 class EventDescriptionCell: UITableViewCell {
     
     static let identifier = "EventDescriptionCell"
@@ -51,7 +42,6 @@ class EventDescriptionCell: UITableViewCell {
         titleLabel.font = Theme.Font.header
         titleLabel.text = "DESCRIPTION"
         setupTextView()
-        //displayCheckInButton()
     }
 
     func setupTextView() {

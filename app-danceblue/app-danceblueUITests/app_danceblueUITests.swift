@@ -46,6 +46,7 @@ class app_danceblueUITests: XCTestCase {
         tabBarsQuery.buttons["Events"].tap()
         tabBarsQuery.buttons["Blog"].tap()
         tabBarsQuery.buttons["More"].tap()
-        app.tables.staticTexts["Contact"].tap()
+        app.tables.staticTexts["CONTACT"].tap()
     }
+    
 }

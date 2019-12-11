@@ -72,6 +72,9 @@ class CheckinViewController: UIViewController {
         checkStoredUUID()
     }
     
+    @IBAction func CancelTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     // MARK: - custom UIPicker for master teams---------------------------------
     func createTeamPicker(){
         let teamPicker = UIPickerView()
@@ -233,7 +236,7 @@ class CheckinViewController: UIViewController {
                     if(!isCheckedin){
                         print("This member is valid to start the geoFence process") //debugging purposes
                         
-                        //startMonitoring()
+                        //startMonitoring() --> geofence
                         
                         //make sure they check into the geo fence before adding information to firebase!
                         #warning("make sure firebase successfully stores and updates without error before moving forward ")
