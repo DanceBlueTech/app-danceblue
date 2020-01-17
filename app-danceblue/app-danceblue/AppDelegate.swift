@@ -11,6 +11,7 @@ import UIKit
 import UserNotifications
 import XCGLogger
 import CoreData
+import CoreLocation
 
 let log = XCGLogger.default
 
@@ -18,15 +19,47 @@ let log = XCGLogger.default
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
+    let locationManager = CLLocationManager()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         registerForRemoteNotifications(for: application)
         log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: "path/to/file", fileLevel: .debug)
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         
         return true
     }
-
+    
+    func handleEvent(for region: CLRegion!) {
+      print("Geofence triggered!")
+        
+         // Show an alert if application is active
+         if UIApplication.shared.applicationState == .active {
+           //guard let message = note(from: region.identifier) else { return }
+            let message = "TEST...GEOFENCE TRIGGERED...TEST"
+           window?.rootViewController?.showAlert(withTitle: nil, message: message)
+         } else {
+           // Otherwise present a local notification
+           //guard let body = note(from: region.identifier) else { return }
+           let notificationContent = UNMutableNotificationContent()
+           //notificationContent.body = body
+           notificationContent.body = "GEOFENCE TEST"
+           notificationContent.sound = UNNotificationSound.default
+           notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
+           let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+           let request = UNNotificationRequest(identifier: "location_change",
+                                               content: notificationContent,
+                                               trigger: trigger)
+           UNUserNotificationCenter.current().add(request) { error in
+             if let error = error {
+               print("Error: \(error)")
+             }
+           }
+         }
+         
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -43,6 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        application.applicationIconBadgeNumber = 0
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -99,4 +135,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FirebaseApp.configure()
     }
     
+    //might not need
+    /*func note(from identifier: String) -> String? {
+      let geotifications = Geotification.allGeotifications()
+      guard let matched = geotifications.filter({
+        $0.identifier == identifier
+      }).first else { return nil }
+      return matched.note
+    }*/
+}
+
+// MARK: - Core Location entering and exiting geoFences
+extension AppDelegate: CLLocationManagerDelegate {
+  func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    if region is CLCircularRegion {
+      handleEvent(for: region)
+    }
+  }
+  
+    //might not need this function
+  func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+    if region is CLCircularRegion {
+      handleEvent(for: region)
+    }
+  }
 }

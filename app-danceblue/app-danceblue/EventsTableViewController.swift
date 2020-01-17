@@ -15,7 +15,7 @@ protocol EventsTableViewDelegate: class {
 }
 
 class EventsTableViewController: UITableViewController {
-    
+
     fileprivate var firebaseReference: DatabaseReference?
     private var thisWeekAddHandle: DatabaseHandle?
     private var comingUpAddHandle: DatabaseHandle?
@@ -23,7 +23,7 @@ class EventsTableViewController: UITableViewController {
     private var comingUpChangeHandle: DatabaseHandle?
     private var thisWeekDeleteHandle: DatabaseHandle?
     private var comingUpDeleteHandle: DatabaseHandle?
-    
+
     weak var delegate: EventsTableViewDelegate?
     private var thisWeekMap: [String : Event] = [:]
     private var comingUpMap: [String : Event] = [:]
@@ -35,7 +35,7 @@ class EventsTableViewController: UITableViewController {
         }
     }
     private var sectionData: [String] = ["THIS WEEK", "COMING UP"]
-    
+
     // MARK: - Initialization
     
     override func viewDidLoad() {
@@ -122,7 +122,6 @@ class EventsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let eventDetailsViewController = segue.destination as? EventDetailsViewController, segue.identifier == "EventSegue", let section = tableView.indexPathForSelectedRow?.section, let row = tableView.indexPathForSelectedRow?.row {
             eventDetailsViewController.event = eventData[section][row]
-            //eventDetailsViewController.delegate = self      // Used for "liking" of events
         }
     }
     
@@ -198,32 +197,4 @@ class EventsTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
-    
 }
-
-// MARK: - EventHeaderDelegate
-/*
-extension EventsTableViewController: EventDetailsViewControllerDelegate {
-    
-    func heartButton(didChangeValueFor event: Event, value: Int) {
-        
-        var currentValue = 0
-            _ = firebaseReference?.child("events").child(event.category ?? "").child(event.id ?? "").child("going").observe(.value, with:
-                { (snapshot) in
-                    guard let data = snapshot.value as? Int else { return }
-                    currentValue = data
-                    print("currentValue \(currentValue)")
-                    print("value \(value)")
-                    
-                    self.updateValue(forEvent: event, newValue: currentValue + value)
-            })
-
-    }
-    
-    func updateValue(forEvent event: Event, newValue: Int) {
-        firebaseReference?.child("events").child(event.category ?? "").child(event.id ?? "").updateChildValues(["going" : newValue])
-    }
-    
-    
-}
-*/

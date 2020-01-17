@@ -17,6 +17,9 @@ class SplashViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
 
     private var homeViewController: HomeViewController?
+    fileprivate var DeviceUUID: String = ""
+
+    
     let networkController = UIAlertController(title: "Network Error", message: "We can't find an internet connection. Would you like to try again?", preferredStyle: .alert)
     
     // MARK: - Initialization
@@ -71,7 +74,6 @@ class SplashViewController: UIViewController {
             }
         }
     }
-    
 }
 
 // MARK: - AnnouncementCollectionViewDelegate

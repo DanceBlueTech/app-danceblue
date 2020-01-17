@@ -37,7 +37,7 @@ class CountdownTableViewCell: UITableViewCell {
     private var countdownDate: Date? {
         didSet {
             setupCountdown()
-            log.debug("Timer Started")
+            //log.debug("Timer Started")
         }
     }
     

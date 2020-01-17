@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>We need access to the camera in order to scan QR codes</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>FirebaseScreenReportingEnabled</key>
+	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -51,9 +53,11 @@
 		<true/>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>&quot;&quot;</string>
+	<string>&quot;We need access to your calendar in order to add this event&quot;</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>DanceBlue requires constant access to your phone’s location to register you when you enter an events geofence.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>“Allow us to access your current location for directions!”</string>
+	<string>“Allow us to access your current location for directions and GeoFencing capabilities”</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

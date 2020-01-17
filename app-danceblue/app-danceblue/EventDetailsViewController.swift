@@ -18,6 +18,9 @@ protocol EventDetailsViewControllerDelegate: class {
 class EventDetailsViewController: UITableViewController {
     
     var event: Event?
+    var eventTitle: String?
+    var eventCoords: CLLocationCoordinate2D?
+    var eventPoints: Int?
     let eventStore = EKEventStore()
     var cellHeights: [CGFloat] = [CGFloat].init(repeating: 0, count: 5)
     
@@ -47,7 +50,6 @@ class EventDetailsViewController: UITableViewController {
     }
     
     // MARK: - TableView Data Source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -89,6 +91,7 @@ class EventDetailsViewController: UITableViewController {
             if let descriptionCell = tableView.dequeueReusableCell(withIdentifier: EventDescriptionCell.identifier, for: indexPath) as? EventDescriptionCell {
                 descriptionCell.configureCell(with: event)
                 descriptionCell.delegate = self
+                descriptionCell.checkInDelegate = self
                 if cellHeights[indexPath.row] == 0 {
                     cellHeights[indexPath.row] = descriptionCell.sizeThatFits(CGSize(width: view.bounds.width, height: .greatestFiniteMagnitude)).height
                 }
@@ -127,14 +130,21 @@ class EventDetailsViewController: UITableViewController {
         return UITableViewCell()
     }
     
+    // MARK: - Segues-----------------------------------------------------------
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FlyerSegue", let ivc = segue.destination as? ImageViewController {
-            ivc.setupViews(with: event?.flyer)
+        switch segue.identifier {
+            case kSegueCheckIn:
+                guard let vc = segue.destination as? CheckinViewController else {return}
+                vc.eventTitle = self.eventTitle!    //might need to check if its not null
+                vc.eventCoords = self.eventCoords!  //might need to check if its not null
+                vc.eventPoints = self.eventPoints!  //might need to check if its not null
+            default:
+                guard let ivc = segue.destination as? ImageViewController else {return}
+                ivc.setupViews(with: event?.flyer)
         }
     }
     
-    // MARK: - Calendar
-    
+    // MARK: - Calendar---------------------------------------------------------
     @objc func addEventToCalendar(addAnyways: Bool = false) {
         guard let event = event else { return }
         eventStore.requestAccess(to: .event) { (granted, error) in
@@ -161,8 +171,8 @@ class EventDetailsViewController: UITableViewController {
                 do {
                     
                     let CALENDAR_DEFAULTS_KEY = "\(String(describing: calendarEvent.title))\(startDate.description)_ADDED_TO_CALENDAR"
-                    
-                    if let _: Bool = UserDefaults.standard.bool(forKey: CALENDAR_DEFAULTS_KEY), !addAnyways {
+                    let eventExists = UserDefaults.standard.bool(forKey:CALENDAR_DEFAULTS_KEY)
+                    if eventExists {
                         self.showDuplicateAlert()
                     } else {
                         print("Here")
@@ -186,7 +196,7 @@ class EventDetailsViewController: UITableViewController {
     }
     
     // MARK: - Alerts
-    
+    //These Alerts need to be fixed
     func showSettingsAlert() {
         let alertController = UIAlertController(title: "DanceBlue needs access to your Calendar", message: nil, preferredStyle: .alert)
         
@@ -200,22 +210,23 @@ class EventDetailsViewController: UITableViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func showFailedAlert() {
+    func showFailedAlert() { DispatchQueue.main.async {
+        
         let alertController = UIAlertController(title: "Something went wrong.", message: "We were unable to add this event to your calendar.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
+        self.present(alertController, animated: true, completion: nil)
+        }}
     
-    func showDuplicateAlert() {
+    func showDuplicateAlert() { DispatchQueue.main.async{
         let alertController = UIAlertController(title: "Duplicate Event", message: "This event has already been added to your calendar.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Add Anyways", style: .default, handler: { (alert) in
             self.addEventToCalendar(addAnyways: true)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
+        self.present(alertController, animated: true, completion: nil)
+        }}
     
-    func showSuccessAlert() {
+    func showSuccessAlert() { DispatchQueue.main.async{
         let alertController = UIAlertController(title: "Event Added", message: nil, preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "Go To Calendar", style: .default, handler: { alert in
@@ -225,13 +236,11 @@ class EventDetailsViewController: UITableViewController {
                 
             }))
         alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
-    }
-    
+        self.present(alertController, animated: true, completion: nil)
+        }}
 }
 
-// MARK: - EventDescriptionDelegate
-
+// MARK: - EventDescriptionDelegate---------------------------------------------
 extension EventDetailsViewController: EventDescriptionDelegate {
     
     func textView(didPresentSafariViewController url: URL) {
@@ -242,16 +251,16 @@ extension EventDetailsViewController: EventDescriptionDelegate {
     
 }
 
-// MARK: - EventHeaderDelegate
-/*
-extension EventDetailsViewController: EventHeaderDelegate {
-    
-    func heartButton(didChangeValueFor event: Event, value: Int) {
-        delegate?.heartButton(didChangeValueFor: event, value: value)
+// MARK: - EventDescriptionDelegateCheckIn--------------------------------------
+extension EventDetailsViewController: EventDescriptionDelegateCheckIn {
+    func checkInTapped(eventTitle: String, eventCoords: CLLocationCoordinate2D, eventPoints: Int)
+    {
+        self.eventTitle = eventTitle
+        self.eventCoords = eventCoords
+        self.eventPoints = eventPoints
+        performSegue(withIdentifier: kSegueCheckIn, sender: self)
     }
-    
 }
-*/
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
